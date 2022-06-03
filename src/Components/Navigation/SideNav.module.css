@@ -1,0 +1,44 @@
+.sideNav{
+  width: 70px;
+  height: 100%;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 100;
+  transition: 0.3s all ease-in-out;
+  background-color: #A4A4A4;
+}
+
+.sideNavItems{
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+}
+
+.sideNavItem{
+  list-style: none;
+  margin-top: 3rem;
+  height: 3rem;
+  width: 100%;
+}
+
+.sideNavItem a{
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all ease-out;
+}
+
+.sideNavItem a:hover img{
+  width: 44px;
+  height: 44px;
+  transition: 1s all ease;
+}

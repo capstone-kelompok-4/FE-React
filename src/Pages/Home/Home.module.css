@@ -1,0 +1,8 @@
+.home{
+  margin-left: 70px;
+}
+@media screen and (max-width: 992px) {
+  .right{
+    margin-top: 0 !important;
+  }
+}
