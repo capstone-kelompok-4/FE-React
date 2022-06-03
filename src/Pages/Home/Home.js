@@ -11,7 +11,7 @@ import { onlineUser } from '../../Assets/onlineUser';
 
 function Home() {
   return (
-    <div className={`row ${classes.home}`}>
+    <div className={`row ${classes.home}`} style={{marginLeft: "70px"}}>
       <div className="col-xl-9 p-0 my-5 col-lg-8 col-md-12">
         <Banner data={userData}/>
         <CoursesContainer title="Course History" data={courseData} />
