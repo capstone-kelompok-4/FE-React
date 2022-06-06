@@ -8,14 +8,12 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import { userData } from '../../Assets/user';
 import { courseData } from '../../Assets/courses';
 import { onlineUser } from '../../Assets/onlineUser';
-import Navbar from '../../Components/Navigation/Navbar';
 import SideNav from '../../Components/Navigation/SideNav';
 import Footer from '../../Components/Footer/Footer';
 
 function Home() {
   return (
     <>
-      <Navbar/>
       <SideNav/>
       <div className={`row ${classes.home}`} style={{marginLeft: "70px"}}>
         <div className="col-xl-9 p-0 my-5 col-lg-8 col-md-12">

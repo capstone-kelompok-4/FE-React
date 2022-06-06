@@ -1,18 +1,25 @@
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
-// import Footer from './Components/Footer/Footer';
-// import Navbar from './Components/Navigation/Navbar';
-// import SideNav from './Components/Navigation/SideNav';
+import Layouts from './Components/Layouts/Layouts';
 import Home from './Pages/Home/Home';
 
 function App() {
   return (
     <>
-        <Routes>
+      <Routes>
+        <Route path="/" element={<AppLayout/>}>
           <Route path="/" element={<Home/>}/>
-        </Routes>
+        </Route>
+      </Routes>
     </>
   );
 }
 
+function AppLayout() {
+  return(
+    <Layouts>
+      <Outlet/>
+    </Layouts>
+  )
+}
 export default App;
