@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import classes from "./Navbar.module.css";
 
-function Navbar() {
-  const isLogin = false;
+function Navbar({isLogin=false}) {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-primary" style={{position: "sticky", top: "0", zIndex: "100"}}>

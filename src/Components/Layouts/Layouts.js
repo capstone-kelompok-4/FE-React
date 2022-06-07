@@ -1,13 +1,14 @@
-import React from 'react'
+import React from "react";
 import Navbar from "../Navigation/Navbar";
 
-function Layouts({children}) {
+function Layouts({ children }) {
+  const isLogin = false;
   return (
     <>
-      <Navbar/>
+      <Navbar isLogin={isLogin} />
       <div>{children}</div>
     </>
-  )
+  );
 }
 
-export default Layouts
+export default Layouts;

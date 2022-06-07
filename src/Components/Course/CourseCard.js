@@ -14,5 +14,5 @@ function CourseCard({title, img, progress, description}) {
     </div>
   )
 }
-
+  
 export default CourseCard
