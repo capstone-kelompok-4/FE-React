@@ -33,7 +33,7 @@ function ForgotPassword() {
                             </div>
                         </div>
                         <div className="d-flex flex-column mb-3 ">
-                            <button type="button" class={`btn ${classes.buttonreset}`} onClick={() => navigate("/ForgotPassword")}>
+                            <button type="button" class={`btn ${classes.buttonreset}`} onClick={() => navigate("/ResetPassword")}>
                                 Send Reset Link
                             </button>
                         </div>
