@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import classes from "./Login.module.css"
 
 function Login() {
   const refUsername = useRef();
@@ -98,8 +99,8 @@ function Login() {
                 Login
               </button>
             </div>
-            <div className="d-flex flex-column ">
-              <p>Forgotten your email or password? Reset</p>
+            <div className="d-flex">
+              <p>Forgotten your email or password?<span><a className={`nav-link ${classes.colorteks}`} href="/ForgotPassword">Reset</a></span> </p>
             </div>
           </div>
         </div>
