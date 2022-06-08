@@ -3,6 +3,8 @@ import "./App.css";
 import Layouts from "./Components/Layouts/Layouts";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/login" exact element={<Login />} />
+          <Route path="/ForgotPassword" exact element={<ForgotPassword />} />
+          <Route path="/ResetPassword" exact element={<ResetPassword />} />
           <Route path="/" exact element={<Home />} />
         </Route>
       </Routes>
