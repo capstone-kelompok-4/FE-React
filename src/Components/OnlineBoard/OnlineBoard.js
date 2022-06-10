@@ -4,6 +4,7 @@ import classes from "./OnlineBoard.module.css";
 import OnlineUser from './OnlineUser';
 
 function OnlineBoard({data}) {
+  console.log(data);
   return (
     <div className={classes.onlineBoardContainer}>
       <h3 className={classes.title}>Online Board</h3>
@@ -20,11 +21,11 @@ function OnlineBoard({data}) {
             {data.map((user, i) => {
               return(
                 <OnlineUser 
-                key={user.user_id}
+                key={user.id}
                 index={i}
-                username={user.username}
-                profilePicture={user.profilePicture}
-                timesOut={user.timesOut}
+                name={user.name}
+                avatar={user.avatar}
+                timesOut={user.times_out}
                 />
               )
             })}

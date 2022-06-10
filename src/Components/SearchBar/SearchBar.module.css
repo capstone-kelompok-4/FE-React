@@ -1,9 +1,7 @@
 .card{
   padding: 0;
-  max-width: 380px;
-  margin: auto;
   border-radius: 10px;
-  margin-bottom: 30px;
+  width: 380px;
   display: flex;
   align-items: center;
 }
