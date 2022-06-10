@@ -12,7 +12,7 @@ function SideNav() {
           </Link>
         </li>
         <li className={classes.sideNavItem}>
-          <Link to="/">
+          <Link to="/course_overview">
             <img src="https://random.imagecdn.app/200/150" alt="sideNavLogo" width="32px" height="32px"/>
           </Link>
         </li>
