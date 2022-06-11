@@ -1,0 +1,8 @@
+@media screen and (max-width: 992px) {
+  .right{
+    margin-top: 0 !important;
+  } 
+  .banner{
+    height: 500px;
+  }
+} 
