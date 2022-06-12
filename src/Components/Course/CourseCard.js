@@ -1,8 +1,7 @@
 import React from 'react'
-// import ProgressBar from '../../Components/ProgressBar/ProgressBar';
 import { ProgressBar } from 'react-bootstrap';
 import classes from "./CourseCard.module.css";
-import { Link } from 'react-router-dom';
+
 function CourseCard({id, title, img, progress}) {
   return (
     <div  className="card" style={{width: "18rem", borderRadius: "20px", boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)"}}>
