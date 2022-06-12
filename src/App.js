@@ -6,6 +6,7 @@ import Home from "./Pages/Home/Home";
 import CourseOverview from "./Pages/CourseOverview/CourseOverview"
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
+import PreviewCourse from "./Pages/PreviewCourse/PreviewCourse"
 import DetailCourse from "./Pages/DetailCourse/DetailCourse";
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
           <Route path="/course_overview" exact element={<CourseOverview />} />
           <Route path="/detail_course/:id" exact element={<DetailCourse/>} />
         </Route>
+        <Route path="/preview_course/:id" exact element={<PreviewCourse />} />
+
       </Routes>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import CourseCard from './CourseCard';
-import classes from "./CoursesContainer.module.css";
+import classes from "./CoursesContainer.module.css"; 
 
 function CoursesContainer({title, data, showMoreAble}) {
   const [limit, setLimit] = useState(8);
@@ -12,20 +12,22 @@ function CoursesContainer({title, data, showMoreAble}) {
       }else{
           setLimit(null)
       }
-    }
+    } 
+
   return (
-    <div className={classes.coursesContainer}>
+    <div className={classes.coursesContainer} >
       <h3 className='text-start'>{title}</h3>
       <div className={classes.grid}>
         {data.slice(0, limit? limit:data.length).map((course) => {
           return(
             <CourseCard 
-            key={course.id}
+            id={course.id}
             title={course.title}
             progress={course.progress}
             img={course.img}
             />
           )
+          
         })}
       </div>
       {showMoreAble &&
