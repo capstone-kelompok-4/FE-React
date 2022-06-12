@@ -14,7 +14,6 @@ function CoursesContainer({title, data, showMoreAble}) {
       }
     } 
 
-
   return (
     <div className={classes.coursesContainer} >
       <h3 className='text-start'>{title}</h3>
