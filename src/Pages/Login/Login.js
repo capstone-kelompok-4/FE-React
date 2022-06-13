@@ -100,7 +100,7 @@ function Login() {
               </button>
             </div>
             <div className="d-flex">
-              <p>Forgotten your email or password?<span><a className={`nav-link ${classes.colorteks}`} href="/ForgotPassword">Reset</a></span> </p>
+              <p>Forgotten your email or password?<span><a className={`nav-link ${classes.colorteks}`} href="/forgot_password">Reset</a></span> </p>
             </div>
           </div>
         </div>
