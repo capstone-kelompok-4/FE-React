@@ -1,13 +1,12 @@
-import './TargetLearner.css'
+import classes from "./TargetLearner.module.css";
 
 export default function TargetLearner ({data}){ 
-    console.log("target =>", data)
     return (
         <> 
-        <div>
+        <div className={classes.targetLearner}>
             <ul className="group gap-3"> 
         
-            <li>{data.target_learner}</li> 
+                <li>{data.target_learner}</li> 
 
             </ul>
         </div>

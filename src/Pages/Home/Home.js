@@ -23,13 +23,13 @@ function Home() {
   return (
     <>
       <SideNav/>
-      <div className={`row ${classes.home}`} style={{marginLeft: "70px"}}>
+      <div className={`row ${classes.home}`} style={{marginLeft: "75px"}}>
         <div className="col-xl-9 p-0 my-5 col-lg-8 col-md-12">
-          <Banner data={userData}/>
-          <CoursesContainer title="Course History" data={courseData} />
-        </div>
-        <div className={`col-xl-3 p-0 my-5 col-lg-4 col-md-12 ${classes.right}`}>
           <SearchBar placeholder="Search" className={classes.searchBar}/>
+          <Banner data={userData}/>
+          <CoursesContainer title="Course History" data={courseData} showInfo={false} showProgressBar={true}/>
+        </div>
+        <div className={`col-xl-3 p-0 col-lg-4 col-md-12 ${classes.right}`} style={{margin: "auto"}}>
           <Calender/>
           <OnlineBoard data={onlineUser}/>
         </div>

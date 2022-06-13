@@ -1,4 +1,7 @@
 .cardTitle{
   cursor: pointer;
   margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #0D2341;
+  font-size: 16px;
 }

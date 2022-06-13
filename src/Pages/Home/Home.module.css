@@ -1,6 +1,5 @@
 .searchBar{
-  margin: auto;
-  margin-bottom: 30px;
+  margin: 0 40px;
 }
 
 @media screen and (max-width: 992px) {

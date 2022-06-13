@@ -3,7 +3,7 @@ export default function ObjectiveLearner ({data}){
         <> 
         <div>
             <ul className="group gap-3">
-            <li>{data.objective_learner}</li>
+            <li style={{fontFamily: "Poppins", fontSize: "18px"}}>{data.objective_learner}</li>
             </ul>
         </div>
         </>
