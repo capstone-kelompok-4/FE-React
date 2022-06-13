@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useNavigate } from "react-router-dom";
 import classes from "./ForgotPassword.module.css"
+import leftPict from "../../Assets/Image/pict_login_page.png";
 
 function ForgotPassword() {    
     const refEmail = useRef();
@@ -10,18 +11,18 @@ function ForgotPassword() {
     <>
         <div className="container-fluid">
             <div className="row ">
-                <div className="col">
-                    <div className={`d-flex flex-column align-items-center justify-content-center ${classes.layout}`}>
-                        <h1 className="mb-5">
-                            Learning Management System Corporate to Upgrade Skills <br/>The Employee
+                <div className={`col ${classes.leftpage}`}>
+                    <div className={`d-flex flex-column align-items-start justify-content-center px-3 ${classes.layout}`}>
+                        <h1 className={`mt-5 mb-4 px-5  ${classes.lefttextcolor} ${classes.sizeheading}`}>
+                            Learning Management System Corporate to Upgrade Skills The Employee
                         </h1>
-                        <h5>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Condimentum pretium quis quisque aliquam tortor ullamcorper cum.{" "}
+                        <h5 className={`mb-5 px-5 ${classes.lefttextcolor} ${classes.sizetext}`}>
+                            Tech talent incubator yang memberikan kesempatan bagi <br/>banyak individu untuk menjadi tech talent profesional dan <br />berkualitas bahkan tanpa latar Pendidikan IT.
                         </h5>
+                        <img className='px-5' src={leftPict} alt="leftPict" />
                     </div>
                 </div>
-                <div className="col" style={{ backgroundColor: "grey" }}>
+                <div className="col">
                     <div className={`d-flex flex-column align-items-center justify-content-center ${classes.layout}`}>
                         <h5><a className={`nav-link ${classes.colorteks}`} href='/login'>Back to Login</a></h5>
                         <h1>Forgot Password</h1>
@@ -33,7 +34,7 @@ function ForgotPassword() {
                             </div>
                         </div>
                         <div className="d-flex flex-column mb-3 ">
-                            <button type="button" class={`btn ${classes.buttonreset}`} onClick={() => navigate("/ResetPassword")}>
+                            <button type="button" class={`btn ${classes.buttonreset}`} onClick={() => navigate("/reset_password")}>
                                 Send Reset Link
                             </button>
                         </div>
