@@ -1,12 +1,12 @@
 .sideNav{
-  width: 70px;
+  width: 75px;
   height: 100%;
   position: fixed;
   top: 60px;
   left: 0;
   z-index: 100;
   transition: 0.3s all ease-in-out;
-  background-color: #A4A4A4;
+  background-color: #133461;
 }
 
 .sideNavItems{
@@ -35,10 +35,11 @@
   border-radius: 5px;
   cursor: pointer;
   transition: 0.2s all ease-out;
+  width: 80%;
+  margin: auto
 }
 
-.sideNavItem a:hover img{
-  width: 44px;
-  height: 44px;
+.sideNavItem a:hover{
+  background-color: #0D2341;
   transition: 1s all ease;
 }

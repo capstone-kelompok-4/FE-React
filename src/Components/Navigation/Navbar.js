@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import classes from "./Navbar.module.css";
+import NavbarLogo from "../../Assets/Icons/alterra_logo.svg";
 
 function Navbar({isLogin=false}) {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-primary" style={{position: "sticky", top: "0", zIndex: "100"}}>
-        <div className="container-fluid px-3">
+      <nav className="navbar navbar-expand-lg" style={{position: "sticky", top: "0", zIndex: "100", backgroundColor: "#FFF", padding: "0"}}>
+        <div className="container-fluid px-5" style={{padding: "10px 0 20px"}}>
           <div className={classes.left}>
             <Link to="/">
-              <img src="https://random.imagecdn.app/700/150" alt="navbarLogo" width="44px" height="44px"/>
+              <img src={NavbarLogo} alt="navbarLogo" width="164px" height="40px"/>
             </Link>
           </div>
           {isLogin && (
