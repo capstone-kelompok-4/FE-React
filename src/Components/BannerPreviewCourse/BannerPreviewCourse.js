@@ -29,15 +29,15 @@ console.log("rating=>",)
     return (
         <div className=''
             style={
-                {height: "50vh", 
+                {height: "70vh", 
                 backgroundColor: "#D9D9D9"}
         }>
           <div className='container d-flex justify-content-center'>
             <div className='col p-5  mt-5 text-center'>
-                <div className='mb-3'>
+                <div className='mb-5 '>
                     <h1>{data.title}</h1>
                 </div>
-                <div className='container px-5'>
+                <div className='container mb-5 px-5'>
                     <p>{data.content}</p>
                 </div>
                 <div>

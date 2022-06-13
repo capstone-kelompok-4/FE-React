@@ -13,32 +13,6 @@
   text-align: start;
   margin: 0 20px;
 }
-
-.bannerContentLeft{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.bannerContent .bannerContentLeft .bannerInfoWrapper .bannerTitle{
-  font-weight: 700;
-}
-
-.bannerTitle{
-  font-size: 32px;
-  letter-spacing: 1px;
-}
-
-.bannerText{
-  font-size: 16px;
-  font-weight: normal;
-}
-
-.bannerContentRight img{
-  width: 280px;
-  height: 224px;
-}
-
 @media screen and (max-width: 1200px) {
   .bannerContentRight img{
     width: 200px;
