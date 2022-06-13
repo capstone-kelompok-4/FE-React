@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import classes from "./Login.module.css"
+import classes from "./Login.module.css";
+import leftPict from "../../Assets/Image/pict_login_page.png";
 
 function Login() {
   const refUsername = useRef();
@@ -18,66 +19,69 @@ function Login() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col">
+        <div className={`col ${classes.leftpage}`}>
           <div
-            className="d-flex flex-column align-items-center justify-content-center"
-            style={{ height: "100vh" }}
+            className={`d-flex flex-column align-items-start justify-content-center px-3 ${classes.layout}`}
           >
-            <h1 className="mb-5">
-              Learning Management System Corporate to Upgrade Skills the
+            <h1
+              className={`mt-5 mb-4 px-5 ${classes.lefttextcolor} ${classes.sizeheading}`}
+            >
+              Learning Management System Corporate to Upgrade Skills The
               Employee
             </h1>
-            <h5>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Condimentum pretium quis quisque aliquam tortor ullamcorper cum.{" "}
+            <h5
+              className={`mb-5 px-5 ${classes.lefttextcolor} ${classes.sizetext}`}
+            >
+              Tech talent incubator yang memberikan kesempatan bagi <br />
+              banyak individu untuk menjadi tech talent profesional dan <br />
+              berkualitas bahkan tanpa latar Pendidikan IT.
             </h5>
+            <img className="px-5 m-auto" src={leftPict} alt="leftPict" />
+            
           </div>
         </div>
-        <div className="col" style={{ backgroundColor: "grey" }}>
+        <div className="col">
           <div
-            className="d-flex flex-column align-items-center justify-content-center"
-            style={{
-              height: "100vh",
-            }}
+            className={`d-flex flex-column align-items-center justify-content-center ${classes.layout}`}
           >
-            <h1 className="mb-5">Login</h1>
+            <h1 className={`mb-4 ${classes.headingtext}`}>Login</h1>
             <div className="d-flex flex-column">
-              <label for="username" class="form-label">
-                Your email
+              <label for="username" className={`form-label mb-2 ${classes.labeltext}`}>
+                Your Email
               </label>
               <div class="input-group mb-3">
                 <input
-                  type="text"
-                  class="form-control"
+                  type="email"
+                  class={`form-control ${classes.forminput}`}
                   id="username"
                   ref={refUsername}
-                  style={{ width: "400px", height: "60px" }}
+                  placeholder="Your Email"
                 />
               </div>
             </div>
             <div className="d-flex flex-column mb-3">
-              <label for="username" class="form-label">
+              <label for="username" className={`form-label mb-2 ${classes.labeltext}`}>
                 Password
               </label>
               <div class="input-group">
                 <input
-                  type="text"
-                  class="form-control"
+                  type="password"
+                  class={`form-control ${classes.forminput}`}
                   id="username"
                   ref={refPassword}
-                  style={{ width: "400px", height: "60px" }}
+                  placeholder="Password"
                 />
               </div>
             </div>
             <div className="d-flex flex-column mb-3 ">
               <div class="form-check" style={{ paddingRight: "260px" }}>
                 <input
-                  class="form-check-input"
+                  class={`form-check-input ${classes.checkbox}`}
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
                 />
-                <label class="form-check-label" for="flexCheckDefault">
+                <label className={`form-check-label ${classes.labeltext}`} for="flexCheckDefault">
                   Remember Me
                 </label>
               </div>
@@ -85,23 +89,23 @@ function Login() {
             <div className="d-flex flex-column mb-3 ">
               <button
                 type="button"
-                class="btn"
+                class={`btn ${classes.buttonreset}`}
                 onClick={() => navigate("/")}
-                style={{
-                  background: "#D9D9D9",
-                  width: "400px",
-                  height: "60px",
-                  borderRadius: "1rem",
-                  color: "#fff",
-                  fontWeight: "bold",
-                }}
               >
                 Login
               </button>
             </div>
-            <div className="d-flex">
-              <p>Forgotten your email or password?<span><a className={`nav-link ${classes.colorteks}`} href="/forgot_password">Reset</a></span> </p>
-            </div>
+            <p className={`${classes.smalltext}`}>
+              Forgotten your email or password?
+              <span>
+                <a
+                  className={`nav-link ps-2 ${classes.colorteks} ${classes.smalltext}`}
+                  href="/forgot_password"
+                >
+                  Reset
+                </a>
+              </span>{" "}
+            </p>
           </div>
         </div>
       </div>

@@ -19,16 +19,16 @@ function ForgotPassword() {
                         <h5 className={`mb-5 px-5 ${classes.lefttextcolor} ${classes.sizetext}`}>
                             Tech talent incubator yang memberikan kesempatan bagi <br/>banyak individu untuk menjadi tech talent profesional dan <br />berkualitas bahkan tanpa latar Pendidikan IT.
                         </h5>
-                        <img className='px-5' src={leftPict} alt="leftPict" />
+                        <img className='m-auto' src={leftPict} alt="leftPict" />
                     </div>
                 </div>
                 <div className="col">
                     <div className={`d-flex flex-column align-items-center justify-content-center ${classes.layout}`}>
-                        <h5><a className={`nav-link ${classes.colorteks}`} href='/login'>Back to Login</a></h5>
-                        <h1>Forgot Password</h1>
-                        <p className="mb-4">Send a link to your email to reset your password</p>
+                        <h5 className={`${classes.headingtext}`}><a className={`nav-link ${classes.colorteks}`} href='/login'>Back to Login</a></h5>
+                        <h1 className={`${classes.headingtext}`}>Forgot Password</h1>
+                        <p className={`mb-4 ${classes.smalltext}`}>Send a link to your email to reset your password</p>
                         <div className="d-flex flex-column">
-                            <label for="username" class="form-label">Your email</label>
+                            <label for="username" className={`form=label mb-2 ${classes.labeltext}`}>Your email</label>
                             <div class="input-group mb-3">
                                 <input type="email" class={`form-control ${classes.forminput}`} id="email" ref={refEmail} placeholder="Your Email"/>
                             </div>
