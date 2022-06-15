@@ -18,6 +18,7 @@
 .material .sectionTitle, .material .materialTitle{
   margin: 0;
   font-family: "Mulish", sans-serif;
+  color: #0D2341;
 }
 
 .opened{

@@ -19,10 +19,9 @@ function App() {
           <Route path="/forgot_password" exact element={<ForgotPassword />} />
           <Route path="/reset_password" exact element={<ResetPassword />} />
           <Route path="/course_overview" exact element={<CourseOverview />} />
-          <Route path="/detail_course/:id" exact element={<DetailCourse/>} />
+          <Route path="/preview_course/:id" element={<PreviewCourse />}/>
+          <Route path="/detail_course/:id" element={<DetailCourse/>} />
         </Route>
-        <Route path="/preview_course/:id" exact element={<PreviewCourse />} />
-
       </Routes>
     </>
   );

@@ -1,67 +1,71 @@
 import React from 'react'
-
+import Background from "../../Assets/Images/bg_preview_course.png";
+import classes from "./BannerPreviewCourse.module.css";
 import PrettyRating from "pretty-rating-react";
+import BackIcon from "../../Assets/Icons/back_icon.svg";
 import {} from 'react-icons/fa';
 import {
-  faHeart,
   faStar,
-  faHeartBroken,
   faStarHalfAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  faHeart as farHeart,
   faStar as farStar,
 } from "@fortawesome/free-regular-svg-icons";
+import { useNavigate } from 'react-router-dom';
 
 
 function Banner({data}) {
-
   const icons = {
     star: {
       complete: faStar,
       half: faStarHalfAlt,
       empty: farStar,
-    },
-    heart: {
-      complete: faHeart,
-      half: faHeartBroken,
-      empty: farHeart,
-    },
+    }
   };
   
   const colors = {
-   star: ['#d9ad26', '#d9ad26', '#434b4d'],
-   heart: ['#9b111e', '#a83f39'],
+   star: ['#ff6c00', '#ff6c00', '#434b4d'],
   };
 
-console.log("rating=>",)
-
-    return (
-        <div className=''
-          style={{
-            height: "50vh", 
-            backgroundColor: "#D9D9D9",
-          }}
-        >
-          <div className='container d-flex justify-content-center'>
-            <div className='col p-5  mt-5 text-center'>
-                <div className='mb-3' style={{fontFamily: "Mulish"}}>
-                    <h1>{data.title}</h1>
-                </div>
-                <div className='container px-5'>
-                    <p style={{fontFamily: "Poppins"}}>{data.content}</p>
-                </div>
-                <div>
-                <p style={{fontFamily: "Poppins"}}>Rated :</p>
-                <div className='d-flex align-items-center justify-content-center' style={{columnGap: "10px"}}>
-                <PrettyRating icons={icons.star} colors={colors.star} value={data.rating} max="5"/> {data.rating}
-                </div>
-            </div>
-           </div>
-          </div>
-
+  const navigate = useNavigate();
+  const backHandler = () => {
+    navigate(-1);
+  }
+  return (
+    <div
+      style={{
+        height: "60vh", 
+        width: "100%",
+        backgroundImage: `url(${Background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "70%",
+        backgroundPosition: "right",
+        position: "relative"
+      }}
+    >
+      <div className='container d-flex justify-content-center h-100'>
+        <div style={{padding: "20px", position: "absolute", top: "0", left: "0"}}>
+          <img src={BackIcon} alt="back_icon" width="40px" height="40px" onClick={backHandler}/>
         </div>
-    )
+        <div className='col p-5 m-auto text-center'>
+          <div>
+            <h1 className={classes.bannerTitle}>{data.title}</h1>
+          </div>
+          <div className='m-5'>
+            <p className={classes.bannerDescription}>{data.content}</p>
+          </div>
+          <div>
+              <p className={classes.bannerRating}>Rated :</p>
+              <p className={classes.bannerRating}>
+                <div className='d-flex align-items-center justify-content-center' style={{columnGap: "10px"}}>
+                  <PrettyRating icons={icons.star} colors={colors.star} value={data.rating} max="5"/> {data.rating}/5
+                </div>
+              </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default Banner

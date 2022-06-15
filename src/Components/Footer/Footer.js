@@ -44,10 +44,18 @@ function Footer() {
             <p className='m-0'>Kota Malang, Jawa Timur. 65146. </p>
           </div>
           <div className='d-flex align-items-center' style={{columnGap: "20px"}}>
-            <img src={require("../../Assets/Images/fb_img.png")} alt="footerImage" width="40px" height="40px" />
-            <img src={require("../../Assets/Images/ig_img.png")} alt="footerImage" width="40px" height="40px" />
-            <img src={require("../../Assets/Images/wa_img.png")} alt="footerImage" width="40px" height="40px" />
-            <img src={require("../../Assets/Images/yt_img.png")} alt="footerImage" width="40px" height="40px" />
+            <a href='https://www.facebook.com/alterra.academy/' target="_blank" rel='noreferrer'>
+              <img src={require("../../Assets/Images/fb_img.png")} alt="footerImage" width="40px" height="40px" />
+            </a>
+            <a href='https://www.instagram.com/alterra.academy/' target="_blank" rel='noreferrer'>
+              <img src={require("../../Assets/Images/ig_img.png")} alt="footerImage" width="40px" height="40px" />
+            </a>
+            <a href='https://alta.id/whatsapp' target="_blank" rel='noreferrer'>
+              <img src={require("../../Assets/Images/wa_img.png")} alt="footerImage" width="40px" height="40px" />
+            </a>
+            <a href='https://www.youtube.com/channel/UCG26drc4GLCMQTbYe4qt8-g' target="_blank" rel='noreferrer'>
+              <img src={require("../../Assets/Images/yt_img.png")} alt="footerImage" width="40px" height="40px" />
+            </a>
           </div>
         </div>
       </div>

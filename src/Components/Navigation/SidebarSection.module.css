@@ -6,7 +6,11 @@
   opacity: 0;
   visibility: hidden;
 }
-
+.courseTitle{
+  margin: 0;
+  font-family: "Mulish", sans-serif;
+  color: #0D2341;
+}
 .sidebar{
   width: 350px;
   height: 80vh;
@@ -17,7 +21,7 @@
   overflow-y: scroll;
 }
 
-.section button{
+.section button, .sidebar button{
   color: #0D2341;
 }
 
@@ -27,9 +31,10 @@
 }
 
 .material a:hover{
-  color: #000;
+  color: #0D2341;
 }
 
 .section, .material{
   font-family: "Poppins", sans-serif;
 }
+

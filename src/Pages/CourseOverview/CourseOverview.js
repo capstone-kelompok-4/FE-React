@@ -31,13 +31,13 @@ export default function CourseOverview() {
             </div>
           </div>
   
-          <div className='mb-5 py-3' >
+          <div className='my-5' >
             <CoursesContainer data={courseData} title="My Course" showInfo={false} showProgressBar={true}/>
           </div>
-          <div className='mb-5 py-3' >
+          <div className='my-5' >
             <Training data={training}/>
           </div>
-          <div className="mb-5 py-3" >
+          <div className="my-5" >
             <CoursesContainer data={courseData} title="All Course" showMoreAble={true} showInfo={true} showProgressBar={false}/>
           </div>
         </div>

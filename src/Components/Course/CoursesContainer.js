@@ -36,7 +36,7 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar}
       </div>
       {showMoreAble &&
         <div className="text-center">
-            <button className="btn mt-5 mb-5 px-4 btn-lg" type="button" style={{backgroundColor: "#FF6C00", color: "#FFF", fontFamily: "Poppins", borderRadius: "10px"}} onClick={handleReadMoreClick}>{isReadMoreShown ? "Lihat Lebih Sedikit":"Lihat Semua"}</button> 
+            <button className="btn my-5 px-4 btn-lg" type="button" style={{backgroundColor: "#FF6C00", color: "#FFF", fontFamily: "Poppins", borderRadius: "10px", fontSize: "16px"}} onClick={handleReadMoreClick}>{isReadMoreShown ? "Lihat Lebih Sedikit":"Lihat Semua"}</button> 
         </div>
       }
     </div>

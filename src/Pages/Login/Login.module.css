@@ -13,8 +13,12 @@
     color: #fff !important;
 }
 
+.rightpage{
+    color: #0D2341;
+}
+
 .layout{
-    height: 92vh;
+    height: 93vh;
 }
 
 .sizeheading {

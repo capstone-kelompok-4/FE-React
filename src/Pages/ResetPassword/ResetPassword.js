@@ -24,7 +24,7 @@ function ResetPassword() {
               <img className="px-5 m-auto" src={leftPict} alt="leftPict" />
             </div>
           </div>
-          <div className="col">
+          <div className={`col ${classes.rightpage}`}>
             <div className={`d-flex flex-column align-items-center justify-content-center ${classes.layout}`}>
               <h1 className={`${classes.headingtext}`}>Create New Password </h1>
               <p className={`mb-4 ${classes.smalltext}`}>Your new password must be different from previous used passwords.</p>

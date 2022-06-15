@@ -5,3 +5,41 @@
   color: #0D2341;
   font-size: 16px;
 }
+
+.singleCard{
+  border: none;
+  border-radius: 20px;
+  width: 16rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.singleCard:nth-child(odd){
+  background-color: #FFE1CC;
+}
+.singleCard:nth-child(even){
+  background-color: #E8EFF8;
+}
+
+.completed{
+  font-family: "Poppins", sans-serif;
+  color: #0D2341;
+  font-size: 14px;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.info{
+  font-family: "Poppins", sans-serif;
+  color: #0D2341;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.readMore a{
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  color: #0D2341;
+  font-size: 14px;
+}
+.readMore a:hover{
+  color: #0D2341;
+}
