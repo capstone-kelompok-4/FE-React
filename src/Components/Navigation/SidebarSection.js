@@ -38,7 +38,7 @@ function SidebarSection({isOpen, setIsOpen}) {
   return (
     <aside ref={ref} className={`${classes.sidebar} ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible' }`} >
       <div style={{width: "80%"}}>
-        <h4 className='px-4 pt-4 m-0' style={{fontFamily: "Mulish"}}>{dataCourse.title}</h4>
+        <h4 className={`px-4 pt-4 ${classes.courseTitle}`}>{dataCourse.title}</h4>
       </div>
       <div className="accordion p-4">
         <div className="accordion-item" style={{borderBottom: "2px solid #0D2341"}}>

@@ -22,7 +22,7 @@ function ForgotPassword() {
                         <img className='m-auto' src={leftPict} alt="leftPict" />
                     </div>
                 </div>
-                <div className="col">
+                <div className={`col ${classes.rightpage}`}>
                     <div className={`d-flex flex-column align-items-center justify-content-center ${classes.layout}`}>
                         <h5 className={`${classes.headingtext}`}><a className={`nav-link ${classes.colorteks}`} href='/login'>Back to Login</a></h5>
                         <h1 className={`${classes.headingtext}`}>Forgot Password</h1>

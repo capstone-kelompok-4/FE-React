@@ -40,7 +40,7 @@ function Login() {
             
           </div>
         </div>
-        <div className="col">
+        <div className={`col ${classes.rightpage}`}>
           <div
             className={`d-flex flex-column align-items-center justify-content-center ${classes.layout}`}
           >

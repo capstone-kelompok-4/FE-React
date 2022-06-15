@@ -1,12 +1,10 @@
 import ListGroup from 'react-bootstrap/ListGroup'; 
 import { Accordion } from 'react-bootstrap'; 
 import classes from './StartCourse.module.css' 
+import { Link } from 'react-router-dom';
 
 export default function StartCourse({data, material}){
-
-    const alertClicked = () => {
-        alert('You clicked the third ListGroupItem');
-      };
+    
     console.log("material=>", material)
     
     return (
@@ -28,7 +26,7 @@ export default function StartCourse({data, material}){
 
             <div> 
             <ListGroup defaultActiveKey="#link1" className={classes.startcourse}>
-                <ListGroup.Item action href="#link1" className={classes.orange} style={{padding: "16px 20px"}} >
+                <ListGroup.Item action href="detail_course/1" className={classes.orange} style={{padding: "16px 20px"}} >
                     <h4>START COURSE</h4>
                 </ListGroup.Item>
                 <ListGroup.Item action href="#link1" className={classes.white} style={{padding: "16px 20px"}} >
@@ -39,10 +37,12 @@ export default function StartCourse({data, material}){
                         return( 
                             <Accordion.Item eventKey={i}>
                                 <Accordion.Header>
-                                    <p style={{margin: "0", padding: "0", fontFamily:"Poppins", fontSize: "16px", color: "#0D2341"}}>Section {section.id} <br/> <strong>{section.name}</strong></p>
+                                    <p style={{margin: "0", padding: "0", fontFamily:"Poppins", fontSize: "16px", color: "#0D2341"}}>Section {i + 1} <br/> <strong>{section.name}</strong></p>
                                 </Accordion.Header>
-                                <Accordion.Body>
-                                    <p style={{fontFamily: "Poppins", margin: "0", color: "#0D2341"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <Accordion.Body className={classes.material}>
+                                    <Link to={`/`}>
+                                        <p style={{fontFamily: "Poppins", margin: "0", color: "#0D2341"}}>Lorem ipsum</p>
+                                    </Link>
                                 </Accordion.Body>
                             </Accordion.Item>
                         )
