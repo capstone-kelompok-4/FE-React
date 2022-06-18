@@ -56,6 +56,7 @@ function Login() {
                   id="username"
                   ref={refUsername}
                   placeholder="Your Email"
+                  required
                 />
               </div>
             </div>
@@ -70,6 +71,7 @@ function Login() {
                   id="username"
                   ref={refPassword}
                   placeholder="Password"
+                  required
                 />
               </div>
             </div>
