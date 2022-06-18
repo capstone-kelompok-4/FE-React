@@ -6,7 +6,7 @@ import NavbarLogo from "../../Assets/Icons/alterra_logo.svg";
 function Navbar({isLogin=false}) {
   return (
     <>
-      <nav className="navbar navbar-expand-lg" style={{position: "sticky", top: "0", zIndex: "100", backgroundColor: "#FFF", padding: "0"}}>
+      <nav className="navbar navbar-expand-lg shadow-sm" style={{position: "sticky", top: "0", zIndex: "100", backgroundColor: "#FFF", padding: "0"}}>
         <div className="container-fluid px-5" style={{padding: "10px 0 20px"}}>
           <div className={classes.left}>
             <Link to="/">
