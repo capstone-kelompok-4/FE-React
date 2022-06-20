@@ -1,5 +1,4 @@
 import React from 'react'
-import Background from "../../Assets/Images/bg_preview_course.png";
 import classes from "./BannerPreviewCourse.module.css";
 import PrettyRating from "pretty-rating-react";
 import BackIcon from "../../Assets/Icons/back_icon.svg";
@@ -32,36 +31,24 @@ function Banner({data}) {
     navigate(-1);
   }
   return (
-    <div
-      style={{
-        height: "60vh", 
-        width: "100%",
-        backgroundImage: `url(${Background})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "70%",
-        backgroundPosition: "right",
-        position: "relative"
-      }}
-    >
-      <div className='container d-flex justify-content-center h-100'>
-        <div style={{padding: "20px", position: "absolute", top: "0", left: "0"}}>
-          <img src={BackIcon} alt="back_icon" width="40px" height="40px" onClick={backHandler}/>
+    <div className='container d-flex justify-content-center h-100'>
+      <div style={{padding: "20px", position: "absolute", top: "0", left: "0"}}>
+        <img src={BackIcon} alt="back_icon" width="40px" height="40px" onClick={backHandler}/>
+      </div>
+      <div className='col p-5 m-auto text-center'>
+        <div>
+          <h1 className={classes.bannerTitle}>{data.title}</h1>
         </div>
-        <div className='col p-5 m-auto text-center'>
-          <div>
-            <h1 className={classes.bannerTitle}>{data.title}</h1>
-          </div>
-          <div className='m-5'>
-            <p className={classes.bannerDescription}>{data.content}</p>
-          </div>
-          <div>
-              <p className={classes.bannerRating}>Rated :</p>
-              <p className={classes.bannerRating}>
-                <div className='d-flex align-items-center justify-content-center' style={{columnGap: "10px"}}>
-                  <PrettyRating icons={icons.star} colors={colors.star} value={data.rating} max="5"/> {data.rating}/5
-                </div>
-              </p>
-          </div>
+        <div className='m-5'>
+          <p className={classes.bannerDescription}>{data.content}</p>
+        </div>
+        <div>
+            <p className={classes.bannerRating}>Rated :</p>
+            <p className={classes.bannerRating}>
+              <div className='d-flex align-items-center justify-content-center' style={{columnGap: "10px"}}>
+                <PrettyRating icons={icons.star} colors={colors.star} value={data.rating} max="5"/> {data.rating}/5
+              </div>
+            </p>
         </div>
       </div>
     </div>

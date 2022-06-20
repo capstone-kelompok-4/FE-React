@@ -11,14 +11,6 @@ function Footer() {
           <Link to="/">
             <img src={require("../../Assets/Images/footer_img.png")} alt="footerImage" width="200px" height="70px"/>
           </Link>
-          <div className='d-flex' style={{columnGap: "30px"}}>
-            <Link to="/">
-              <p className='m-0'>Kebijakan Privasi</p>
-            </Link>
-            <Link to="/">
-              <p className='m-0'>Izin Usaha</p>
-            </Link>
-          </div>
           <div className='d-flex align-items-center' style={{columnGap: "10px"}}>
             <img src={CopyrightIcon} alt="footerImage" width="20px" height="20px" />
             <p className='m-0'>2022 4vengers. All rights reserved.</p>

@@ -3,11 +3,10 @@ import Card from '../Card/Card'
 import classes from "./OnlineBoard.module.css";
 import OnlineUser from './OnlineUser';
 
-function OnlineBoard({data}) {
-  console.log(data);
+function OnlineBoard({data, title}) {
   return (
     <div className={classes.onlineBoardContainer}>
-      <h3 className={classes.title}>Online Board</h3>
+      <h3 className={classes.title}>{title}</h3>
       <Card className={classes.card}>
         <table>
           <thead>

@@ -1,11 +1,27 @@
-import React, { useRef } from 'react'
-import { useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail } from 'firebase/auth';
+import React, { useState } from 'react'
+import { Alert } from 'react-bootstrap';
+import CenteredSpinner from '../../Components/Loading/CenteredSpinner';
+import { auth } from '../../Firebase/Firebase';
 import classes from "./ForgotPassword.module.css"
-// import leftPict from "../../Assets/Image/pict_login_page.png";
 
 function ForgotPassword() {    
-    const refEmail = useRef();
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState("") 
+    const [error, setError] = useState("");
+    const [message, setMessage] = useState("");
+    const resetPasswordHandler = () => {
+        setLoading(true);
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            setMessage("Password reset email sent!");
+            setLoading(false);
+        })
+        .catch((err) => {
+            setError(err.message);
+            setLoading(false);
+        });
+    }
     
   return (
     <>
@@ -19,13 +35,24 @@ function ForgotPassword() {
                                 <h1 className={`${classes.headingtext}`}>Forgot Password</h1>
                                 <p className={`text-center mb-4 ${classes.smalltext}`}>Send a link to your email to reset your password</p>
                                 <div className="d-flex flex-column">
-                                    <label for="username" className={`form=label mb-2 ${classes.labeltext}`}>Your email</label>
+                                    <label htmlFor="email" className={`form=label mb-2 ${classes.labeltext}`}>Your email</label>
                                     <div class="input-group mb-3">
-                                        <input type="email" class={`form-control ${classes.forminput}`} id="email" ref={refEmail} placeholder="Your Email" required/>
+                                        <input type="email" className={`form-control ${classes.forminput}`} id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Your Email" required/>
                                     </div>
                                 </div>
+                                {loading && 
                                 <div className="d-flex flex-column mb-3 ">
-                                    <button type="button" class={`btn ${classes.buttonreset}`} onClick={() => navigate("/reset_password")}>
+                                    <CenteredSpinner />
+                                </div>
+                                }
+                                {!loading && 
+                                    <div className="d-flex flex-column" style={{width: "400px"}}>
+                                        {error && <Alert variant="danger">{error}</Alert>}
+                                        {message && <Alert variant="success">{message}</Alert>}
+                                    </div>
+                                }
+                                <div className="d-flex flex-column mb-3 ">
+                                    <button type="button" className={`btn ${classes.buttonreset}`} onClick={resetPasswordHandler}>
                                         Send Reset Link
                                     </button>
                                 </div>

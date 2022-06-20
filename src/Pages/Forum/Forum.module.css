@@ -1,0 +1,90 @@
+.btn{
+  border: none;
+  background-color: #F47522;
+  color: #FFF;
+  padding: 15px 40px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+}
+
+.title{
+  margin: 0;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  color: #0D2341;
+}
+
+.inputForm{
+  padding: 20px 80px 20px 20px;
+  width: 100%;
+  border: 1px solid #0D2341; 
+  border-radius: 10px;
+  background-color: #FFF;
+}
+
+.inputForm input{
+  color: #0D2341;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.inputForm input:focus{
+  outline: none;
+}
+
+.inputForm input::placeholder{
+  color: #0D2341;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.card{
+  background-color: #133461;
+  border-radius: 20px;
+  color: #FFF;
+  width: 100%;
+  margin: 40px 0 0 0;
+  font-family: "Poppins", sans-serif;
+  padding: 30px;
+}
+
+.btnCard{
+  background-color: #305CA1;
+  color: #FFF;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+
+}
+
+.left{
+  flex: 9;
+}
+
+.right{
+  flex: 3;
+  text-align: end;
+}
+
+@media screen and (max-width: 1486px) {
+  .left{
+    flex: 7;
+  }
+  .right{
+    flex: 5;
+  }
+}
+
+@media screen and (max-width: 1275px) {
+  .left{
+    flex: 6;
+  }
+  .right{
+    flex: 6;
+  }
+}
+

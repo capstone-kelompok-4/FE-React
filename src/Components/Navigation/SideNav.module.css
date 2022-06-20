@@ -2,7 +2,7 @@
   width: 75px;
   height: 100%;
   position: fixed;
-  top: 60px;
+  top: 70px;
   left: 0;
   z-index: 100;
   transition: 0.3s all ease-in-out;
@@ -24,7 +24,7 @@
   width: 100%;
 }
 
-.sideNavItem a{
+.sideNavItem a, .sideNavItem button{
   text-decoration: none;
   color: whitesmoke;
   font-size: 1.2rem;
@@ -36,10 +36,12 @@
   cursor: pointer;
   transition: 0.2s all ease-out;
   width: 80%;
-  margin: auto
+  margin: auto;
+  background: transparent;
+  border: none;
 }
 
-.sideNavItem a:hover{
+.sideNavItem a:hover, .sideNavItem button:hover{
   background-color: #0D2341;
   transition: 1s all ease;
 }

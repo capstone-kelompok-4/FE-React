@@ -6,6 +6,7 @@
   font-family: "Mulish", sans-serif;
   font-weight: bold;
   color: #0D2341;
+  margin: 0;
 }
 .grid {
   display: grid;
