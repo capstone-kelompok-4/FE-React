@@ -16,11 +16,14 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar}
 
   return (
     <div className={classes.coursesContainer} >
-      <h3 className={classes.title}>{title}</h3>
-      <div className={classes.grid}>
+      <div className="row">
+        <h3 className={classes.title}>{title}</h3>
+      </div>
+      <div className="row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0">
         {data.slice(0, limit? limit:data.length).map((course) => {
           return(
             <CourseCard 
+            key={course.id}
             id={course.id}
             title={course.title}
             progress={course.progress}

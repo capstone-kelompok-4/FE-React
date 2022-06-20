@@ -8,7 +8,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, .125);
   border-radius: 20px;
   padding: 20px;
-
+  margin: 40px auto;
 }
 .react-calendar--doubleView {
   width: 700px;
@@ -74,7 +74,7 @@
   font-weight: bold;
 }
 .react-calendar__month-view__days__day--weekend {
-  color: #d10000;
+  color: #F47522;
 }
 .react-calendar__month-view__days__day--neighboringMonth {
   color: #757575;

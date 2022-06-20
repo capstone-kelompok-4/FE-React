@@ -5,7 +5,7 @@ import "./Calender.css";
 function Calender() {
   const [value, onChangeCalendar] = useState(new Date());
   return (
-    <Calendar className=" m-auto" onChange={onChangeCalendar} value={value}/>
+    <Calendar onChange={onChangeCalendar} value={value}/>
   )
 }
 
