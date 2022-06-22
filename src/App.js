@@ -9,6 +9,7 @@ import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import PreviewCourse from "./Pages/PreviewCourse/PreviewCourse"
 import DetailCourse from "./Pages/DetailCourse/DetailCourse";
 import RequestForm from "./Pages/RequestForm/RequestForm";
+import FAQ from "./Pages/FAQ/FAQ";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/preview_course/:id" element={<PreviewCourse />}/>
           <Route path="/detail_course/:id" element={<DetailCourse/>} />
           <Route path="/request_form" element={<RequestForm/>} />
+          <Route path="/faq" element={<FAQ/>} />
         </Route>
       </Routes>
     </>
