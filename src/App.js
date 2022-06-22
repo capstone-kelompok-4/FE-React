@@ -18,6 +18,7 @@ import { login, logout } from "./Store/userSlice";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Forum from "./Pages/Forum/Forum";
+import AccountPage from "./Pages/AccountPage/AccountPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ function App() {
             <Route path="/detail_course/:id" element={<DetailCourse/>} />
             <Route path="/request_form" element={<RequestForm/>} />
             <Route path="/forum" element={<Forum/>} />
+            <Route path="/account" element={<AccountPage/>} />
             <Route path="/faq" element={<FAQ/>} />
           </Route>
         </Route>

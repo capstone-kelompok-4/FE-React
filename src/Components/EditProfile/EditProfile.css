@@ -1,0 +1,24 @@
+.select{
+    width: 60% !important;
+    background-color: #D0D6DF !important;
+}
+.form-control-lg {
+    border-radius: 10px !important;
+    font-family: "Poppins", sans-serif;
+} 
+.border{
+    border-radius: 20px !important;
+} 
+div{
+    font-family: "Poppins", sans-serif;
+}
+.button-save{
+    background-color: #F47522 !important;
+    color: #fff !important;
+    border-color: #F47522 !important;
+}
+.button-cancel{
+    background-color: #fff !important;
+    color: #0D2341 !important;
+    border-color:  #0D2341 !important;
+}
