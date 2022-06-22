@@ -37,13 +37,23 @@
     border-radius: 20px !important;
 }
 
-.buttoncontact{
+.buttoncheck{
     background: #F47522 !important;
-    width: 95% !important;
-    height: 60px !important; 
-    border-radius: 1rem !important; 
     color: #fff !important;
-    font-weight: bold !important;
+    border-bottom-right-radius: .50rem !important;
+    border-top-right-radius: .50rem !important;
+}
+
+.formcheck{
+    height: 60px !important;
+    border: 2px solid #D6DEEC !important;
+    border-bottom-left-radius: .50rem !important;
+    border-top-left-radius: .50rem !important;
+}
+
+.formcheckt::placeholder{
+    font-family: "Poppins", sans-serif !important;
+    color: #D6DEEC !important;
 }
 
 .sidebar{
@@ -52,10 +62,4 @@
 
 .active {
     color: #F47522 !important;
-}
-
-.link{
-    display: inline !important;
-    color: #0D2341 !important;
-    padding: 0 !important;
 }

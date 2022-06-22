@@ -18,6 +18,7 @@ import { login, logout } from "./Store/userSlice";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Forum from "./Pages/Forum/Forum";
+import CheckCertificate from "./Pages/CheckCertificate/CheckCertificate";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function App() {
             <Route path="/forum" element={<Forum/>} />
             <Route path="/faq" element={<FAQ/>} />
           </Route>
+          <Route path="/check_certificate" element={<CheckCertificate/>} />
         </Route>
       </Routes>
     </>

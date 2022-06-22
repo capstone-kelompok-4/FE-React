@@ -21,10 +21,10 @@ function Footer() {
           <Link to="/">
             <p className='m-0'>Tentang Coorporate</p>
           </Link>
-          <Link to="/">
+          <Link to="/check_certificate">
             <p className='m-0'>Cek Sertifikat</p>       
           </Link>
-          <Link to="/">
+          <Link to="/faq">
             <p className='m-0'>FAQ</p>       
           </Link>
         </div>
