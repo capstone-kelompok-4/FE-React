@@ -28,7 +28,7 @@ function SideNav() {
           </Link>
         </li>
         <li className={classes.sideNavItem}>
-          <Link to="/">
+          <Link to="/account_page">
             <img src={UserIcon} alt="sideNavLogo" width="32px" height="32px"/>
           </Link>
         </li>
