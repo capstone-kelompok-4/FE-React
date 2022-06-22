@@ -18,6 +18,7 @@ import { login, logout } from "./Store/userSlice";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Forum from "./Pages/Forum/Forum";
+import CheckCertificate from "./Pages/CheckCertificate/CheckCertificate";
 import AccountPage from "./Pages/AccountPage/AccountPage"
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
             <Route path="/account" element={<AccountPage/>} />
             <Route path="/faq" element={<FAQ/>} />
           </Route>
+          <Route path="/check_certificate" element={<CheckCertificate/>} />
         </Route>
       </Routes>
     </>

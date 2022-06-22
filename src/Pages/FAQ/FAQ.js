@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Footer from '../../Components/Footer/Footer'
 import classes from "./FAQ.module.css"
 
@@ -17,15 +18,12 @@ function FAQ() {
                         
                         <div className="d-flex justify-content-between">
                             <div className="nav flex-column me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                {/* <button className={`nav-item mb-4 ${classes.sidebar} ${classes.active} `} id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home">Account */}
-                                    <a className={`nav-link mb-4 ${classes.sidebar}`} href="#" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" role="tab" aria-controls="v-pills-home">
-                                        <h4>Account</h4>
-                                    </a>
-                                {/* </button> */}
-                                    <a className={`nav-link mb-4 ${classes.sidebar} `} href="#" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile">
-                                        <h4>Panduan</h4>
-                                    </a>
-                                {/* <button className={`nav-item mb-4 ${classes.sidebar} ${classes.active} `} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"><h5>Panduan</h5></button> */}
+                                <a className={`nav-link mb-4 ${classes.sidebar}`} href="#" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" role="tab" aria-controls="v-pills-home">
+                                    <h4>Account</h4>
+                                </a>
+                                <a className={`nav-link mb-4 ${classes.sidebar} `} href="#" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile">
+                                    <h4>Panduan</h4>
+                                </a>
                             </div>
                             <div className="tab-content w-75" id="v-pills-tabContent">
                                 <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -50,7 +48,7 @@ function FAQ() {
                                             </h2>
                                             <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                                 <div className="accordion-body">
-
+                                                    Kamu dapat logout dari alterra dengan menekan tombol logout yang tertera pada sidebar sebelah kiri halaman website alterra.
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +76,7 @@ function FAQ() {
                                             </h2>
                                             <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                                 <div className="accordion-body">
-                                                    
+                                                    Kamu dapat mengecek keaslian certificate melalui halaman menu <a className={`nav-link fw-bold ${classes.link} `} href='/check_ceritificate'>Cek Sertifikat</a> yang tertera pada footer halaman website Alterra.
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +88,7 @@ function FAQ() {
                                             </h2>
                                             <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                                 <div className="accordion-body">
-
+                                                    Kamu dapat mengikuti course diluar spesialisasi kamu dengan mengajukan request kepada customer service Alterra, pengajuan request dapat dilakukan dengan mengisi form pada menu <a className={`nav-link fw-bold ${classes.link} `} href='/request_form'>Request Form</a>. 
                                                 </div>
                                             </div>
                                         </div>
@@ -116,26 +114,6 @@ function FAQ() {
                 </div>
             </div>
         </div>
-
-        {/* <div className='m-5'>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 flex-column">
-                            <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div> */}
         <Footer />
     </>
   )
