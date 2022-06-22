@@ -1,6 +1,7 @@
 .orange{
     background-color: #F47522 !important; 
     border-color: #F47522 !important;
+    border-radius: 0 10px 10px 0 !important;
 } 
 .white{
     background-color: #FFF !important; 
@@ -10,17 +11,21 @@
     color: #FFF;
     font-weight: 700;
     margin: 0;
-    padding: 10px 0;
     font-family: "Mulish", serif;
 }
 .startcourse{
-    width: 400px;
-    overflow-y: scroll;
+    /* width: 400px; */
+    margin-right: 40px;
+}
+.card{
+    padding: 40px 0 40px 0;
 }
 .item{
     color: #0D2341;
     margin: 0;
     font-weight: 500;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
 }
 .material{
   border-bottom: 1px solid #0D2341;

@@ -39,6 +39,10 @@
     border-radius: 10px !important;
 }
 
+.forminput::placeholder{
+    font-family: "Poppins", sans-serif;
+}
+
 .buttonreset{
     background: #F47522 !important;
     width: 400px !important; 

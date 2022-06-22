@@ -11,36 +11,38 @@ function CourseCard({id, title, img, progress, rating, total_material, showProgr
     navigate(`/preview_course/${id}`)
   }
   return (
-    <div className={`card ${classes.singleCard}`}>
-      <img src={img} className="card-img-top" alt="courseCardImg" width="250px" height="150px" style={{padding: "15px 15px 0 15px", borderRadius: "20px 20px 0 0"}}/>
-      <div className="card-body text-start">
-        <h5 className={classes.cardTitle} onClick={handleClick}>{title}</h5> 
+    <div className={`col p-0 ${classes.parent}`}>
+      <div className={`card h-100 m-auto ${classes.singleCard}`}>
+        <img src={img} className="card-img-top" alt="courseCardImg" width="250px" height="150px" style={{padding: "15px 15px 0 15px", borderRadius: "20px 20px 0 0"}}/>
+        <div className="card-body text-start">
+          <h5 className={classes.cardTitle} onClick={handleClick}>{title}</h5> 
+        </div>
+        {showProgressBar &&
+          <div className="card-body">
+            <ProgressBar animated bgcolor="#0275d8" now={progress} /> 
+            <p className={classes.completed}>Complete:  <span className='fw-bold'>{progress}%</span></p>
+          </div>
+        }
+        {showInfo && 
+        <div className="card-body" style={{fontFamily: "Poppins"}}>
+          <div className='d-flex justify-content-between mb-3'>
+            <div className='d-flex' style={{columnGap: "5px"}}>
+              <img src={MaterialIcon} alt="material-icon" width="20px" height="20px"/>
+              <p className={classes.info}>{total_material} Materi</p>
+            </div>
+            <div className='d-flex'style={{columnGap: "5px"}}>
+              <img src={StarIcon} alt="star-icon" width="20px" height="20px" />
+              <p className={classes.info}>{rating}</p>
+            </div>
+          </div>
+          <div className={classes.readMore}>
+            <Link to={`/preview_course/${id}`}>
+              Read More
+            </Link>
+          </div>
+        </div>
+        }
       </div>
-      {showProgressBar &&
-        <div className="card-body">
-          <ProgressBar animated bgcolor="#0275d8" now={progress} /> 
-          <p className={classes.completed}>Complete:  <span className='fw-bold'>{progress}%</span></p>
-        </div>
-      }
-      {showInfo && 
-       <div className="card-body" style={{fontFamily: "Poppins"}}>
-        <div className='d-flex justify-content-between mb-3'>
-          <div className='d-flex' style={{columnGap: "5px"}}>
-            <img src={MaterialIcon} alt="material-icon" width="20px" height="20px"/>
-            <p className={classes.info}>{total_material} Materi</p>
-          </div>
-          <div className='d-flex'style={{columnGap: "5px"}}>
-            <img src={StarIcon} alt="star-icon" width="20px" height="20px" />
-            <p className={classes.info}>{rating}</p>
-          </div>
-        </div>
-        <div className={classes.readMore}>
-          <Link to={`/preview_course/${id}`}>
-            Read More
-          </Link>
-        </div>
-       </div>
-      }
     </div>
   )
 }

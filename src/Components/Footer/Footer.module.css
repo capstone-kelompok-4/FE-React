@@ -8,13 +8,14 @@
 .container{
   display: flex;
   align-items: flex-end;
-  width: 90%;
+  width: 100%;
   margin: auto;
   padding: 0;
+  margin-left: 70px;
 }
 
 .left{
-  row-gap: 30px;
+  row-gap: 60px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -80,6 +81,7 @@
     flex-direction: column;
     align-items: center;
     row-gap: 20px;
+    margin-left: 0;
   }
   .left{
     align-items: center;

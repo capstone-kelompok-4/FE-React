@@ -10,21 +10,59 @@ import PreviewCourse from "./Pages/PreviewCourse/PreviewCourse"
 import DetailCourse from "./Pages/DetailCourse/DetailCourse";
 import RequestForm from "./Pages/RequestForm/RequestForm";
 import FAQ from "./Pages/FAQ/FAQ";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./Firebase/Firebase";
+import { login, logout } from "./Store/userSlice";
+import PublicRoute from "./Components/PublicRoute/PublicRoute";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import Forum from "./Pages/Forum/Forum";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubs = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        if (userAuth !== null) {
+          dispatch(
+            login({
+              username: userAuth.displayName,
+              uid: userAuth.uid,
+              profilePictureUrl: userAuth.photoURL,
+            })
+          );
+        } else {
+          dispatch(logout());
+        }
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    return () => unsubs;
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/forgot_password" exact element={<ForgotPassword />} />
-          <Route path="/reset_password" exact element={<ResetPassword />} />
-          <Route path="/course_overview" exact element={<CourseOverview />} />
-          <Route path="/preview_course/:id" element={<PreviewCourse />}/>
-          <Route path="/detail_course/:id" element={<DetailCourse/>} />
-          <Route path="/request_form" element={<RequestForm/>} />
-          <Route path="/faq" element={<FAQ/>} />
+          <Route element={<PublicRoute/>}>
+            <Route path="/login" exact element={<Login />} />
+            <Route path="/forgot_password" exact element={<ForgotPassword />} />
+            <Route path="/reset_password" exact element={<ResetPassword />} />
+          </Route>
+          <Route element={<PrivateRoute/>}>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/course_overview" exact element={<CourseOverview />} />
+            <Route path="/preview_course/:id" element={<PreviewCourse />}/>
+            <Route path="/detail_course/:id" element={<DetailCourse/>} />
+            <Route path="/request_form" element={<RequestForm/>} />
+            <Route path="/forum" element={<Forum/>} />
+            <Route path="/faq" element={<FAQ/>} />
+          </Route>
         </Route>
       </Routes>
     </>
