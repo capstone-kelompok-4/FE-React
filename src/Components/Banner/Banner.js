@@ -1,8 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Card from '../Card/Card'
 import classes from "./Banner.module.css";
 
 function Banner({data}) {
+  const navigate = useNavigate();
+
+  const clickHandler = () => {
+    navigate("/course_overview")
+  }
   return (
     <Card className={classes.card}>
       <div className={classes.bannerContent}>
@@ -11,10 +17,10 @@ function Banner({data}) {
             <h2 className={classes.bannerTitle}>WELCOME {data.username.toUpperCase()}!</h2>
             <p className={classes.bannerText}>Satisfy your curiosity with thousands of amazing courses. Upgrade your skills, deepen existing</p>
           </div>
-          <button className="btn btn-primary align-self-start px-4">Get Started</button>
+          <button className={`btn align-self-start px-4 ${classes.btn}`} onClick={clickHandler}>Get Started</button>
         </div>
         <div className={classes.bannerContentRight}>
-          <img src="https://random.imagecdn.app/600/150" alt="bannerImage" style={{padding: "0 10px", marginTop: "-30px", marginBottom: "30px", borderRadius: "20px"}}/>
+          <img src={require("../../Assets/Images/banner_img.png")} alt="bannerImage"/>
         </div>
       </div>
     </Card>

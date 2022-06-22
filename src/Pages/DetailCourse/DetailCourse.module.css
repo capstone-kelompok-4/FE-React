@@ -1,0 +1,82 @@
+.completedBtn{
+  height: 100%;
+  padding: 10px 30px;
+  border-radius: 12px;
+  font-size: 20px;
+  background-color: #FF6C00;
+  border: none;
+  font-weight: 600;
+  color: #FFF;
+  font-family: "Mulish", sans-serif;
+}
+
+.material{
+  margin: auto;
+  padding-bottom: 45px;
+  width: 50%;
+}
+.material .sectionTitle, .material .materialTitle{
+  margin: 0;
+  font-family: "Mulish", sans-serif;
+  color: #0D2341;
+}
+
+.opened{
+  margin-left: 250px;
+  transition: .5s all ease-in-out;
+}
+.closed{
+  transition: 1s all ease-in-out;
+}
+.lessonNavigation{
+  position: fixed;
+  bottom: 0;
+}
+.lessonNavigation a{
+  color: #FFF; 
+  text-decoration: none;
+}
+.lessonNavigation a:hover{
+  color: #FFF;
+}
+
+.lessonNavigationText{
+  font-family: "Mulish", sans-serif;
+  font-size: 20px;
+  color: #FFF;
+}
+
+.imageWrapper{
+  position: relative;
+}
+.innerImage {
+  position: absolute;
+  top: 28%;
+  left: 28%;
+  transform: translate(-50%, 0);
+  transform: rotateY(180deg);
+}
+.imageWrapper img{
+  color: #FFF;
+}
+
+@media screen and (max-width: 1400px) {
+  .material{
+    width: 60%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .material{
+    width: 70%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .material{
+    width: 90%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .lessonNavigation .lessonNavigationText{
+    display: none;
+  }
+}

@@ -15,10 +15,22 @@
 .title{
   text-align: start;
   margin-bottom: 10px;
+  font-family: "Mulish", sans-serif;
+  color: #0D2341;
+  font-weight: bold;
 }
 
+.card > table > thead> tr > th{
+  color: #F47522;
+}
+.card > table > tbody > tr > td{
+  font-weight: 500;
+  color: #0D2341;
+  font-size: 14px;
+}
 .card > table > tbody > tr > td, .card > table > thead> tr > th{
   padding: 10px 0px 10px 20px;
+  font-family: "Poppins", sans-serif;
   text-align: start;
 }
 

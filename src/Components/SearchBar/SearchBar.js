@@ -1,11 +1,12 @@
 import React from 'react';
 import Card from '../Card/Card';
 import classes from "./SearchBar.module.css";
+import SearchIcon from "../../Assets/Icons/search.svg";
 
 function SearchBar({placeholder, className}) {
   return (
     <Card className={`${classes.card} ${className}`}>
-      <img src="https://random.imagecdn.app/900/150" alt="searchLogo" width="32px" height="32px"/>
+      <img src={SearchIcon} alt="searchLogo" width="30px" height="30px"/>
       <input type="text" placeholder={placeholder}/>
     </Card>
   )
