@@ -9,6 +9,7 @@ import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import PreviewCourse from "./Pages/PreviewCourse/PreviewCourse"
 import DetailCourse from "./Pages/DetailCourse/DetailCourse";
 import RequestForm from "./Pages/RequestForm/RequestForm";
+import FAQ from "./Pages/FAQ/FAQ";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -62,6 +63,7 @@ function App() {
             <Route path="/request_form" element={<RequestForm/>} />
             <Route path="/forum" element={<Forum/>} />
             <Route path="/account" element={<AccountPage/>} />
+            <Route path="/faq" element={<FAQ/>} />
           </Route>
         </Route>
       </Routes>
