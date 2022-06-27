@@ -1,6 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import Card from '../Card/Card'
 import classes from "./Banner.module.css";
 
 function Banner({data}) {
@@ -10,20 +9,15 @@ function Banner({data}) {
     navigate("/course_overview")
   }
   return (
-    <Card className={classes.card}>
+    <div className={classes.card}>
       <div className={classes.bannerContent}>
-        <div className={classes.bannerContentLeft}>
-          <div className={classes.bannerInfoWrapper}>
-            <h2 className={classes.bannerTitle}>WELCOME {data.username.toUpperCase()}!</h2>
-            <p className={classes.bannerText}>Satisfy your curiosity with thousands of amazing courses. Upgrade your skills, deepen existing</p>
-          </div>
-          <button className={`btn align-self-start px-4 ${classes.btn}`} onClick={clickHandler}>Get Started</button>
+        <div className={classes.bannerInfoWrapper}>
+          <h2 className={classes.bannerTitle}>Welcome <span style={{color: "#FF6C00"}}>{data.username}</span> <span style={{fontSize: "50px"}}>&#127881;</span></h2>
+          <p className={classes.bannerText}>Satisfy your curiosity with thousands of amazing courses. Improve your skills by taking part in a series of video recording training</p>
         </div>
-        <div className={classes.bannerContentRight}>
-          <img src={require("../../Assets/Images/banner_img.png")} alt="bannerImage"/>
-        </div>
+        <button className={`btn align-self-start ${classes.btn}`} onClick={clickHandler}>Get's Start</button>
       </div>
-    </Card>
+    </div>
   )
 }
 

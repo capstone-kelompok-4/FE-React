@@ -1,0 +1,49 @@
+/* Sidebar Section */
+.opened{
+  margin-left: 250px;
+  transition: .5s all ease-in-out;
+}
+.closed{
+  transition: 1s all ease-in-out;
+}
+
+.imageWrapper{
+  position: relative;
+}
+.innerImage {
+  position: absolute;
+  top: 28%;
+  left: 28%;
+  transform: translate(-50%, 0);
+  transform: rotateY(180deg);
+}
+.imageWrapper img{
+  color: #FFF;
+}
+/* Sidebar Section */
+
+/* Button */
+.btnWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 2rem 0 !important;
+}
+.btnWrapper > .btn:nth-child(1){
+  margin-right: 30px;
+}
+.btnWrapper > .btn{
+  background-color: #FFF;
+  color: #0D2341;
+  padding: 10px 20px;
+  border: 1px solid #D6DEEC;
+  border-radius: 10px;
+}
+.btnWrapper > .btn > a{
+  text-decoration: none;
+  color: #0D2341;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+/* Button */

@@ -9,7 +9,7 @@ export default function StartCourse({data, material}){
             <>
             <Card className={classes.card}> 
                 <ListGroup defaultActiveKey="#link1" className={classes.startcourse}>
-                    <ListGroup.Item action href="detail_course/1" className={classes.orange} style={{padding: "20px 40px"}} >
+                    <ListGroup.Item action href="/detail_course/1" className={classes.orange} style={{padding: "20px 40px"}} >
                         <h4>START COURSE</h4>
                     </ListGroup.Item>
                     <ListGroup.Item action href="#TargetLearner" className={classes.white} style={{padding: "20px 40px"}} >

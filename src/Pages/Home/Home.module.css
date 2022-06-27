@@ -1,7 +1,9 @@
 .searchBar{
   margin: 0 40px;
 }
-
+.courseContainer2{
+  margin: 50px 40px !important;
+}
 @media screen and (max-width: 992px) {
   .right{
     margin-top: 0 !important;

@@ -1,21 +1,12 @@
 .card {
   padding: 0;
   margin: 40px;
-  background-color: #133461;
+  background-color: #FFF;
+  border: none;
 }
 .bannerContent{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  text-align: start;
-  margin: 0 30px;
-}
-
-.bannerContentLeft{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 10px 0;
+  margin: 30px;
+  width: 60%;
 }
 
 .bannerContent .bannerContentLeft .bannerInfoWrapper .bannerTitle{
@@ -23,39 +14,35 @@
 }
 
 .bannerTitle{
-  font-size: 32px;
+  font-size: 36px;
   letter-spacing: 1px;
   font-family: "Mulish", serif;
-  color: #FFF;
+  color: #0D2341;
+  font-weight: 700;
 }
 
 .bannerText{
   font-size: 18px;
-  font-weight: normal;
+  font-weight: 500;
   font-family: "Poppins", serif;
-  color: #FFF;
-}
-
-.bannerContentRight img{
-  width: 300px;
-  height: 250px;
-  margin-top: 20px;
+  color: #0D2341;
 }
 
 .btn{
-  background-color: #F47522 !important;
-  color: #FFF !important;
+  background-color: #FFF !important;
+  border: 1px solid #F47522 !important;
+  color: #F47522 !important;
+  border-radius: 10px !important;
   font-family: "Poppins", sans-serif;
-  padding: 10px !important;
+  padding: 15px 40px !important;
   font-weight: 500 !important;
 }
 .btn:hover{
   color: #FFF;
 }
 @media screen and (max-width: 1200px) {
-  .bannerContentRight img{
-    width: 200px;
-    height: 180px;
+  .bannerContent{
+    width: 80%;
   }
   .bannerTitle{
     font-size: 30px;

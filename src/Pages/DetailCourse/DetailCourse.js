@@ -44,11 +44,11 @@ function DetailCourse() {
 
   return (
     <>
-      <SidebarSection isOpen={showSidebar}/>
+      <SidebarSection isOpen={showSidebar} id={id}/>
       {/* Start Content Material */}
       <div style={{backgroundColor: "#fff", height: "100%"}}>
         <div style={{padding: "20px"}}>
-          <div className={`${classes.imageWrapper} ${openedSidebar}`} style={{display: "inline-block", cursor: "pointer"}}  onClick={handleSidebarShow}>
+          <div className={`${classes.imageWrapper} ${openedSidebar}`} style={{display: "inline-block", cursor: "pointer", zIndex: "2"}}  onClick={handleSidebarShow}>
             {showSidebar ? (
               <img src={CloseIcon} alt="icon" width="40px" height="40px"/>
               ):(

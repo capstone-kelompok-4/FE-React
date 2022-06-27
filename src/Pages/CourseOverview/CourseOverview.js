@@ -13,14 +13,13 @@ export default function CourseOverview() {
   useEffect(() => {
     axios.get(`${baseURL}/courses`).then(res => setCourseData(res.data)).catch(err => console.log(err.message));
   }, [])
-  console.log(courseData);
 
   return (
     <>
       <SideNav/>
       <div className="row" style={{marginLeft: "75px"}}> 
-        <div className="p-0 col-md-12">  
-          <div style={{margin: "20px 40px"}}>
+        <div className="p-0 col-md-12 my-4">  
+          <div style={{margin: "20px 70px"}}>
             <div className='d-flex justify-content-between align-items-center py-3' style={{flexWrap: 'wrap'}}>
               <div>
                 <h2 className='m-0' style={{fontFamily: "Mulish", fontWeight: "600", color: "#0D2341"}}>COURSE OVERVIEW</h2>

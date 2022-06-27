@@ -20,6 +20,10 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Forum from "./Pages/Forum/Forum";
 import CheckCertificate from "./Pages/CheckCertificate/CheckCertificate";
 import AccountPage from "./Pages/AccountPage/AccountPage"
+import Participants from "./Pages/Participants/Participants";
+import DataReport from "./Pages/DataReport/DataReport";
+import OverviewReport from "./Pages/DataReport/OverviewReport";
+import UserReport from "./Pages/DataReport/UserReport";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,11 +64,16 @@ function App() {
             <Route path="/" exact element={<Home />} />
             <Route path="/course_overview" exact element={<CourseOverview />} />
             <Route path="/preview_course/:id" element={<PreviewCourse />}/>
-            <Route path="/detail_course/:id" element={<DetailCourse/>} />
             <Route path="/request_form" element={<RequestForm/>} />
             <Route path="/forum" element={<Forum/>} />
             <Route path="/account" element={<AccountPage/>} />
             <Route path="/faq" element={<FAQ/>} />
+          </Route>
+          <Route path="/detail_course/:id" element={<DetailCourse/>} />
+          <Route path="/detail_course/:id/participants" element={<Participants />} />
+          <Route path="/detail_course/:id/data_report" element={<DataReport />}>
+            <Route path="overview_report" element={<OverviewReport />}/>
+            <Route path="user_report" element={<UserReport />}/>
           </Route>
           <Route path="/check_certificate" element={<CheckCertificate/>} />
         </Route>
