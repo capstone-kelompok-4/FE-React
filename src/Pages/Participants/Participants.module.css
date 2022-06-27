@@ -1,0 +1,107 @@
+.filterTop, .filterBottom{
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  column-gap: 10px;
+}
+
+.filterBottom{
+  justify-content: space-between;
+}
+
+.left{
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  column-gap: 10px;
+  margin: 0;
+}
+
+.filterBottom .right input{
+  background-color: #FFF;
+}
+
+.filterTop p, .filterBottom p{
+  margin: 0;
+  font-weight: 500;
+}
+
+.filterTop input, .filterBottom input{
+  padding: 15px;
+  background-color: #D6DEEC;
+  border: none;
+  border-radius: 16px;
+}
+
+.filterTop input::placeholder, .filterBottom input::placeholder{
+  color: #0D2341;
+}
+
+.filterTop input:focus, .filterBottom input:focus{
+  outline: none;
+}
+
+
+/* Table Participant */
+.tableParticipant{
+  width: 95%;
+  margin: 40px auto;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+.tableParticipant thead tr{
+  width: 100px;
+  background-color: #133461;
+}
+.tableParticipant thead tr th{
+  color: #FFF;
+  padding: 20px;
+}
+.tableParticipant tr td{
+  background-color: #FFF;
+  color: #0D2341;
+  padding: 20px;
+  font-weight: 500;
+}
+
+.tableParticipant tr:first-child, .tableParticipant td:first-child { border-top-left-radius: 14px; }
+.tableParticipant tr:first-child, .tableParticipant td:last-child { border-top-right-radius: 14px; }
+.tableParticipant tr:last-child, .tableParticipant td:first-child { border-bottom-left-radius: 14px; }
+.tableParticipant tr:last-child, .tableParticipant td:last-child { border-bottom-right-radius: 14px; }
+
+.tableParticipant tr:first-child, .tableParticipant th:first-child { border-top-left-radius: 14px; }
+.tableParticipant tr:first-child, .tableParticipant th:last-child { border-top-right-radius: 14px; }
+.tableParticipant tr:last-child, .tableParticipant th:first-child { border-bottom-left-radius: 14px; }
+.tableParticipant tr:last-child, .tableParticipant th:last-child { border-bottom-right-radius: 14px; }
+/* Table Participant */
+
+/* Sidebar Section */
+.opened{
+  margin-left: 250px;
+  transition: .5s all ease-in-out;
+}
+.closed{
+  transition: 1s all ease-in-out;
+}
+
+.imageWrapper{
+  position: relative;
+}
+.innerImage {
+  position: absolute;
+  top: 28%;
+  left: 28%;
+  transform: translate(-50%, 0);
+  transform: rotateY(180deg);
+}
+.imageWrapper img{
+  color: #FFF;
+}
+/* Sidebar Section */
+
+.pagination{
+  width: 95%;
+  margin: 40px auto;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}

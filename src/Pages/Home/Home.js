@@ -23,11 +23,12 @@ function Home() {
     <>
       <SideNav/>
       <div className={`row ${classes.home}`} style={{marginLeft: "75px"}}>
-        <div className="col-xl-9 p-0 my-5 col-lg-8 col-md-12">
+        <div className="col-xl-9 p-0 mb-5 mt-3 col-lg-8 col-md-12">
           <Banner data={userData}/>
+          <h5 style={{color: "#FF6C00", margin: "70px 70px 0"}}>Let's continue your progress</h5>
           <CoursesContainer title="Course History" data={courseData} showInfo={false} showProgressBar={true}/>
         </div>
-        <div className={`col-xl-3 p-0 my-5 col-lg-4 col-md-12 ${classes.right}`}>
+        <div className={`col-xl-3 p-0 mb-5 mt-3 col-lg-4 col-md-12 ${classes.right}`}>
           <Calender/>
           <OnlineBoard data={onlineUser} title="Online Board"/>
         </div>

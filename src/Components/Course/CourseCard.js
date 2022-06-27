@@ -36,9 +36,11 @@ function CourseCard({id, title, img, progress, rating, total_material, showProgr
             </div>
           </div>
           <div className={classes.readMore}>
-            <Link to={`/preview_course/${id}`}>
-              Read More
-            </Link>
+            <button className={classes.btn}>
+              <Link to={`/preview_course/${id}`}>
+                Read More
+              </Link>
+            </button>
           </div>
         </div>
         }

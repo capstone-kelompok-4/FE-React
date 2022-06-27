@@ -8,7 +8,7 @@ export default function Training ({data}){
             <section>
                 <div className='row'>
                     <div className='col-md-8 col-lg-8 col-sm-12 mb-2'  >
-                        <h3 className={classes.title}>Webinar</h3>
+                        <h3 className={classes.title}>Training</h3>
                     </div> 
                     {/* <div className='col-md-4 col-lg-4 col-sm-12 text-end' >
                         <Link to="" className="text-decoration-none text-dark fs-5" style={{fontWeight:"600" }}>Lihat Semua</Link>

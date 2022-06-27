@@ -16,8 +16,11 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar}
 
   return (
     <div className={classes.coursesContainer} >
-      <div className="row">
+      <div className="d-flex justify-content-between align-items-center">
         <h3 className={classes.title}>{title}</h3>
+        {showMoreAble &&
+          <button type="button" style={{backgroundColor: "#FFF", color: "#FF6C00", fontFamily: "Poppins", borderRadius: "10px", fontSize: "16px", border: "1px solid #FF6C00", padding: "15px 25px"}} onClick={handleReadMoreClick}>{isReadMoreShown ? "Lihat Lebih Sedikit":"Lihat Semua"}</button> 
+        } 
       </div>
       <div className="row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0">
         {data.slice(0, limit? limit:data.length).map((course) => {
@@ -37,11 +40,7 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar}
           
         })}
       </div>
-      {showMoreAble &&
-        <div className="text-center">
-            <button className="btn my-5 px-4 btn-lg" type="button" style={{backgroundColor: "#FF6C00", color: "#FFF", fontFamily: "Poppins", borderRadius: "10px", fontSize: "16px"}} onClick={handleReadMoreClick}>{isReadMoreShown ? "Lihat Lebih Sedikit":"Lihat Semua"}</button> 
-        </div>
-      }
+      
     </div>
   )
 }
