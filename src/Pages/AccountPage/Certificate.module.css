@@ -1,0 +1,53 @@
+.card{
+  border: 1px solid #E7E7E7;
+  border-radius: 10px;
+  box-shadow: none;
+  padding: 30px 50px;
+}
+
+.card > .title {
+  color: #0D2341;
+  font-family: "Poppins", sans-serif;
+}
+
+.card > .description {
+  color: #0D2341;
+  opacity: .5;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.certificateCard{
+  height: 100%;
+  border-radius: 10px !important;
+  transition: .4s all ease-in-out;
+}
+
+.certificateCard:hover{
+  box-shadow: 0px 6px 20px #C5CDD4;
+  transition: .4s all ease-in-out;
+}
+.certificateCard > div > h5 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #0D2341;
+  font-weight: bold;
+}
+
+.certificateCard > div:last-child{
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.certificateCard > img {
+  border-radius: 10px !important;
+}
+
+.certificateCard > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.certificateCard > .content {
+  padding: 15px;
+}

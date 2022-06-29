@@ -24,6 +24,9 @@ import Participants from "./Pages/Participants/Participants";
 import DataReport from "./Pages/DataReport/DataReport";
 import OverviewReport from "./Pages/DataReport/OverviewReport";
 import UserReport from "./Pages/DataReport/UserReport";
+import EditProfile from "./Pages/AccountPage/EditProfile";
+import ChangePassword from "./Pages/AccountPage/ChangePassword";
+import Certificate from "./Pages/AccountPage/Certificate";
 
 function App() {
   const dispatch = useDispatch();
@@ -66,7 +69,11 @@ function App() {
             <Route path="/preview_course/:id" element={<PreviewCourse />}/>
             <Route path="/request_form" element={<RequestForm/>} />
             <Route path="/forum" element={<Forum/>} />
-            <Route path="/account" element={<AccountPage/>} />
+            <Route path="/account" element={<AccountPage/>}>
+              <Route path="edit_profile" element={<EditProfile />} />
+              <Route path="change_password" element={<ChangePassword />} />
+              <Route path="certificate" element={<Certificate />} />
+            </Route>
             <Route path="/faq" element={<FAQ/>} />
           </Route>
           <Route path="/detail_course/:id" element={<DetailCourse/>} />
