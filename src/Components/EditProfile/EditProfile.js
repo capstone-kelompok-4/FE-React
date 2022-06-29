@@ -12,7 +12,7 @@ export default function FormIdentity (){
                 <div className='border p-3' style={{marginLeft:"20px"}}>
                 <Form.Group className="mb-3">
                     <Form.Label>Full Name</Form.Label>
-                    <Form.Control size='lg' placeholder="Jon Doe"/>
+                    <Form.Control size='lg' placeholder="Jhon Doe"/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Specialization</Form.Label>

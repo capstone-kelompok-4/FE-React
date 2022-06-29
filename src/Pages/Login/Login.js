@@ -69,10 +69,10 @@ function Login() {
                   <label htmlFor="email" className={`form-label mb-2 ${classes.labeltext}`}>
                     Your Email
                   </label>
-                  <div class="input-group mb-3">
+                  <div className="input-group mb-3">
                     <input
                       type="email"
-                      class={`form-control ${classes.forminput}`}
+                      className={`form-control ${classes.forminput}`}
                       id="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -85,7 +85,7 @@ function Login() {
                   <label htmlFor="password" className={`form-label mb-2 ${classes.labeltext}`}>
                     Password
                   </label>
-                  <div class="input-group">
+                  <div className="input-group">
                     <input
                       type="password"
                       className={`form-control ${classes.forminput}`}
