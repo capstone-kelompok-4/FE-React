@@ -52,7 +52,7 @@ export default function PreviewCourse() {
             <Card className={classes.card} id="MethodologyLearning">
               <div className='container-fluid' >
                 <h2>C. Methodology Learning</h2>
-                <MethodologyLearner />
+                <MethodologyLearner data={course}/>
               </div>
             </Card>
           </div>
