@@ -8,6 +8,15 @@
   color: #0D2341;
   margin: 0;
 }
+.btn{
+  background-color: #FFF;
+  color: #FF6C00;
+  font-family: "Poppins", sans-serif;
+  border-radius: 10px;
+  font-size: 16px;
+  border: 1px solid #FF6C00;
+  padding: 15px 25px;
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

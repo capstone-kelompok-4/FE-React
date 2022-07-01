@@ -7,7 +7,7 @@ import classes from "./SidebarSection.module.css";
 import ParticipantIcon from "../../Assets/Icons/participant.svg";
 import DataReportIcon from "../../Assets/Icons/data_report.svg"
 
-function SidebarSection({isOpen, setIsOpen, id}) {
+function SidebarSection({isOpen, setIsOpen, course_id, section_id, material_id}) {
   const ref = useRef(null);
   useClickOutSide(ref, isOpen, setIsOpen)
 
@@ -25,23 +25,23 @@ function SidebarSection({isOpen, setIsOpen, id}) {
 
   const baseURL = "https://62a160e6cc8c0118ef4a5d6c.mockapi.io";
   useEffect(() => {
-    axios.get(`${baseURL}/courses/1`).then(res => setDataCourse(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections`).then(res => setDataSection(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/1/materials`).then(res => setDataSection1(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/2/materials`).then(res => setDataSection2(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/3/materials`).then(res => setDataSection3(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/4/materials`).then(res => setDataSection4(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/5/materials`).then(res => setDataSection5(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/6/materials`).then(res => setDataSection6(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/7/materials`).then(res => setDataSection7(res.data)).catch(err => console.log(err.message));
-  }, [])
+    axios.get(`${baseURL}/courses/${course_id}`).then(res => setDataCourse(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections`).then(res => setDataSection(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/1/materials`).then(res => setDataSection1(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/2/materials`).then(res => setDataSection2(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/3/materials`).then(res => setDataSection3(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/4/materials`).then(res => setDataSection4(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/5/materials`).then(res => setDataSection5(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/6/materials`).then(res => setDataSection6(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/7/materials`).then(res => setDataSection7(res.data)).catch(err => console.log(err.message));
+  }, [course_id])
   const allSection = [dataSection1, dataSection2, dataSection3, dataSection4, dataSection5, dataSection6, dataSection7];
 
   const handlerParticipantPage = () => {
-    navigate(`/detail_course/${id}/participants`);
+    navigate(`/preview_course/${course_id}/sections/${section_id}/detail_course/${material_id}/participants`);
   }
   const handlerDataReportPage = () => {
-    navigate(`/detail_course/${id}/data_report/overview_report`);
+    navigate(`/preview_course/${course_id}/sections/${section_id}/detail_course/${material_id}/data_report/overview_report`);
   }
 
   return (
@@ -52,17 +52,18 @@ function SidebarSection({isOpen, setIsOpen, id}) {
       <div className="accordion p-4">
         <div className="accordion-item" style={{borderBottom: "2px solid #0D2341", cursor: "pointer"}} onClick={handlerParticipantPage}>
          <div id="panelsStayOpen-Participant" className="accordion-collapse collapse show">
-          <div className={`accordion-body`}>
-            <img src={ParticipantIcon} alt="participantIcon" width="30px" height="30px" style={{marginRight: "5px"}} /> Participants
+          <div className={`accordion-body ${classes.participants}`}>
+            <img src={ParticipantIcon} alt="participantIcon" width="30px" height="30px" style={{marginRight: "5px"}} />
+            <p>Participants</p> 
           </div>
          </div>
         </div>
-          {dataSection.map((section, idx) => {
+          {dataSection.map((section, index) => {
             return(
-              <div className="accordion-item" style={{borderBottom: "2px solid #0D2341"}}>
+              <div className="accordion-item" style={{borderBottom: "2px solid #0D2341"}} key={index}>
                 <h2 className="accordion-header">
                   <button className={`accordion-button ${classes.section}`} type="button" data-bs-toggle="collapse" data-bs-target={`#panelsStayOpen-${section.id}`}>
-                    Section {idx + 1} <br/>
+                    Section {index + 1} <br/>
                     {section.name}
                   </button>
                 </h2>
@@ -70,7 +71,7 @@ function SidebarSection({isOpen, setIsOpen, id}) {
                   {allSection[section.id-1].map((material, idx) => {
                     return(
                       <div className={`accordion-body ${classes.material}`} style={{borderTop: "1px solid #0D2341"}} key={idx}>
-                        <Link to={`/detail_course/${material.id}`}>
+                        <Link to={`/preview_course/${course_id}/sections/${index+1}/detail_course/${material.id}`}>
                           <p className='m-0'>{idx + 1} {material.name}</p>
                         </Link>
                       </div>
@@ -83,8 +84,9 @@ function SidebarSection({isOpen, setIsOpen, id}) {
           })}
         <div className="accordion-item" style={{borderBottom: "2px solid #0D2341", cursor: "pointer"}} onClick={handlerDataReportPage}>
          <div id="panelsStayOpen-Participant" className="accordion-collapse collapse show">
-          <div className={`accordion-body`}>
-            <img src={DataReportIcon} alt="participantIcon" width="30px" height="30px" style={{marginRight: "5px"}} /> Data Report
+          <div className={`accordion-body ${classes.dataReport}`}>
+            <img src={DataReportIcon} alt="participantIcon" width="30px" height="30px" style={{marginRight: "5px"}} />
+            <p>Data Report</p>
           </div>
          </div>
         </div>

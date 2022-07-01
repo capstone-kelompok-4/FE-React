@@ -13,16 +13,12 @@ import Background from "../../Assets/Images/bg_preview_course.png";
 import DownloadIcon from "../../Assets/Images/download.png";
 
 export default function PreviewCourse() {
-  const [courseSection, setCourseSection] = useState([]);
   const [course, setCourse] = useState([]);
-  const [materials, setMaterials]=useState([]);
-  const {id} = useParams();
+  const {course_id} = useParams();
   const baseURL = "https://62a160e6cc8c0118ef4a5d6c.mockapi.io/" ;
   useEffect(() => { 
-    axios.get(`https://62a160e6cc8c0118ef4a5d6c.mockapi.io/courses/${id}/sections/${0+1}/materials`).then(res => setMaterials(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}courses/${id}/sections`).then(res => setCourseSection(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}courses/${id}`).then(res => setCourse(res.data)).catch(err => console.log(err.message));
-  }, [id])
+    axios.get(`${baseURL}courses/${course_id}`).then(res => setCourse(res.data)).catch(err => console.log(err.message));
+  }, [course_id])
   return (
     <>
         <div className={`border ${classes.banner}`} style={{
@@ -37,7 +33,7 @@ export default function PreviewCourse() {
         </div> 
         <div className='row my-5'>
           <div className='col-sm-4 col-lg-3'>
-            <StartCourse data={courseSection} material={materials}/>
+            <StartCourse courseId={course_id}/>
           </div>
           <div className={` ms-auto col-sm-8 col-lg-9 ${classes.right}`}> 
             <Card className={classes.card} id="TargetLearner">
@@ -56,7 +52,7 @@ export default function PreviewCourse() {
             <Card className={classes.card} id="MethodologyLearning">
               <div className='container-fluid' >
                 <h2>C. Methodology Learning</h2>
-                <MethodologyLearner />
+                <MethodologyLearner data={course}/>
               </div>
             </Card>
           </div>

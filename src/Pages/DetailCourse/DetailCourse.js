@@ -15,9 +15,9 @@ import Checklist from "../../Assets/Icons/checklist.svg";
 import CloseIcon from "../../Assets/Icons/close.svg";
 
 function DetailCourse() {
-  const { id } = useParams();
-  const prevMaterialId = parseInt(id) - 1;
-  const nextMaterialId = parseInt(id) + 1;
+  const { course_id, section_id, material_id} = useParams();
+  const prevMaterialId = parseInt(material_id) - 1;
+  const nextMaterialId = parseInt(material_id) + 1;
 
   const [dataMaterial, setDataMaterial] = useState({});
   const [dataSection, setDataSection] = useState({});
@@ -28,13 +28,22 @@ function DetailCourse() {
   const [showSidebar,setShowSidebar] = useState(false);
   const handleSidebarShow = () => setShowSidebar(!showSidebar);
 
+  let nextSectionId = section_id;
+  let prevSectionId = section_id;
+  if(nextMaterialId === 4 || nextMaterialId === 7 || nextMaterialId === 10 || nextMaterialId === 13 || nextMaterialId === 16 || nextMaterialId === 19) {
+    nextSectionId++
+  }
+  if(prevMaterialId === 3 || prevMaterialId === 6 || prevMaterialId === 9 || prevMaterialId === 12 || prevMaterialId === 15 || prevMaterialId === 18){
+    prevSectionId--;
+  }
+
   const baseURL = "https://62a160e6cc8c0118ef4a5d6c.mockapi.io";
   useEffect(() => {
-    axios.get(`${baseURL}/courses/1/sections/1`).then(res => setDataSection(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/1/materials/${id}`).then(res => setDataMaterial(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/1/materials/${prevMaterialId}`).then(res => setDataPrevMaterial(res.data)).catch(err => console.log(err.message));
-    axios.get(`${baseURL}/courses/1/sections/1/materials/${nextMaterialId}`).then(res => setDataNextMaterial(res.data)).catch(err => console.log(err.message));
-  }, [id, nextMaterialId, prevMaterialId])
+    axios.get(`${baseURL}/courses/${course_id}/sections/${section_id}`).then(res => setDataSection(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/${section_id}/materials/${material_id}`).then(res => setDataMaterial(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/${prevSectionId}/materials/${prevMaterialId}`).then(res => setDataPrevMaterial(res.data)).catch(err => console.log(err.message));
+    axios.get(`${baseURL}/courses/${course_id}/sections/${nextSectionId}/materials/${nextMaterialId}`).then(res => setDataNextMaterial(res.data)).catch(err => console.log(err.message));
+  }, [course_id, section_id, material_id, nextMaterialId, prevMaterialId, prevSectionId, nextSectionId])
   
   const completeHandler = () => {
     setCompleted(!completed);
@@ -42,9 +51,10 @@ function DetailCourse() {
 
   const openedSidebar = showSidebar ? classes.opened : classes.closed;
 
+  
   return (
     <>
-      <SidebarSection isOpen={showSidebar} id={id}/>
+      <SidebarSection isOpen={showSidebar} course_id={course_id} section_id={section_id} material_id={material_id}/>
       {/* Start Content Material */}
       <div style={{backgroundColor: "#fff", height: "100%"}}>
         <div style={{padding: "20px"}}>
@@ -89,15 +99,6 @@ function DetailCourse() {
                 src={dataMaterial.url}      
               />
             }
-
-            {dataMaterial.type === "resume" && 
-              <iframe
-                width="100%"
-                height="500"
-                title="Google docs"
-                src={dataMaterial.url}      
-              />
-            }
           </div>
         </div>
       </div>
@@ -106,14 +107,13 @@ function DetailCourse() {
       {/* Start Lesson Navigation */}
       <div className={`row align-items-center py-5 px-3 ${classes.lessonNavigation}`} style={{backgroundColor: "#133461",  width: "100%", margin: "0"}}>
         <div className='col-2 col-md-4 text-start'>
-          {id !== "1" ?
-            <Link to={`/detail_course/${prevMaterialId}`}>
+          {material_id !== "1" &&
+            <Link to={`/preview_course/${course_id}/sections/${prevSectionId}/detail_course/${prevMaterialId}`}>
               <div style={{display: "flex", columnGap: "20px", alignItems: "center"}}>
                 <img src={ArrowLeft} alt="icon" width="40px" height="40px" style={{backgroundColor: "#133461", borderRadius: "50%"}}/>
                 <h4 className={`m-0 ${classes.lessonNavigationText}`}>{dataPrevMaterial.name}</h4>
               </div>
             </Link>
-            : null
           }   
         </div>
         <div className='col-8 col-md-4 text-center'>
@@ -123,12 +123,14 @@ function DetailCourse() {
           </button>
         </div>
         <div className='col-2 col-md-4 text-end'>
-          <Link to={`/detail_course/${nextMaterialId}`}>
-            <div style={{display: "flex", columnGap: "20px", flexDirection:"row-reverse", alignItems: "center"}}>
-              <img src={ArrowRight} alt="icon" width="40px" height="40px" style={{backgroundColor: "#133461", borderRadius: "50%"}}/>
-              <h4 className={classes.lessonNavigationText}>{dataNextMaterial.name}</h4>
-            </div>
-          </Link>
+          {material_id !== "21" &&
+            <Link to={`/preview_course/${course_id}/sections/${nextSectionId}/detail_course/${nextMaterialId}`}>
+              <div style={{display: "flex", columnGap: "20px", flexDirection:"row-reverse", alignItems: "center"}}>
+                <img src={ArrowRight} alt="icon" width="40px" height="40px" style={{backgroundColor: "#133461", borderRadius: "50%"}}/>
+                <h4 className={classes.lessonNavigationText}>{dataNextMaterial.name}</h4>
+              </div>
+            </Link>
+          }
         </div>
       </div>
       {/* End Lesson Navigation */}

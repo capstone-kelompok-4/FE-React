@@ -12,7 +12,7 @@ import Pagination from '../../Components/Pagination/Pagination'
 import { useParams } from 'react-router-dom'
 
 function Participants() {
-  const { id } = useParams();
+  const { course_id, section_id, material_id } = useParams();
   const [participants, setParticipants] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   // const [nextPage, setNextPage] = useState(currentPage + 1);
@@ -51,7 +51,7 @@ function Participants() {
 
   return (
     <>
-      <SidebarSection isOpen={showSidebar} id={id}/>
+      <SidebarSection isOpen={showSidebar} course_id={course_id} section_id={section_id} material_id={material_id}/>
       <div style={{padding: "20px 40px"}}>
         <div className={`${classes.imageWrapper} ${openedSidebar}`} style={{display: "inline-block", cursor: "pointer", zIndex: "2", position: "fixed", top: "70"}}  onClick={handleSidebarShow}>
           {showSidebar ? (
