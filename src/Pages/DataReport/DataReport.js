@@ -7,7 +7,7 @@ import CloseIcon from "../../Assets/Icons/close.svg";
 import classes from "./DataReport.module.css";
 
 function DataReport() {
-  const { id } = useParams();
+  const { course_id, section_id, material_id } = useParams();
   const [active, setActive] = useState("Overview Report");
   const [showSidebar, setShowSidebar] = useState(false);
   const handleSidebarShow = () => setShowSidebar(!showSidebar);
@@ -27,7 +27,7 @@ function DataReport() {
 
   return (
     <>
-      <SidebarSection isOpen={showSidebar} id={id}/>
+      <SidebarSection isOpen={showSidebar} course_id={course_id} section_id={section_id} material_id={material_id}/>
       <div style={{padding: "20px 40px"}}>
         <div className={`${classes.imageWrapper} ${openedSidebar}`} style={{display: "inline-block", cursor: "pointer", zIndex: "2", position: "fixed", top: "70"}}  onClick={handleSidebarShow}>
           {showSidebar ? (
@@ -42,8 +42,8 @@ function DataReport() {
         </div>
       </div>
       <div className="row mb-5 m-auto" style={{width: "85%"}}>
-        <h2>Data Report</h2>
-        <h4 className='mt-2'>UI/UX Research & Design</h4>
+        <h2 className={classes.title}>Data Report</h2>
+        <h4 className={classes.courseTitle}>UI/UX Research & Design</h4>
         <div className={classes.btnWrapper}>
           {
             buttons.map((button) => {

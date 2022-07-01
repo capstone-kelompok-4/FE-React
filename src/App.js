@@ -66,7 +66,7 @@ function App() {
           <Route element={<PrivateRoute/>}>
             <Route path="/" exact element={<Home />} />
             <Route path="/course_overview" exact element={<CourseOverview />} />
-            <Route path="/preview_course/:id" element={<PreviewCourse />}/>
+            <Route path="/preview_course/:course_id" element={<PreviewCourse />}/>
             <Route path="/request_form" element={<RequestForm/>} />
             <Route path="/forum" element={<Forum/>} />
             <Route path="/account" element={<AccountPage/>}>
@@ -76,9 +76,9 @@ function App() {
             </Route>
             <Route path="/faq" element={<FAQ/>} />
           </Route>
-          <Route path="/detail_course/:id" element={<DetailCourse/>} />
-          <Route path="/detail_course/:id/participants" element={<Participants />} />
-          <Route path="/detail_course/:id/data_report" element={<DataReport />}>
+          <Route path="/preview_course/:course_id/sections/:section_id/detail_course/:material_id" element={<DetailCourse/>} />
+          <Route path="/preview_course/:course_id/sections/:section_id/detail_course/:material_id/participants" element={<Participants />} />
+          <Route path="/preview_course/:course_id/sections/:section_id/detail_course/:material_id/data_report" element={<DataReport />}>
             <Route path="overview_report" element={<OverviewReport />}/>
             <Route path="user_report" element={<UserReport />}/>
           </Route>

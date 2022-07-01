@@ -44,11 +44,11 @@ function Banner({data}) {
         </div>
         <div>
             <p className={classes.bannerRating}>Rated :</p>
-            <p className={classes.bannerRating}>
+            <div className={classes.bannerRating}>
               <div className='d-flex align-items-center justify-content-center' style={{columnGap: "10px"}}>
                 <PrettyRating icons={icons.star} colors={colors.star} value={data.rating} max="5"/> {data.rating}/5
               </div>
-            </p>
+            </div>
         </div>
       </div>
     </div>

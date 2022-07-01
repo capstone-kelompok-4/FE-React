@@ -69,9 +69,9 @@ function Forum() {
                   </div>
                 </div>
               </Card>
-              {data.map((data) => {
+              {data.map((data, idx) => {
                 return(
-                  <Card className={classes.card}>
+                  <Card className={classes.card} key={idx}>
                     <div className="row">
                       <div className="col-1 p-0 text-center">
                         <img src={data.profilePicture} alt="randomImage" width="50px" height="50px" style={{borderRadius: "50%"}} />
@@ -119,25 +119,25 @@ function Forum() {
               <div className={classes.radioWrapper}>
                 <div className={`form-check ${classes.formRadio}`}>
                   <input className={`form-check-input ${classes.accent}`} type="checkbox" name="category" id="radioButton1" />
-                  <label className={`form-check-label ${classes.labelForCheck}`} for="radioButton1">
+                  <label className={`form-check-label ${classes.labelForCheck}`} htmlFor="radioButton1">
                     UI/UX Research & Design
                   </label>
                 </div>
                 <div className={`form-check ${classes.formRadio}`}>
                   <input className={`form-check-input ${classes.accent}`} type="checkbox" name="category" id="radioButton2"/>
-                  <label className={`form-check-label ${classes.labelForCheck}`} for="radioButton2">
+                  <label className={`form-check-label ${classes.labelForCheck}`} htmlFor="radioButton2">
                     Mastering Front-End Development with React JS
                   </label>
                 </div>
                 <div className={`form-check ${classes.formRadio}`}>
                   <input className={`form-check-input ${classes.accent}`} type="checkbox" name="category" id="radioButton3" />
-                  <label className={`form-check-label ${classes.labelForCheck}`} for="radioButton3">
+                  <label className={`form-check-label ${classes.labelForCheck}`} htmlFor="radioButton3">
                     Mastering Mobile Development with Flutter
                   </label>
                 </div>
                 <div className={`form-check ${classes.formRadio}`}>
                   <input className={`form-check-input ${classes.accent}`} type="checkbox" name="category" id="radioButton4"/>
-                  <label className={`form-check-label ${classes.labelForCheck}`} for="radioButton4">
+                  <label className={`form-check-label ${classes.labelForCheck}`} htmlFor="radioButton4">
                     Be The Best Search Quality Engineer
                   </label>
                 </div>

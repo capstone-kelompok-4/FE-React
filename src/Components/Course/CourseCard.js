@@ -1,14 +1,14 @@
 import React from 'react'
-import { ProgressBar } from 'react-bootstrap';
 import classes from "./CourseCard.module.css";
 import MaterialIcon from "../../Assets/Icons/material.svg";
 import StarIcon from "../../Assets/Icons/star.svg";
 import { Link, useNavigate } from 'react-router-dom';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
-function CourseCard({id, title, img, progress, rating, total_material, showProgressBar, showInfo}) {
+function CourseCard({course_id, title, img, progress, rating, total_material, showProgressBar, showInfo}) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/preview_course/${id}`)
+    navigate(`/preview_course/${course_id}`)
   }
   return (
     <div className={`col p-0 ${classes.parent}`}>
@@ -19,7 +19,8 @@ function CourseCard({id, title, img, progress, rating, total_material, showProgr
         </div>
         {showProgressBar &&
           <div className="card-body">
-            <ProgressBar animated bgcolor="#0275d8" now={progress} /> 
+            {/* <ProgressBar animated bgcolor="#0275d8" now={progress} />  */}
+            <ProgressBar bgcolor="#133461" progress={progress}  height={10} />
             <p className={classes.completed}>Complete:  <span className='fw-bold'>{progress}%</span></p>
           </div>
         }
@@ -37,7 +38,7 @@ function CourseCard({id, title, img, progress, rating, total_material, showProgr
           </div>
           <div className={classes.readMore}>
             <button className={classes.btn}>
-              <Link to={`/preview_course/${id}`}>
+              <Link to={`/preview_course/${course_id}`}>
                 Read More
               </Link>
             </button>

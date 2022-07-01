@@ -39,3 +39,12 @@
   font-family: "Poppins", sans-serif;
 }
 
+.participants, .dataReport{
+  display: flex;
+  align-items: center;
+}
+.participants > p, .dataReport > p{
+  margin: 0;
+  color:#0D2341;
+  font-family: "Poppins", sans-serif;
+}
