@@ -18,9 +18,9 @@ function Footer() {
         </div>
 
         <div className={classes.center}>
-          <Link to="/">
+          <a href="https://academy.alterra.id/" target="_blanks">
             <p className='m-0'>Tentang Coorporate</p>
-          </Link>
+          </a>
           <Link to="/check_certificate">
             <p className='m-0'>Cek Sertifikat</p>       
           </Link>

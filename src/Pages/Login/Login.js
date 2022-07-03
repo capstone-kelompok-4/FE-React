@@ -1,37 +1,70 @@
 import React, { useState } from "react";
 import classes from "./Login.module.css";
 import leftPict from "../../Assets/Image/pict_login_page.png";
-import { useDispatch } from "react-redux";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../Firebase/Firebase";
-import { login } from "../../Store/userSlice";
+// import { useDispatch } from "react-redux";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../../Firebase/Firebase";
+// import { login } from "../../Store/userSlice";
 import { Alert } from "react-bootstrap";
 import CenteredSpinner from "../../Components/Loading/CenteredSpinner";
+import axios from "axios";
+import { BASE_URL, setUserTokenSession } from "../../Configs/APIAuth";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const loginHandler = () => {
-    setLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userAuth) => {
-      dispatch(
-        login({
-          username: userAuth.user.displayName,
-          uid: userAuth.user.uid,
-          profilePictureUrl: userAuth.user.photoURL,
-        })
-      );
-      setLoading(false)
+    const data = JSON.stringify({
+      "email": email,
+      "password": password,
     })
-    .catch((err) => {
-      setError(err.message);
+    const config = {
+      method: 'post',
+      url: `${BASE_URL}/auth/signin`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    }
+    setError(null);
+    setLoading(true);
+    axios(config)
+    .then( response => {
       setLoading(false);
-    });
+      setUserTokenSession(response.data.data.token);
+      console.log(JSON.stringify(response.data));
+      navigate("/")
+    }).catch( error => {
+      setLoading(false);
+      if(error.response.status === 401 || error.response.status === 400) {
+        setError(error.response.data.message);
+      } else {
+        console.log(error)
+        setError("Something Went Wrong, Please Try Again Later");
+      }
+
+    })
+
+    // signInWithEmailAndPassword(auth, email, password)
+    // .then((userAuth) => {
+    //   dispatch(
+    //     login({
+    //       username: userAuth.user.displayName,
+    //       uid: userAuth.user.uid,
+    //       profilePictureUrl: userAuth.user.photoURL,
+    //     })
+    //   );
+    //   setLoading(false)
+    // })
+    // .catch((err) => {
+    //   setError(err.message);
+    //   setLoading(false);
+    // });
   }
 
   return (
@@ -74,6 +107,7 @@ function Login() {
                       type="email"
                       className={`form-control ${classes.forminput}`}
                       id="email"
+                      name="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Your Email"
@@ -90,6 +124,7 @@ function Login() {
                       type="password"
                       className={`form-control ${classes.forminput}`}
                       id="password"
+                      name="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password"
@@ -111,7 +146,7 @@ function Login() {
                   </div>
                 </div>
                 {!loading &&
-                  <div className="d-flex flex-column" style={{width: "400px"}}>
+                  <div className="d-flex flex-column" style={{width: "400px", fontFamily: "Poppins", fontSize: "14px"}}>
                     {error && <Alert variant="danger">{error}</Alert>}
                   </div>
                 }
