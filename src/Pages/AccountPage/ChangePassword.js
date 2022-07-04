@@ -1,6 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import Card from '../../Components/Card/Card';
+import { BASE_URL, getToken } from '../../Configs/APIAuth';
 import classes from "./ChangePassword.module.css";
+import { Alert } from "react-bootstrap";
+import CenteredSpinner from '../../Components/Loading/CenteredSpinner';
 
 function ChangePassword() {
   const baseError = {
@@ -16,6 +20,9 @@ function ChangePassword() {
 
   const [values, setValues] = useState(initialValues);
   const [errMsg, setErrMsg] = useState(baseError);
+  const [message, setMessage] = useState("");
+  const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const validateInput = (e) => {
     const {name, value} = e.target;
@@ -69,6 +76,41 @@ function ChangePassword() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+    const token = getToken();
+    var data = JSON.stringify({
+      "current_password": values.currentPassword,
+      "new_password": values.newPassword
+    });
+
+    var config = {
+      method: 'put',
+      url: `${BASE_URL}/users/change-password`,
+      headers: { 
+        'Authorization': `Bearer ${token}`, 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+    .then(res => {
+      setLoading(false);
+      setErr("");
+      console.log(JSON.stringify(res.data));
+      setMessage("Password Successfully Changed");
+    })
+    .catch( error => {
+      setLoading(false);
+      setMessage("");
+      if(error.response.status === 401 || error.response.status === 400) {
+        setErr(error.response.data.message);
+      } else if (error.response.status === 500) {
+        setErr("Password Invalid");
+      } else {
+        setErr("Something Went Wrong, Please Try Again Later");
+      }
+    })
     console.log(values);
   }
   
@@ -88,6 +130,17 @@ function ChangePassword() {
         <input type="password" id='confirmPassword' minLength="8" name="confirmPassword" required value={values.confirmPassword} onBlur={validateInput} onChange={handleInputChange}/>
         { errMsg.confirmPassword && <p className={classes.errorMessage}>{errMsg.confirmPassword}</p>}
         
+        {!loading &&
+          <div className="d-flex flex-column" style={{width: "300px", fontFamily: "Poppins", fontSize: "14px", textAlign: "center"}}>
+            {err && <Alert variant="danger">{err}</Alert>}
+            {message && <Alert variant="success">{message}</Alert>}
+          </div>
+        }
+        {loading && 
+          <div className="d-flex flex-column mb-3 ">
+            <CenteredSpinner />
+          </div>
+        }
         <button className={classes.btnSave}>Save</button>
       </form>
     </Card>

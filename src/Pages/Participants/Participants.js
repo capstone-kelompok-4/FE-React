@@ -15,10 +15,9 @@ function Participants() {
   const { course_id, section_id, material_id } = useParams();
   const [participants, setParticipants] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [nextPage, setNextPage] = useState(currentPage + 1);
-  // const [prevPage, setPrevPage] = useState(currentPage - 1);
   const [dataPerPage] = useState(6);
   const [searchTerm, setSearchTerm] = useState("");
+  const [specialistTerm, setSpecialistTerm] = useState("");
 
 
   const [showSidebar, setShowSidebar] = useState(false);
@@ -49,6 +48,11 @@ function Participants() {
     setSearchTerm(e.target.value);
   }
 
+  const filterSpecializationHandler = (e) => {
+    setSpecialistTerm(e.target.value)
+    console.log(specialistTerm)
+  }
+
   return (
     <>
       <SidebarSection isOpen={showSidebar} course_id={course_id} section_id={section_id} material_id={material_id}/>
@@ -65,18 +69,18 @@ function Participants() {
           }
         </div>
       </div>
-      <div className="row mb-5 m-auto" style={{width: "85%"}}>
+      <div className={`row mb-5 m-auto ${classes.participants}`} style={{width: "85%"}}>
         <h2>Participants</h2>
         <h4 className='mt-2'>UI/UX Research & Design</h4>
         <div className="my-4">
           <div className={classes.filterTop}>
             <p>Inactive for more than</p>
-            <Input type="text" placeholder="Select Role"/>
+            <Input type="text" placeholder="Select Period"/>
           </div>
           <div className={classes.filterBottom}>
             <div className={classes.left}>
               <p>Filter Specialization</p>
-              <Input type="text" placeholder="Select Role"/>
+              <Input type="text" placeholder="Select Role" onChange={filterSpecializationHandler} />
             </div>
             <div className={classes.right}>
               <SearchBar placeholder="Cari Participants" onChange={searchParticipantsHandler}/>
@@ -95,9 +99,11 @@ function Participants() {
             </thead>
             <tbody>
               {currentParticipants.filter((participant) => {
-                if(searchTerm === ""){
+                if(searchTerm === "" && specialistTerm === ""){
                   return participant
-                } else if (participant.fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                } else if ( searchTerm !== "" && specialistTerm === "" && participant.fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  return participant
+                } else if (specialistTerm !== "" && searchTerm === "" && participant.specialist.toLowerCase().includes(specialistTerm.toLowerCase())) {
                   return participant
                 } return false
               }).map((participant) => {
@@ -116,7 +122,6 @@ function Participants() {
             <Pagination dataPerPage={dataPerPage} totalData={participants.length} paginate={paginate} prevPage={prevPage} nextPage={nextPage} currentPage={currentPage}/>
           </div>
         </div>
-        
       </div> 
     </>
   )

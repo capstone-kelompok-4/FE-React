@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import classes from "./Login.module.css";
-import leftPict from "../../Assets/Image/pict_login_page.png";
-// import { useDispatch } from "react-redux";
-// import { signInWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../../Firebase/Firebase";
-// import { login } from "../../Store/userSlice";
-import { Alert } from "react-bootstrap";
-import CenteredSpinner from "../../Components/Loading/CenteredSpinner";
 import axios from "axios";
+import leftPict from "../../Assets/Image/pict_login_page.png";
+import CenteredSpinner from "../../Components/Loading/CenteredSpinner";
+import { Alert } from "react-bootstrap";
 import { BASE_URL, setUserTokenSession } from "../../Configs/APIAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -44,28 +40,11 @@ function Login() {
       if(error.response.status === 401 || error.response.status === 400) {
         setError(error.response.data.message);
       } else if (error.response.status === 500) {
-        setError("Email / Password Wrong");
+        setError("Email or Password Wrong");
       } else {
         setError("Something Went Wrong, Please Try Again Later");
       }
-
     })
-
-    // signInWithEmailAndPassword(auth, email, password)
-    // .then((userAuth) => {
-    //   dispatch(
-    //     login({
-    //       username: userAuth.user.displayName,
-    //       uid: userAuth.user.uid,
-    //       profilePictureUrl: userAuth.user.photoURL,
-    //     })
-    //   );
-    //   setLoading(false)
-    // })
-    // .catch((err) => {
-    //   setError(err.message);
-    //   setLoading(false);
-    // });
   }
 
   return (
@@ -147,7 +126,7 @@ function Login() {
                   </div>
                 </div>
                 {!loading &&
-                  <div className="d-flex flex-column" style={{width: "400px", fontFamily: "Poppins", fontSize: "14px"}}>
+                  <div className="d-flex flex-column" style={{width: "400px", fontFamily: "Poppins", fontSize: "14px", textAlign: "center"}}>
                     {error && <Alert variant="danger">{error}</Alert>}
                   </div>
                 }

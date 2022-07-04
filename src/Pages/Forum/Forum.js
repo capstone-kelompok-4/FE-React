@@ -79,7 +79,7 @@ function Forum() {
                       <div className="col-11 p-0">
                         <div className="d-flex justify-content-between align-items-start">
                           <div className={classes.left}>
-                            <h6 className='m-0'>{data.author}</h6>
+                            <h6 className='m-0 fw-bold'>{data.author}</h6>
                           </div>
                           <div className={classes.right}>
                             <p className='m-0' style={{color: "grey"}}>{data.times}</p>
@@ -89,7 +89,7 @@ function Forum() {
                           <button className={classes.btn}>{data.specialist}</button>
                         </div>
                         <div style={{margin: "20px 0"}}>
-                          <p className="m-0" style={{fontWeight: "500"}}>
+                          <p className="m-0" style={{fontWeight: "500", fontSize: "18px"}}>
                             {data.thread}
                           </p>
                         </div>
