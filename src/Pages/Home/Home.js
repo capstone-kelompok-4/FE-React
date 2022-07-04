@@ -9,7 +9,7 @@ import OnlineBoard from '../../Components/OnlineBoard/OnlineBoard';
 // import { userData } from '../../Assets/user';
 import SideNav from '../../Components/Navigation/SideNav';
 import Footer from '../../Components/Footer/Footer';
-import { setUserSession } from '../../Configs/APIAuth';
+import { getToken, setUserSession } from '../../Configs/APIAuth';
 // import { getUserData } from '../../Configs/APIAuth';
 
 function Home() {
@@ -18,11 +18,13 @@ function Home() {
   const [onlineUser, setOnlineUser] = useState([]);
   const baseURL = "https://62a160e6cc8c0118ef4a5d6c.mockapi.io";
   useEffect(() => {
+    const token = getToken();
+    console.log(token);
     var config = {
       method: 'get',
       url: 'https://capstone-project-4.herokuapp.com/api/users',
       headers: { 
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5ueV9jaG9pQGdtYWlsLmNvbSJ9.xiz56FxgsqWrxQ2c7dSqt_HoOqsIlYL6WND7QDFuBZ0'
+        'Authorization':`Bearer ${token}`
       }
     };
     axios(config).then(res => {
@@ -42,7 +44,7 @@ function Home() {
         <div className="col-xl-9 p-0 mb-5 mt-3 col-lg-8 col-md-12">
           <Banner data={userData.data}/>
           <h5 style={{color: "#FF6C00", margin: "70px 70px 0"}}>Let's continue your progress</h5>
-          <CoursesContainer title="Course History" data={courseData} showInfo={false} showProgressBar={true}/>
+          <CoursesContainer title="Course History" data={courseData} showInfo={false} showProgressBar={true} className={classes.courseContainer}/>
         </div>
         <div className={`col-xl-3 p-0 mb-5 mt-3 col-lg-4 col-md-12 ${classes.right}`}>
           <Calender/>
