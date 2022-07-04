@@ -12,12 +12,9 @@ import Certificate from "../../Assets/Images/certificate.png";
 import CertificateActive from "../../Assets/Images/certificate-colored.png";
 import Logout from "../../Assets/Images/logout.png";
 
-import { Link, Navigate, Outlet } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { logout } from '../../Store/userSlice';
-import { useDispatch } from 'react-redux';
-import { auth } from '../../Firebase/Firebase';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { getUser, removeUserSession } from '../../Configs/APIAuth';
 
 export default function AccountPage(){
     const [active, setActive] = useState("Edit Profile");
@@ -45,12 +42,13 @@ export default function AccountPage(){
         },
     ]
 
-    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const logoutHandler = () => {
-        signOut(auth);
-        dispatch(logout());
-        <Navigate to="/login" />
+        removeUserSession();
+        navigate("/login");
     }
+    const user = getUser();
+    console.log(user);
     return(
         <>
         <SideNav/>
@@ -61,8 +59,8 @@ export default function AccountPage(){
                     <div className={classes.left}>
                         <Card className={classes.cardTop}>
                             <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/283.jpg" alt="photoProfile" width="150px" height="150px" />
-                            <h4>Dave Christian</h4>
-                            <p>Designer</p>
+                            <h4>{user.name}</h4>
+                            <p>{user.user_specialization.name}</p>
                         </Card>
                         <Card className={classes.cardBottom}>
                             {

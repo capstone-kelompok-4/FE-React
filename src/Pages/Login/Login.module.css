@@ -37,6 +37,7 @@
     height: 60px !important;
     border-color: #19345E !important;
     border-radius: 10px !important;
+    font-family: "Poppins", sans-serif;
 }
 
 .forminput::placeholder{
@@ -47,7 +48,8 @@
     background: #F47522 !important;
     width: 400px !important; 
     height: 60px !important; 
-    border-radius: 1rem !important; 
+    border-radius: 10px !important; 
+    letter-spacing: 1px;
     color: #fff !important;
     font-weight: bold !important;
 }

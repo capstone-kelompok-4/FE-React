@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
 import Card from '../../Components/Card/Card'
+import { getUser } from '../../Configs/APIAuth'
 import classes from "./EditProfile.module.css"
 
 function EditProfile() {
+  const dataUser = getUser();
+
+  console.log(dataUser);
   const user = {
-    fullName: "Dave Christian",
-    specialist: "Designer",
-    email: "123456789@corporate.com",
-    phoneNumber: "089321738813",
-    detailAddress: "Jalan Kenanga Timur",
-    country: "Indonesia",
-    state: "DKI Jakarta ",
-    city: "Jakarta Barat",
-    zipCode: "12345",
+    fullName: dataUser.name,
+    specialist: dataUser.user_specialization.name,
+    email: dataUser.username,
+    phoneNumber: dataUser.phone_number,
+    detailAddress: dataUser.address.detail_address,
+    country: dataUser.address.country,
+    state: dataUser.address.state_province,
+    city: dataUser.address.city,
+    zipCode: dataUser.address.zip_code,
   }
 
   const initialValues = {
@@ -100,7 +104,7 @@ function EditProfile() {
       [name]: value,
     })
 
-    // console.log(values);
+    console.log(values);
   }
 
   const validateInput = (e) => {

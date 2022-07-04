@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
-import {useSelector} from "react-redux";
 import { Outlet, useNavigate } from 'react-router-dom';
+import { getToken } from '../../Configs/APIAuth';
 
 function PublicRoute() {
-  const isLogin = useSelector((state) => state.user.isLogin);
-  console.log(isLogin);
   const navigate = useNavigate();
   useEffect(() => {
-    if(isLogin){
+    if(getToken()){
       return navigate("/");
     }
-  }, [isLogin, navigate])
-  return !isLogin && <Outlet/>;
+  }, [navigate])
+  return !getToken() && <Outlet/>;
 
 }
 
