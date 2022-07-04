@@ -15,14 +15,14 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar,
     } 
 
   return (
-    <div className={`${classes.coursesContainer} ${className}`} >
+    <div className={classes.coursesContainer} >
       <div className="d-flex justify-content-between align-items-center">
         <h3 className={classes.title}>{title}</h3>
         {showMoreAble &&
           <button type="button" className={classes.btn} onClick={handleReadMoreClick}>{isReadMoreShown ? "Lihat Lebih Sedikit":"Lihat Semua"}</button> 
         } 
       </div>
-      <div className="row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0">
+      <div className={className}>
         {data.slice(0, limit? limit : data.length).map((course) => {
           return(
             <CourseCard 
