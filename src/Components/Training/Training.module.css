@@ -17,3 +17,18 @@
 .readMore a{
   text-decoration: none;
 }
+
+.card{
+  width: 23rem !important;
+  border: 2px solid #F0F5FD;
+  border-radius: 10px !important;
+  font-family: "Poppins";
+  color: #0D2341;
+  padding: 20px;
+  transition: .3s all ease-in-out;
+}
+
+.card:hover{
+  box-shadow: 0px 6px 10px #C5CDD4;
+  transition: .3s all ease-in-out;
+}
