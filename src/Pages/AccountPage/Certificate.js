@@ -2,28 +2,29 @@ import React from 'react'
 import Card from '../../Components/Card/Card';
 import classes from "./Certificate.module.css";
 import DownloadCertificate from "../../Assets/Images/download_icon.png";
+import CertificateExample from "../../Assets/Images/certifacte-example.png";
 
 function Certificate() {
 
   const certificates = [
     {
       id: 1,
-      image: "http://loremflickr.com/640/480",
+      image: CertificateExample,
       title: "Be The Best Search Quality Engineer",
     },
     {
       id: 2,
-      image: "http://loremflickr.com/640/480",
+      image: CertificateExample,
       title: "UI/UX Research & Design",
     },
     {
       id: 3,
-      image: "http://loremflickr.com/640/480",
+      image: CertificateExample,
       title: "Mastering Front-end Developement with React JS",
     },
     {
       id: 4,
-      image: "http://loremflickr.com/640/480",
+      image: CertificateExample,
       title: "Mastering Mobile Development with Flutter",
     },
   ]

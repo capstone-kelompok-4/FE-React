@@ -35,9 +35,16 @@ function Participants() {
   }, [])
 
   // Get Current Participants
-  const indexOfLastParticipant = currentPage * dataPerPage;
-  const indexOfFirstParticipant = indexOfLastParticipant - dataPerPage;
-  let currentParticipants =  participants.slice(indexOfFirstParticipant, indexOfLastParticipant);
+  if(specialistTerm === ""){
+    const indexOfLastParticipant = currentPage * dataPerPage;
+    const indexOfFirstParticipant = indexOfLastParticipant - dataPerPage;
+    var currentParticipants =  participants.slice(indexOfFirstParticipant, indexOfLastParticipant);
+  } else {
+    const indexOfLastParticipant = currentPage * dataPerPage;
+    const indexOfFirstParticipant = indexOfLastParticipant - dataPerPage;
+    var filtered =  participants.filter(participant => participant.specialist.toLowerCase().includes(specialistTerm.toLowerCase()));
+    currentParticipants =  filtered.slice(indexOfFirstParticipant, indexOfLastParticipant);
+  }
   
   // Change Page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -99,13 +106,11 @@ function Participants() {
             </thead>
             <tbody>
               {currentParticipants.filter((participant) => {
-                if(searchTerm === "" && specialistTerm === ""){
+                if(searchTerm === ""){
                   return participant
-                } else if ( searchTerm !== "" && specialistTerm === "" && participant.fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                } else if (participant.fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
                   return participant
-                } else if (specialistTerm !== "" && searchTerm === "" && participant.specialist.toLowerCase().includes(specialistTerm.toLowerCase())) {
-                  return participant
-                } return false
+                }return false
               }).map((participant) => {
                 return(
                   <tr key={participant.id}>
@@ -118,9 +123,17 @@ function Participants() {
               })}
             </tbody>     
           </table>
-          <div className={classes.pagination}>
-            <Pagination dataPerPage={dataPerPage} totalData={participants.length} paginate={paginate} prevPage={prevPage} nextPage={nextPage} currentPage={currentPage}/>
-          </div>
+          {
+            specialistTerm === "" ? (
+              <div className={classes.pagination}>
+                <Pagination dataPerPage={dataPerPage} totalData={participants.length} paginate={paginate} prevPage={prevPage} nextPage={nextPage} currentPage={currentPage}/>
+              </div>
+            ) : (
+              <div className={classes.pagination}>
+                <Pagination dataPerPage={dataPerPage} totalData={filtered.length} paginate={paginate} prevPage={prevPage} nextPage={nextPage} currentPage={currentPage}/>
+              </div>
+            )
+          }
         </div>
       </div> 
     </>

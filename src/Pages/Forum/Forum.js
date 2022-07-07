@@ -9,7 +9,7 @@ import SideNav from '../../Components/Navigation/SideNav'
 function Forum() {
   const data = [
     {
-      profilePicture: "http://loremflickr.com/640/480",
+      profilePicture: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/884.jpg",
       author: "Dave Christian",
       times: "6h ago",
       specialist: "UI/UX Research & Design",
@@ -21,7 +21,7 @@ function Forum() {
       comment: "12"
     },
     {
-      profilePicture: "http://loremflickr.com/740/480",
+      profilePicture: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/684.jpg",
       author: "Daniel Adra",
       times: "1d ago",
       specialist: "UI/UX Research & Design",
@@ -33,7 +33,7 @@ function Forum() {
       comment: "6",
     },
     {
-      profilePicture: "http://loremflickr.com/840/480",
+      profilePicture: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/980.jpg",
       author: "Ataya Kania",
       times: "1d ago",
       specialist: "UI/UX Research & Design",
@@ -48,27 +48,21 @@ function Forum() {
   return (
     <>
       <SideNav/>
-      <div className="row" style={{marginLeft: '75px'}}>
-        <div style={{margin: "40px"}}>
+      <div className="d-flex align-items-center justify-content-between" style={{marginLeft: '75px', marginRight: "35px"}}>
+        <div style={{margin: "50px 40px 40px 40px"}}>
           <h2 className={classes.title}>FORUM ALTERRA</h2>
         </div> 
+        <div>
+          <button style={{backgroundColor: "#FF6C00", padding: "15px 60px", border: "none", fontFamily: "Poppins", color: "#FFF", borderRadius: "10px"}}>Cara Menggunakan Forum</button>
+        </div>
       </div>
       <div className="row" style={{marginLeft: "75px"}}>
         <div className="p-0 col-xl-9 col-lg-8 col-md-12">
           <div style={{margin: "40px"}}>
             <div className="d-flex flex-column align-items-center mx-5">
-              <Card className={classes.card}>
-                <div className="row align-items-center">
-                  <div className="col-1 p-0 text-center">
-                    <img src="http://loremflickr.com/640/480" alt="randomImage" width="50px" height="50px" style={{borderRadius: "50%"}} />
-                  </div>
-                  <div className="col-11 p-0">
-                    <div className={classes.inputForm}>
-                      <Input type="text" placeholder='Tulis thread mu disini...'/>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+              <div className={classes.inputThreadWrapper} style={{backgroundColor: "#FFF"}}>
+                <Input type="text" placeholder='Tulis thread mu disini...' className={classes.inputThread}/>
+              </div>
               {data.map((data, idx) => {
                 return(
                   <Card className={classes.card} key={idx}>

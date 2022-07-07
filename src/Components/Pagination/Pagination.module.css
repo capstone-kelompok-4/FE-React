@@ -1,3 +1,7 @@
-.pageLink:active{
-  color:aqua;
+.pageItem{
+  margin-left: 5px;
+}
+
+.pageLink:focus{
+  box-shadow: none !important;
 }
