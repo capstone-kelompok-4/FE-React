@@ -5,6 +5,7 @@ import { BASE_URL, getToken } from '../../Configs/APIAuth';
 import classes from "./ChangePassword.module.css";
 import { Alert } from "react-bootstrap";
 import CenteredSpinner from '../../Components/Loading/CenteredSpinner';
+import Swal from 'sweetalert2';
 
 function ChangePassword() {
   const baseError = {
@@ -20,7 +21,6 @@ function ChangePassword() {
 
   const [values, setValues] = useState(initialValues);
   const [errMsg, setErrMsg] = useState(baseError);
-  const [message, setMessage] = useState("");
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -96,17 +96,24 @@ function ChangePassword() {
     axios(config)
     .then(res => {
       setLoading(false);
-      setErr("");
       console.log(JSON.stringify(res.data));
-      setMessage("Password Successfully Changed");
+      Swal.fire(
+        'Success!', 
+        "Password Successfully Changed",
+        "success"
+      )
+      setValues(initialValues);
     })
     .catch( error => {
       setLoading(false);
-      setMessage("");
       if(error.response.status === 401 || error.response.status === 400) {
         setErr(error.response.data.message);
       } else if (error.response.status === 500) {
-        setErr("Password Invalid");
+        Swal.fire(
+          'Error!',
+          "Password Invalid",
+          'error'
+        )
       } else {
         setErr("Something Went Wrong, Please Try Again Later");
       }
@@ -133,7 +140,6 @@ function ChangePassword() {
         {!loading &&
           <div className="d-flex flex-column" style={{width: "300px", fontFamily: "Poppins", fontSize: "14px", textAlign: "center"}}>
             {err && <Alert variant="danger">{err}</Alert>}
-            {message && <Alert variant="success">{message}</Alert>}
           </div>
         }
         {loading && 

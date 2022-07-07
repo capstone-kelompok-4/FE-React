@@ -14,9 +14,25 @@ import Logout from "../../Assets/Images/logout.png";
 
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { getUser, removeUserSession } from '../../Configs/APIAuth';
+import { BASE_URL, getToken, removeUserSession } from '../../Configs/APIAuth';
+import { useEffect } from 'react';
+import axios from "axios"
 
 export default function AccountPage(){
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        const token = getToken();
+        var config = {
+            method: 'get',
+            url: `${BASE_URL}/users`,
+            headers: { 
+              'Authorization': `Bearer ${token}`
+            }
+          };
+          
+          axios(config).then(res => setUser(res.data.data)).catch(err => console.log(err));
+    }, [])
+
     const [active, setActive] = useState("Edit Profile");
     const buttons = [
         {
@@ -47,8 +63,7 @@ export default function AccountPage(){
         removeUserSession();
         navigate("/login");
     }
-    const user = getUser();
-    console.log(user);
+
     return(
         <>
         <SideNav/>
@@ -59,8 +74,8 @@ export default function AccountPage(){
                     <div className={classes.left}>
                         <Card className={classes.cardTop}>
                             <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/283.jpg" alt="photoProfile" width="150px" height="150px" />
-                            <h4>{user.name}</h4>
-                            <p>{user.user_specialization.name}</p>
+                            <h4>{user?.name}</h4>
+                            <p>{user?.user_specialization?.name}</p>
                         </Card>
                         <Card className={classes.cardBottom}>
                             {

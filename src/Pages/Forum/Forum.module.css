@@ -35,6 +35,25 @@
   background-color: #D6DEEC;
 }
 
+.inputThreadWrapper {
+  padding: 20px 80px 20px 20px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #FFF;
+  border: 1px solid #D6DEEC;
+  margin-bottom: 30px;
+}
+
+.inputThread{
+  background-color: #FFF;
+  color: #0D2341;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
 .inputForm input{
   background-color: #D6DEEC;
   color: #0D2341;

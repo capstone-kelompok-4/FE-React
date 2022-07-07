@@ -44,7 +44,7 @@ function Home() {
         <div className="col-xl-9 p-0 mb-5 mt-3 col-lg-8 col-md-12">
           <Banner data={userData.data}/>
           <h5 style={{color: "#FF6C00", margin: "70px 70px 0"}}>Let's continue your progress</h5>
-          <CoursesContainer title="Course History" data={courseData} showInfo={false} showProgressBar={true} className={`row row-cols-sm-1 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 g-4 my-0`}/>
+          <CoursesContainer title="Course History" data={courseData} showInfo={false} showProgressBar={true} className={`row row-cols-sm-1 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 g-4 my-0`} searchTerm=""/>
         </div>
         <div className={`col-xl-3 p-0 mb-5 mt-3 col-lg-4 col-md-12 ${classes.right}`}>
           <Calender/>

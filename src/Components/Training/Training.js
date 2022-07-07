@@ -10,9 +10,6 @@ export default function Training ({data}){
                     <div className='col-md-8 col-lg-8 col-sm-12 mb-2'  >
                         <h3 className={classes.title}>Training</h3>
                     </div> 
-                    {/* <div className='col-md-4 col-lg-4 col-sm-12 text-end' >
-                        <Link to="" className="text-decoration-none text-dark fs-5" style={{fontWeight:"600" }}>Lihat Semua</Link>
-                    </div> */}
                 </div>       
             </section>
             <div className="row row-cols-1 row-cols-xl-3 row-cols-lg-2 g-3 my-0">

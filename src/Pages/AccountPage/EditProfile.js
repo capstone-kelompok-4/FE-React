@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import Card from '../../Components/Card/Card'
-import { getUser } from '../../Configs/APIAuth'
+import { BASE_URL, getToken, getUser, setUserSession } from '../../Configs/APIAuth'
 import classes from "./EditProfile.module.css"
+import axios from "axios";
+import Swal from 'sweetalert2';
 
 function EditProfile() {
-  const dataUser = getUser();
+  let dataUser = getUser();
 
   console.log(dataUser);
   const user = {
@@ -168,9 +170,53 @@ function EditProfile() {
       return stateObj;
     });
   }
+  const refreshPage = () => {
+    window.location.reload(false);
+  }
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    console.log(values);
+
+    var data = JSON.stringify({
+      "name": values.fullName,
+      "phone_number": values.phoneNumber,
+      "address": {
+        "detail_address": values.detailAddress,
+        "country": values.country,
+        "state_province": values.state,
+        "city": values.city,
+        "zip_code": values.zipCode
+      }
+    });
+    
+    const token = getToken();
+    console.log(token);
+    var config = {
+      method: 'put',
+      url: `${BASE_URL}/users/edit`,
+      headers: { 
+        'Authorization': `Bearer ${token}`, 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(res => {
+      Swal.fire({
+        icon: 'success',
+        title: "Success!",
+        text: "Data have been updated",
+        showConfirmButton: false,
+        timer: 1000,
+      })
+      setUserSession(res.data.data);
+      setTimeout(() => {
+        refreshPage();
+      }, 1000)
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
   return (
     <Card className={classes.card}>
