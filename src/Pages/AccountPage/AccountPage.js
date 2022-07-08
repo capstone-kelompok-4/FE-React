@@ -14,26 +14,12 @@ import Logout from "../../Assets/Images/logout.png";
 
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { BASE_URL, getToken, removeUserSession } from '../../Configs/APIAuth';
-import { useEffect } from 'react';
-import axios from "axios"
+import { getUser, removeUserSession } from '../../Configs/APIAuth';
 
 export default function AccountPage(){
-    const [user, setUser] = useState({});
-    useEffect(() => {
-        const token = getToken();
-        var config = {
-            method: 'get',
-            url: `${BASE_URL}/users`,
-            headers: { 
-              'Authorization': `Bearer ${token}`
-            }
-          };
-          
-          axios(config).then(res => setUser(res.data.data)).catch(err => console.log(err));
-    }, [])
-
+    const user = getUser();
     const [active, setActive] = useState("Edit Profile");
+    
     const buttons = [
         {
             id: 1,

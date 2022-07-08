@@ -4,7 +4,7 @@ import axios from "axios";
 import leftPict from "../../Assets/Image/pict_login_page.png";
 import CenteredSpinner from "../../Components/Loading/CenteredSpinner";
 import { Alert } from "react-bootstrap";
-import { BASE_URL, setUserTokenSession } from "../../Configs/APIAuth";
+import { BASE_URL, getToken, setUserSession, setUserTokenSession } from "../../Configs/APIAuth";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -33,7 +33,20 @@ function Login() {
     .then( response => {
       setLoading(false);
       setUserTokenSession(response.data.data.token);
-      console.log(JSON.stringify(response.data));
+
+      const token = getToken();
+        var config = {
+          method: 'get',
+          url: `${BASE_URL}/users`,
+          headers: { 
+            'Authorization':`Bearer ${token}`
+          }
+        };
+        axios(config)
+        .then(res => {
+          setUserSession(res.data.data)
+          navigate("/");
+        }).catch(err => console.log(err.message))
       navigate("/")
     }).catch( error => {
       setLoading(false);

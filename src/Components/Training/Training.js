@@ -16,14 +16,7 @@ export default function Training ({data}){
                 {data.map((result, index)=>{
                     return ( 
                         <div className="col p-0" key={index}>
-                            <div className="card h-100 md-4 col-lg-4 bg-transparent m-auto"
-                            style={{
-                                width: "24rem",
-                                border:"none",
-                                fontFamily: "Poppins",
-                                color: "#0D2341"
-                            }}
-                            >
+                            <div className={`card h-100 md-4 col-lg-4 bg-transparent m-auto ${classes.card}`}>
                                 <img src={result.img} className="card-img-top px-0" width="250px" height="200px"  alt="trainingImg" style={{borderRadius: "20px 20px 0 0"}}/>
                                 <div className="card-body p-0 py-3" > 
                                     <p className={classes.schedule}>{result.tgl}</p>
