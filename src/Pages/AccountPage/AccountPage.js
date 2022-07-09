@@ -11,13 +11,17 @@ import ChangePasswordActive from "../../Assets/Images/change-password-colored.pn
 import Certificate from "../../Assets/Images/certificate.png";
 import CertificateActive from "../../Assets/Images/certificate-colored.png";
 import Logout from "../../Assets/Images/logout.png";
+import DefaultProfile from "../../Assets/Images/default-profile.jpg";
 
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import { getUser, removeUserSession } from '../../Configs/APIAuth';
 
+export const ContextGlobal = createContext(null);
+
 export default function AccountPage(){
-    const user = getUser();
+
+    const [user, setUser] = useState(getUser());
     const [active, setActive] = useState("Edit Profile");
     
     const buttons = [
@@ -51,45 +55,50 @@ export default function AccountPage(){
     }
 
     return(
-        <>
-        <SideNav/>
-        <section className='row' style={{marginLeft:"75px"}}> 
-            <div className={classes.container}>
-                <h2 className={classes.title}>PERSONAL INFORMATION</h2>
-                <div className={classes.flexWrapper}>
-                    <div className={classes.left}>
-                        <Card className={classes.cardTop}>
-                            <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/283.jpg" alt="photoProfile" width="150px" height="150px" />
-                            <h4>{user?.name}</h4>
-                            <p>{user?.user_specialization?.name}</p>
-                        </Card>
-                        <Card className={classes.cardBottom}>
-                            {
-                                buttons.map((button) => {
-                                    return(
-                                        <button onClick={(e) => setActive(e.target.innerText)} style={{backgroundColor: active === button.name ? "#FFE2CC" : null}} key={button.id}>
-                                            <img src={active === button.name ? button.iconActive : button.icon} alt="iconButton" width="30px" height="30px" /> 
-                                            <Link to={button.path} style={{color: active === button.name ? "#FF6C00" : null}}>
-                                                {button.name}
-                                            </Link>
-                                        </button>
+        <ContextGlobal.Provider value={{user: user, setUser: setUser}}>
+            <SideNav/>
+            <section className='row' style={{marginLeft:"75px"}}> 
+                <div className={classes.container}>
+                    <h2 className={classes.title}>PERSONAL INFORMATION</h2>
+                    <div className={classes.flexWrapper}>
+                        <div className={classes.left}>
+                            <Card className={classes.cardTop}>
+                                {
+                                    user.image_url === "" || user.image_url === null ? (
+                                        <img src={DefaultProfile} alt="photoProfile" width="150px" height="150px" />
+                                    ) : (
+                                        <img src={user.image_url} alt="photoProfile" width="150px" height="150px" />
                                     )
-                                })
-                            } 
-                            <button onClick={logoutHandler}>
-                                <img src={Logout} alt="iconButton" width="30px" height="30px" /> 
-                                <p>Logout</p>
-                            </button>
-                        </Card>
-                    </div> 
-                    <div className={classes.right}>
-                        <Outlet/>
-                        {/* <FormIdentity/> */}
-                    </div> 
+                                }
+                                <h4>{user?.name}</h4>
+                                <p>{user?.user_specialization?.name}</p>
+                            </Card>
+                            <Card className={classes.cardBottom}>
+                                {
+                                    buttons.map((button) => {
+                                        return(
+                                            <button onClick={(e) => setActive(e.target.innerText)} style={{backgroundColor: active === button.name ? "#FFE2CC" : null}} key={button.id}>
+                                                <img src={active === button.name ? button.iconActive : button.icon} alt="iconButton" width="30px" height="30px" /> 
+                                                <Link to={button.path} style={{color: active === button.name ? "#FF6C00" : null}}>
+                                                    {button.name}
+                                                </Link>
+                                            </button>
+                                        )
+                                    })
+                                } 
+                                <button onClick={logoutHandler}>
+                                    <img src={Logout} alt="iconButton" width="30px" height="30px" /> 
+                                    <p>Logout</p>
+                                </button>
+                            </Card>
+                        </div> 
+                        <div className={classes.right}>
+                            <Outlet/>
+                        </div> 
+                    </div>
                 </div>
-            </div>
-        </section>
-        <Footer/>
-        </>
+            </section>
+            <Footer/>
+        </ContextGlobal.Provider>
     )
 }

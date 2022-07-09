@@ -13,9 +13,13 @@
 .material{
   margin: auto;
   padding-bottom: 45px;
-  width: 50%;
+  width: 60%;
 }
-.material .sectionTitle, .material .materialTitle{
+.materialInfo{
+  margin: auto;
+  width: 70%;
+}
+.materialInfo .sectionTitle, .materialInfo .materialTitle{
   margin: 0;
   font-family: "Mulish", sans-serif;
   color: #0D2341;

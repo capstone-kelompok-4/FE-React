@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import Pagination from '../../Components/Pagination/Pagination'
 import { useParams } from 'react-router-dom'
+import { BASE_URL, getToken } from '../../Configs/APIAuth'
 
 function Participants() {
   const { course_id, section_id, material_id } = useParams();
@@ -18,7 +19,7 @@ function Participants() {
   const [dataPerPage] = useState(6);
   const [searchTerm, setSearchTerm] = useState("");
   const [specialistTerm, setSpecialistTerm] = useState("");
-
+  const [dataCourse, setDataCourse] = useState({});
 
   const [showSidebar, setShowSidebar] = useState(false);
   const handleSidebarShow = () => setShowSidebar(!showSidebar);
@@ -26,13 +27,22 @@ function Participants() {
   const openedSidebar = showSidebar ? classes.opened : classes.closed;
 
   useEffect(() => {
+    const token = getToken();
+    var configGetCourse = {
+      method: 'get',
+      url: `${BASE_URL}/courses/${course_id}`,
+      headers: { 
+        'Authorization': `Bearer ${token}`
+      }
+    };
+    axios(configGetCourse).then(res => setDataCourse((res.data.data))).catch(err => console.log(err));
     const fetchParticipants = async () => {
       const res = await axios.get("https://62b6beff6999cce2e806fbe8.mockapi.io/participants");
       setParticipants(res.data);
     }
 
     fetchParticipants();
-  }, [])
+  }, [course_id])
 
   // Get Current Participants
   if(specialistTerm === ""){
@@ -62,7 +72,7 @@ function Participants() {
 
   return (
     <>
-      <SidebarSection isOpen={showSidebar} course_id={course_id} section_id={section_id} material_id={material_id}/>
+      <SidebarSection isOpen={showSidebar} course_id={course_id} section_id={section_id} material_id={material_id} data={dataCourse}/>
       <div style={{padding: "20px 40px"}}>
         <div className={`${classes.imageWrapper} ${openedSidebar}`} style={{display: "inline-block", cursor: "pointer", zIndex: "2", position: "fixed", top: "70"}}  onClick={handleSidebarShow}>
           {showSidebar ? (
@@ -78,7 +88,7 @@ function Participants() {
       </div>
       <div className={`row mb-5 m-auto ${classes.participants}`} style={{width: "85%"}}>
         <h2>Participants</h2>
-        <h4 className='mt-2'>UI/UX Research & Design</h4>
+        <h4 className='mt-2'>{dataCourse.name}</h4>
         <div className="my-4">
           <div className={classes.filterTop}>
             <p>Inactive for more than</p>

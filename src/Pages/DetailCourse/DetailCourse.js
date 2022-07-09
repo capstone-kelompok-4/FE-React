@@ -13,14 +13,15 @@ import ArrowLeft from "../../Assets/Icons/arrow_left.svg";
 import WhiteEclipse from "../../Assets/Icons/white_eclipse.svg";
 import Checklist from "../../Assets/Icons/checklist.svg";
 import CloseIcon from "../../Assets/Icons/close.svg";
+import { BASE_URL, getToken } from '../../Configs/APIAuth';
 
 function DetailCourse() {
   const { course_id, section_id, material_id} = useParams();
   const prevMaterialId = parseInt(material_id) - 1;
   const nextMaterialId = parseInt(material_id) + 1;
 
+  const [dataCourse, setDataCourse] = useState([]);
   const [dataMaterial, setDataMaterial] = useState({});
-  const [dataSection, setDataSection] = useState({});
   const [dataPrevMaterial, setDataPrevMaterial] = useState({});
   const [dataNextMaterial, setDataNextMaterial] = useState({});
   const [completed, setCompleted] = useState(false);
@@ -39,7 +40,16 @@ function DetailCourse() {
 
   const baseURL = "https://62a160e6cc8c0118ef4a5d6c.mockapi.io";
   useEffect(() => {
-    axios.get(`${baseURL}/courses/${course_id}/sections/${section_id}`).then(res => setDataSection(res.data)).catch(err => console.log(err.message));
+    const token = getToken();
+    var configGetCourse = {
+      method: 'get',
+      url: `${BASE_URL}/courses/${course_id}`,
+      headers: { 
+        'Authorization': `Bearer ${token}`
+      }
+    };
+    axios(configGetCourse).then(res => setDataCourse((res.data.data))).catch(err => console.log(err));
+
     axios.get(`${baseURL}/courses/${course_id}/sections/${section_id}/materials/${material_id}`).then(res => setDataMaterial(res.data)).catch(err => console.log(err.message));
     axios.get(`${baseURL}/courses/${course_id}/sections/${prevSectionId}/materials/${prevMaterialId}`).then(res => setDataPrevMaterial(res.data)).catch(err => console.log(err.message));
     axios.get(`${baseURL}/courses/${course_id}/sections/${nextSectionId}/materials/${nextMaterialId}`).then(res => setDataNextMaterial(res.data)).catch(err => console.log(err.message));
@@ -54,7 +64,7 @@ function DetailCourse() {
   
   return (
     <>
-      <SidebarSection isOpen={showSidebar} course_id={course_id} section_id={section_id} material_id={material_id}/>
+      <SidebarSection isOpen={showSidebar} course_id={course_id} section_id={section_id} material_id={material_id} data={dataCourse}/>
       {/* Start Content Material */}
       <div style={{backgroundColor: "#fff", height: "100%"}}>
         <div style={{padding: "20px"}}>
@@ -70,15 +80,17 @@ function DetailCourse() {
             }
           </div>
         </div>
-        <div className={classes.material}>
+        <div className={classes.materialInfo}>
           <div className="row" style={{ margin: "auto", rowGap: "20px"}}>
-            <h1 className={classes.sectionTitle}>{dataSection.name}</h1>
+            <h2 className={classes.sectionTitle}>{dataCourse.name}</h2>
             <h4 className={classes.materialTitle}>{dataMaterial.name}</h4>
           </div>
-          <div className="row py-5" style={{ margin: "auto"}}>
+        </div>
+        <div className={classes.material}>
+          <div className="row py-5" style={{ margin: "auto", width: "80%"}}>
             {dataMaterial.type === "video" && 
               (
-                <iframe width="1280" height="480" src={dataMaterial.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe width="1280" height="420" src={dataMaterial.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               )
             }
 

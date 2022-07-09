@@ -8,7 +8,7 @@ function OnlineUser({name, avatar, timesOut, index}) {
         <img src={avatar} alt="profileImg" width="32px" height="32px" style={{borderRadius: "20%"}}/> 
         <p className='m-0'>{name}</p>
       </td>
-      <td>{timesOut} minutes ago</td>
+      <td>{timesOut}m ago</td>
     </tr>
   )
 }
