@@ -27,9 +27,9 @@ export default function StartCourse({courseId}){
                     <h4>START COURSE</h4>
                 </ListGroup.Item>
                 {
-                    items.map((item) => {
+                    items.map((item, idx) => {
                         return(
-                            <ListGroup.Item action href={item.href} className={classes.white} style={{padding: "20px 40px"}} >
+                            <ListGroup.Item action href={item.href} className={classes.white} style={{padding: "20px 40px"}} key={idx} >
                                 <p className={classes.item} onClick={(e) => setActive(e.target.innerText)} style={{color: active === item.name ? "#FF6C00": null}}>{item.name}</p>
                             </ListGroup.Item>
                         )

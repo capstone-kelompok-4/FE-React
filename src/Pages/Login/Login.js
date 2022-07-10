@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./Login.module.css";
 import axios from "axios";
-import leftPict from "../../Assets/Image/pict_login_page.png";
+import leftPict from "../../Assets/Images/pict_login_page.png";
 import CenteredSpinner from "../../Components/Loading/CenteredSpinner";
 import { Alert } from "react-bootstrap";
 import { BASE_URL, getToken, setUserSession, setUserTokenSession } from "../../Configs/APIAuth";

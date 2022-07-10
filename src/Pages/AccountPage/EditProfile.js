@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Card from '../../Components/Card/Card'
 import { BASE_URL, getToken, getUser, setUserSession } from '../../Configs/APIAuth'
 import classes from "./EditProfile.module.css"
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { ContextGlobal } from './AccountPage';
 
 function EditProfile() {
+  const dataUserFromParent = useContext(ContextGlobal);
+
   let dataUser = getUser();
 
-  console.log(dataUser);
   const user = {
     fullName: dataUser.name,
     specialist: dataUser.user_specialization.name,
@@ -106,7 +108,6 @@ function EditProfile() {
       [name]: value,
     })
 
-    console.log(values);
   }
 
   const validateInput = (e) => {
@@ -170,15 +171,14 @@ function EditProfile() {
       return stateObj;
     });
   }
-  const refreshPage = () => {
-    window.location.reload(false);
-  }
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
 
     var data = JSON.stringify({
       "name": values.fullName,
       "phone_number": values.phoneNumber,
+      "image_url": dataUser.image_url,
       "address": {
         "detail_address": values.detailAddress,
         "country": values.country,
@@ -189,7 +189,6 @@ function EditProfile() {
     });
     
     const token = getToken();
-    console.log(token);
     var config = {
       method: 'put',
       url: `${BASE_URL}/users/edit`,
@@ -207,12 +206,10 @@ function EditProfile() {
         title: "Success!",
         text: "Data have been updated",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 1500,
       })
       setUserSession(res.data.data);
-      setTimeout(() => {
-        refreshPage();
-      }, 1000)
+      dataUserFromParent.setUser(res.data.data);
     })
     .catch(err => {
       console.log(err);

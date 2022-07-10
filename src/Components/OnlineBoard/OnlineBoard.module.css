@@ -4,13 +4,15 @@
 }
 
 .onlineBoardContainer{
-  max-width: 380px;
+  max-width: 350px;
   margin: 30px auto 0;
 }
 
 .card{
   border-radius: 20px;
   padding:10px;
+  border: 2px solid #E7E7E7;
+  box-shadow: none;
 }
 .title{
   text-align: start;
@@ -29,7 +31,7 @@
   font-size: 14px;
 }
 .card > table > tbody > tr > td, .card > table > thead> tr > th{
-  padding: 10px 0px 10px 20px;
+  padding: 10px 0px 10px 10px;
   font-family: "Poppins", sans-serif;
   text-align: start;
 }

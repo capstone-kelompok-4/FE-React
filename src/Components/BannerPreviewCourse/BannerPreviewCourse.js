@@ -37,16 +37,16 @@ function Banner({data}) {
       </div>
       <div className='col p-5 m-auto text-center'>
         <div>
-          <h1 className={classes.bannerTitle}>{data.title}</h1>
+          <h1 className={classes.bannerTitle}>{data.name}</h1>
         </div>
         <div className='m-5'>
-          <p className={classes.bannerDescription}>{data.content}</p>
+          <p className={classes.bannerDescription}>{data.description}</p>
         </div>
         <div>
             <p className={classes.bannerRating}>Rated :</p>
             <div className={classes.bannerRating}>
               <div className='d-flex align-items-center justify-content-center' style={{columnGap: "10px"}}>
-                <PrettyRating icons={icons.star} colors={colors.star} value={data.rating} max="5"/> {data.rating}/5
+                <PrettyRating icons={icons.star} colors={colors.star} value={data.rate} max="5"/> {data.rate}/5
               </div>
             </div>
         </div>

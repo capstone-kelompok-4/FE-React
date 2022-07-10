@@ -1,24 +1,34 @@
-import classes from "./PreviewCourse.module.css"
-import ObjectiveLearner from '../../Components/ObjectiveLearner/ObjectiveLearner';
-import Banner from '../../Components/BannerPreviewCourse/BannerPreviewCourse';
-import MethodologyLearner from '../../Components/MethodologyLearner/MethodologyLearner';
-import TargetLearner from '../../Components/TargetLearner/TargetLearner';
-import Footer from '../../Components/Footer/Footer';
-import StartCourse from '../../Components/StartCourse/StartCourse';
-import { useEffect, useState } from "react" 
 import axios from "axios";
+import classes from "./PreviewCourse.module.css"
+import { useEffect, useState } from "react" 
 import {useParams} from 'react-router-dom';
 import Card from "../../Components/Card/Card";
+import Banner from '../../Components/BannerPreviewCourse/BannerPreviewCourse';
+import StartCourse from '../../Components/StartCourse/StartCourse';
+import TargetLearner from '../../Components/TargetLearner/TargetLearner';
+import ObjectiveLearner from '../../Components/ObjectiveLearner/ObjectiveLearner';
+import MethodologyLearner from '../../Components/MethodologyLearner/MethodologyLearner';
+import Footer from '../../Components/Footer/Footer';
 import Background from "../../Assets/Images/bg_preview_course.png";
 import DownloadIcon from "../../Assets/Images/download.png";
+import { BASE_URL, getToken } from "../../Configs/APIAuth";
 
 export default function PreviewCourse() {
   const [course, setCourse] = useState([]);
   const {course_id} = useParams();
-  const baseURL = "https://62a160e6cc8c0118ef4a5d6c.mockapi.io/" ;
+  
   useEffect(() => { 
-    axios.get(`${baseURL}courses/${course_id}`).then(res => setCourse(res.data)).catch(err => console.log(err.message));
-  }, [course_id])
+    const token = getToken();
+    var config = {
+      method: 'get',
+      url: `${BASE_URL}/courses/${course_id}`,
+      headers: { 
+        'Authorization': `Bearer ${token}`
+      }
+    };
+    axios(config).then(res =>  setCourse(res.data.data)).catch(err => console.log(err));
+  }, [course_id]);
+
   return (
     <>
         <div className={`border ${classes.banner}`} style={{

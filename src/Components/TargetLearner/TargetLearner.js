@@ -6,9 +6,9 @@ export default function TargetLearner ({data}){
         <div className={classes.targetLearner}>
             <ul className="group gap-3"> 
                 {
-                    data.target_learner?.map((target) => {
+                    data.target_learner?.map((target, idx) => {
                         return(
-                            <li>{target}</li> 
+                            <li key={idx}>{target}</li> 
                         )
                     })
                 }

@@ -29,6 +29,7 @@ import ChangePassword from "./Pages/AccountPage/ChangePassword";
 import Certificate from "./Pages/AccountPage/Certificate";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 
 function App() {
   // const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route element={<PublicRoute/>}>
@@ -70,8 +72,8 @@ function App() {
             <Route path="/course_overview" exact element={<CourseOverview />} />
             <Route path="/preview_course/:course_id" element={<PreviewCourse />}/>
             <Route path="/preview_course/:course_id/sections/:section_id/detail_course/:material_id" element={<DetailCourse/>} />
-            <Route path="/preview_course/:course_id/sections/:section_id/detail_course/:material_id/participants" element={<Participants />} />
-            <Route path="/preview_course/:course_id/sections/:section_id/detail_course/:material_id/data_report" element={<DataReport />}>
+            <Route path="/preview_course/:course_id/participants" element={<Participants />} />
+            <Route path="/preview_course/:course_id/data_report" element={<DataReport />}>
               <Route path="overview_report" element={<OverviewReport />}/>
               <Route path="user_report" element={<UserReport />}/>
             </Route>

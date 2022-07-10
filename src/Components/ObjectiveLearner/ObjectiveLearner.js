@@ -4,9 +4,9 @@ export default function ObjectiveLearner ({data}){
         <div>
             <ul className="group gap-3">
                 {
-                    data.objective_learner?.map((objective) => {
+                    data.objective_learner?.map((objective, idx) => {
                         return(
-                            <li style={{fontFamily: "Poppins", fontSize: "18px"}}>{objective}</li>
+                            <li style={{fontFamily: "Poppins", fontSize: "18px"}} key={idx}>{objective}</li>
                         )
                     })
                 }
