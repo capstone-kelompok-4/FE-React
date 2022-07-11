@@ -25,7 +25,7 @@ function Home() {
         'Authorization': `Bearer ${token}`
       }
     };
-    axios(config).then(res => setCourseData(res.data.data)).catch(err => console.log(err));
+    axios(config).then(res => setCourseData(res.data.data.filter(data => data.status === "ACCEPTED"))).catch(err => console.log(err));
 
     // Hit Mockapi
     // axios.get(`${BASE_URL_MOCKAPI}/courses`).then(res => console.log(res.data)).catch(err => console.log(err.message));

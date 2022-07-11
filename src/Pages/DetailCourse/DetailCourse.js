@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import classes from "./DetailCourse.module.css";
 import { Link, useParams } from 'react-router-dom';
-import ReactGoogleSlides from 'react-google-slides';
 import axios from "axios";
 import SidebarSection from '../../Components/Navigation/SidebarSection';
 
@@ -50,7 +49,14 @@ function DetailCourse() {
     };
     axios(configGetCourse).then(res => setDataCourse((res.data.data))).catch(err => console.log(err));
 
-    axios.get(`${baseURL}/courses/${course_id}/sections/${section_id}/materials/${material_id}`).then(res => setDataMaterial(res.data)).catch(err => console.log(err.message));
+    var configGetMaterial = {
+      method: 'get',
+      url: `${BASE_URL}/courses/${course_id}/sections/${section_id}/materials/${material_id}`,
+      headers: { 
+        'Authorization': `Bearer ${token}`
+      }
+    };
+    axios(configGetMaterial).then(res => setDataMaterial(res.data.data)).catch(err => console.log(err))
     axios.get(`${baseURL}/courses/${course_id}/sections/${prevSectionId}/materials/${prevMaterialId}`).then(res => setDataPrevMaterial(res.data)).catch(err => console.log(err.message));
     axios.get(`${baseURL}/courses/${course_id}/sections/${nextSectionId}/materials/${nextMaterialId}`).then(res => setDataNextMaterial(res.data)).catch(err => console.log(err.message));
   }, [course_id, section_id, material_id, nextMaterialId, prevMaterialId, prevSectionId, nextSectionId])
@@ -88,25 +94,25 @@ function DetailCourse() {
         </div>
         <div className={classes.material}>
           <div className="row py-5" style={{ margin: "auto", width: "80%"}}>
-            {dataMaterial.type === "video" && 
+            {dataMaterial.type === "VIDEO" && 
               (
                 <iframe width="1280" height="420" src={dataMaterial.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               )
             }
 
-            {dataMaterial.type === "material" && (
-              <ReactGoogleSlides 
-                height={480}
-                slidesLink={dataMaterial.url}
-                showControls
-                position={1}
+            {dataMaterial.type === "SLIDE" && (
+              <iframe
+                width="100%"
+                height="450px"
+                title="Slides"
+                src={dataMaterial.url}      
               />
             )}
 
-            {dataMaterial.type === "quiz" && 
+            {dataMaterial.type === "QUIZ" && 
               <iframe
                 width="100%"
-                height="480"
+                height="450px"
                 title="Google form"
                 src={dataMaterial.url}      
               />

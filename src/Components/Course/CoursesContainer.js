@@ -22,6 +22,7 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar,
         } 
       </div>
       <div className={className}>
+        {data.length === 0 && <h5 className={`${classes.courseEmpty}`}>Oops...Anda belum memiliki course</h5>}
         {data.slice(0, limit? limit : data.length).filter(course => {
           if(searchTerm === ""){
             return course
