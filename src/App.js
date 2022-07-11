@@ -10,13 +10,6 @@ import PreviewCourse from "./Pages/PreviewCourse/PreviewCourse"
 import DetailCourse from "./Pages/DetailCourse/DetailCourse";
 import RequestForm from "./Pages/RequestForm/RequestForm";
 import FAQ from "./Pages/FAQ/FAQ";
-// import { useDispatch } from "react-redux";
-// import { useEffect } from "react";
-// import { onAuthStateChanged } from "firebase/auth";
-// import { auth } from "./Firebase/Firebase";
-// import { login, logout } from "./Store/userSlice";
-// import PublicRoute from "./Components/PublicRoute/PublicRoute";
-// import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Forum from "./Pages/Forum/Forum";
 import CheckCertificate from "./Pages/CheckCertificate/CheckCertificate";
 import AccountPage from "./Pages/AccountPage/AccountPage"
@@ -32,31 +25,6 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 
 function App() {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const unsubs = onAuthStateChanged(
-  //     auth,
-  //     (userAuth) => {
-  //       if (userAuth !== null) {
-  //         dispatch(
-  //           login({
-  //             username: userAuth.displayName,
-  //             uid: userAuth.uid,
-  //             profilePictureUrl: userAuth.photoURL,
-  //           })
-  //         );
-  //       } else {
-  //         dispatch(logout());
-  //       }
-  //     },
-  //     (error) => {
-  //       alert(error);
-  //     }
-  //   );
-  //   return () => unsubs;
-  // }, [dispatch]);
-
   return (
     <>
       <ScrollToTop />

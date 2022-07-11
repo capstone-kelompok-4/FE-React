@@ -35,19 +35,23 @@ function Login() {
       setUserTokenSession(response.data.data.token);
 
       const token = getToken();
-        var config = {
-          method: 'get',
-          url: `${BASE_URL}/users`,
-          headers: { 
-            'Authorization':`Bearer ${token}`
-          }
-        };
-        axios(config)
-        .then(res => {
+      var config = {
+        method: 'get',
+        url: `${BASE_URL}/users`,
+        headers: { 
+          'Authorization':`Bearer ${token}`
+        }
+      };
+      axios(config)
+      .then(res => {
+        if(res.data.data.roles[0].name === 'ROLE_ADMIN'){
+          setError("Only Role User Can Login")
+        } else {
           setUserSession(res.data.data)
           navigate("/");
-        }).catch(err => console.log(err.message))
-      navigate("/")
+        }
+      })
+      .catch(err => console.log(err.message))
     }).catch( error => {
       setLoading(false);
       if(error.response.status === 401 || error.response.status === 400) {
