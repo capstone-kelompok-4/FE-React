@@ -45,7 +45,7 @@ function App() {
               <Route path="overview_report" element={<OverviewReport />}/>
               <Route path="user_report" element={<UserReport />}/>
             </Route>
-            <Route path="/request_form" element={<RequestForm/>} />
+            <Route path="preview_course/:course_id/request_form" element={<RequestForm/>} />
             <Route path="/forum" element={<Forum/>} />
             <Route path="/account" element={<AccountPage/>}>
               <Route path="edit_profile" element={<EditProfile />} />

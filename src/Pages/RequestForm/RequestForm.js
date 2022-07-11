@@ -1,68 +1,93 @@
-import React, { useState, useRef } from 'react'
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
 import classes from "./RequestForm.module.css"
 import BackIcon from "../../Assets/Icons/back_icon.svg";
+import { BASE_URL, getToken, getUser } from '../../Configs/APIAuth';
+import { useEffect } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 function RequestForm() {
-  // const refEmail = useRef();
+  const {course_id} = useParams();
+  const user = getUser();
   const navigate = useNavigate();
   const backHandler = () => {
-    navigate(-1);
+    navigate(`/preview_course/${course_id}`);
   }
 
+  const [course, setCourse] = useState({})
+  useEffect(() => {
+    const token = getToken();
+    var configGetCourseById = {
+      method: 'get',
+      url: `${BASE_URL}/courses/${course_id}`,
+      headers: { 
+          'Authorization': `Bearer ${token}`
+      }
+    };
+    axios(configGetCourseById).then(res => setCourse(res.data.data)).catch(err => console.log(err))
+  }, [course_id])
+
   const baseData = {
-    fullname: "",
-    email: "",
-    specialist: "Designer",
+    fullname: user.name,
+    email: user.username,
+    specialist: user.user_specialization.name,
     reqVariant: "",
     reqTitle: "",
     reqDetail: ""
   }
 
-  const baseError = {
-    fullname: "",    
-  }
-
-  const namaRegex = /^([A-Za-z]*$)/;
   const [data, setData] = useState(baseData);
-  const [errorMassage, setErrorMassage] = useState(baseError);
+  console.log(data);
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value; 
 
-    if (name === "fullname") {
-      if (namaRegex.test(value)) {
-          console.log("nama aman");
-          setErrorMassage({
-              ...errorMassage,
-              nama: ""   
-          })
-      }else {
-          console.log("nama salah");
-          setErrorMassage({
-              ...errorMassage,
-              nama: "Nama Lengkap Harus Berupa Huruf!"   
-          })
-      }
-    }
-
     setData ({
         ...data,
         [name]:value
     });
-    console.log("variant",data.reqVariant);
-    console.log("data",data);
-
   }
 
   const resetData =  () => {       
     setData(baseData);
-    setErrorMassage(baseError);
-    console.log("reset data");
-    console.log("data",data)
   }
 
+  const handleSubmitRequest = (e) => {
+    e.preventDefault();
+    const dataRequest = JSON.stringify({
+      "request_type": data.reqVariant,
+      "course_id": course.id,
+      "request_detail": data.reqDetail
+    })
+    
+    const token = getToken();
+    var configAddCourseTaken = {
+      method: 'post',
+      url: `${BASE_URL}/course-takens`,
+      headers: { 
+        'Authorization': `Bearer ${token}`, 
+        'Content-Type': 'application/json'
+      },
+      data : dataRequest
+    };
+    axios(configAddCourseTaken).then(() => {
+      if(user.user_specialization.name === course.course_specialization.name){
+        Swal.fire(
+          'Success!',
+          "Request telah disetujui",
+          "success"
+        )
+      }else {
+        Swal.fire(
+          "Success!",
+          "Request berhasil terkirim",
+          'success' 
+        )
+      }
+    })
+  }
   return (
     <>
       <div className="container-fluid">
@@ -76,31 +101,54 @@ function RequestForm() {
                 <div className="border rounded-3 shadow">
                   <div className="d-flex flex-column align-items-center m-5 px-3 py-4">
                     <h1 className={`fw-boldmb-4 ${classes.headingtext}`}>Request Form</h1>
-                    <form>
+                    <form onSubmit={handleSubmitRequest}>
                       <div className='mb-3'>
                         <label htmlFor="fullname" className={`form-label mb-2 ${classes.labeltext}`}>Full Name</label>  
-                        <input type="text" className={`form-control ${classes.forminput}`} name="fullname" id="fullname" onChange={handleChange} placeholder="Your Name" required/>
+                        <input 
+                          type="text" 
+                          className={`form-control ${classes.forminput}`} 
+                          name="fullname" 
+                          id="fullname" 
+                          placeholder="Your Name" 
+                          defaultValue={data.fullname}
+                        />
                       </div>
                       <div className='mb-3'>
                         <label htmlFor="email" className={`form-label mb-2 ${classes.labeltext}`}>Your email</label>
-                        <input type="email" className={`form-control ${classes.forminput}`} name="email" id="email" onChange={handleChange} placeholder="Your Email" required/>
+                        <input 
+                          type="email" 
+                          className={`form-control ${classes.forminput}`} 
+                          name="email" 
+                          id="email" 
+                          placeholder="Your Email" 
+                          defaultValue={data.email}
+                          style={{width: "50%"}}
+                          />
                       </div>
                       <div className='mb-3'>
                         <label htmlFor="requestTitle" className={`form-label mb-2 ${classes.labeltext}`}>Specialist</label>  
-                        <input type="text" className={`form-control ${classes.forminput}`} name="specialist" id="specialist" onChange={handleChange} value="Designer" disabled/>
+                        <input 
+                          type="text" 
+                          className={`form-control ${classes.forminput}`} 
+                          name="specialist" 
+                          id="specialist"
+                          defaultValue={data.specialist} 
+                          disabled
+                          style={{width: "50%"}}
+                          />
                       </div>
                       <div className='mb-3'>
                         <label htmlFor="requestTitle" className={`form-label mb-2 ${classes.labeltext}`}>Request Variant</label>  
                         <div className='input-group'>
                           <div className={`form-check form-check-inline ${classes.formradio}`}>
                             <div className='px-4 py-3'>
-                              <input className={`form-check-input ${classes.accent}`} defaultValue="course" checked={data.reqVariant === "course"} onClick={handleChange} type="radio" name="reqVariant" />
+                              <input className={`form-check-input ${classes.accent}`} defaultValue="0" onClick={handleChange} type="radio" name="reqVariant" />
                               <label className="form-check-label ps-2" htmlFor="inlineRadio1">Course</label>
                             </div>  
                           </div>
                           <div className={`form-check form-check-inline ${classes.formradio}`}>
                             <div className='px-4 py-3'>
-                              <input className={`form-check-input ${classes.accent}`} defaultValue="training" checked={data.reqVariant === "training"} onClick={handleChange} type="radio" name="reqVariant" />
+                              <input className={`form-check-input ${classes.accent}`} defaultValue="1" onClick={handleChange} type="radio" name="reqVariant" />
                               <label className="form-check-label ps-2" htmlFor="inlineRadio2">Training</label>
                             </div>
                           </div>
@@ -108,14 +156,22 @@ function RequestForm() {
                       </div>
                       <div className='mb-3'>
                         <label htmlFor="requestTitle" className={`form=label mb-2 ${classes.labeltext}`}>Request Title</label>  
-                        <input type="text" className={`form-control ${classes.forminput}`} id="requestTitle" name='reqTitle' onChange={handleChange} placeholder="What course/training do you want?"/>
+                        <input 
+                          type="text" 
+                          className={`form-control ${classes.forminput}`} 
+                          id="requestTitle" 
+                          name='reqTitle' 
+                          defaultValue={course.name} 
+                          placeholder="What course/training do you want?"
+                          style={{width: "80%"}}
+                          />
                       </div>
                       <div className='mb-5'>
                         <label htmlFor="requestDetail" className={`form=label mb-2 ${classes.labeltext}`}>Request Detail</label>                       
-                        <textarea id="text" className={`form-control ${classes.formtextarea}`} onChange={handleChange} name="reqDetail" rows="6" cols="100" placeholder="Explain to us why you want to this request is approved?" />
+                        <textarea id="text" className={`form-control ${classes.formtextarea}`} onChange={handleChange} value={data.reqDetail} name="reqDetail" rows="6" cols="100" placeholder="Explain to us why you want to this request is approved?" />
                       </div>
                       <div className="d-flex justify-content-center mb-3 w-100">
-                        <input onClick={resetData} type="Reset" name='Reset' value="Cancel" className={`btn btn-lg ${classes.buttoncancel}`}/>
+                        <input onClick={resetData} type="Reset" name='Reset' value="Reset" className={`btn btn-lg ${classes.buttoncancel}`}/>
                         <div className='px-4'></div>
                         <button type="submit" className={`btn btn-lg px-5 ${classes.buttonsubmit}`}>
                           <span className='px-4'>Submit</span>
