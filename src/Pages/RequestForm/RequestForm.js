@@ -72,19 +72,21 @@ function RequestForm() {
       },
       data : dataRequest
     };
-    axios(configAddCourseTaken).then(() => {
+    axios(configAddCourseTaken).then(async () => {
       if(user.user_specialization.name === course.course_specialization.name){
-        Swal.fire(
+        await Swal.fire(
           'Success!',
-          "Request telah disetujui",
+          "Request Telah Disetujui",
           "success"
         )
+        await navigate(`/preview_course/${course_id}`)
       }else {
-        Swal.fire(
+        await Swal.fire(
           "Success!",
-          "Request berhasil terkirim",
+          "Request Berhasil Terkirim",
           'success' 
         )
+        await navigate(`/preview_course/${course_id}`)
       }
     })
   }
@@ -111,6 +113,7 @@ function RequestForm() {
                           id="fullname" 
                           placeholder="Your Name" 
                           defaultValue={data.fullname}
+                          readOnly
                         />
                       </div>
                       <div className='mb-3'>
@@ -123,6 +126,7 @@ function RequestForm() {
                           placeholder="Your Email" 
                           defaultValue={data.email}
                           style={{width: "50%"}}
+                          readOnly
                           />
                       </div>
                       <div className='mb-3'>
@@ -135,6 +139,7 @@ function RequestForm() {
                           defaultValue={data.specialist} 
                           disabled
                           style={{width: "50%"}}
+                          readOnly
                           />
                       </div>
                       <div className='mb-3'>
@@ -164,6 +169,7 @@ function RequestForm() {
                           defaultValue={course.name} 
                           placeholder="What course/training do you want?"
                           style={{width: "80%"}}
+                          readOnly
                           />
                       </div>
                       <div className='mb-5'>
