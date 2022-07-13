@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import LoadingCourseCard from '../Loading/LoadingCourseCard';
 import CourseCard from './CourseCard';
 import classes from "./CoursesContainer.module.css"; 
 
-function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar, className, searchTerm}) {
+function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar, className, searchTerm, loading}) {
   const [limit, setLimit] = useState(8);
     const [isReadMoreShown, setIsReadMoreShown] =useState(false);
     const handleReadMoreClick =()=>{
@@ -22,8 +23,9 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar,
         } 
       </div>
       <div className={className}>
-        {data.length === 0 && <h5 className={`${classes.courseEmpty}`}>Oops...Anda belum memiliki course</h5>}
-        {data.slice(0, limit? limit : data.length).filter(course => {
+        {!loading && data.length === 0 && <h5 className={`${classes.courseEmpty}`}>Oops...Anda belum memiliki course</h5>}
+        {loading && [1, 2, 3, 4].map((e) => <LoadingCourseCard key={e}/>)}
+        {!loading && data.slice(0, limit? limit : data.length).filter(course => {
           if(searchTerm === ""){
             return course
           } else if (course.title.includes(searchTerm)) {

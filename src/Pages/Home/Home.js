@@ -13,10 +13,12 @@ import Footer from '../../Components/Footer/Footer';
 function Home() {
   const [courseData, setCourseData] = useState([]);
   const [onlineUser, setOnlineUser] = useState([]);
+  const [loading, setLoading] = useState(false);
   const BASE_URL_MOCKAPI = "https://62a160e6cc8c0118ef4a5d6c.mockapi.io";
   const user = getUser();
 
   useEffect(() => {
+    setLoading(true)
     const token = getToken();
     var config = {
       method: 'get',
@@ -25,10 +27,11 @@ function Home() {
         'Authorization': `Bearer ${token}`
       }
     };
-    axios(config).then(res => setCourseData(res.data.data.filter(data => data.status === "ACCEPTED"))).catch(err => console.log(err));
+    axios(config).then(res => {
+      setLoading(false);
+      setCourseData(res.data.data.filter(data => data.status === "ACCEPTED"))
+    }).catch(err => console.log(err));
 
-    // Hit Mockapi
-    // axios.get(`${BASE_URL_MOCKAPI}/courses`).then(res => console.log(res.data)).catch(err => console.log(err.message));
     axios.get(`${BASE_URL_MOCKAPI}/online_user`).then(res => setOnlineUser(res.data)).catch(err => console.log(err.message));
   }, [])
 
@@ -47,7 +50,7 @@ function Home() {
         <div className="col-xl-9 p-0 mb-5 mt-3 col-lg-8 col-md-12">
           <Banner data={user}/>
           <h5 style={{color: "#FF6C00", margin: "70px 70px 0"}}>Let's continue your progress</h5>
-          <CoursesContainer title="Course History" data={newData} showInfo={false} showProgressBar={true} className={`row row-cols-sm-1 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 g-4 my-0`} searchTerm=""/>
+          <CoursesContainer title="Course History" data={newData} loading={loading} showInfo={false} showProgressBar={true} className={`row row-cols-sm-1 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 g-4 my-0`} searchTerm=""/>
         </div>
         <div className={`col-xl-3 p-0 mb-5 mt-3 col-lg-4 col-md-12 ${classes.right}`}>
           <Calender/>

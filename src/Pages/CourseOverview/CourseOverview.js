@@ -12,9 +12,10 @@ export default function CourseOverview() {
   const [allCourseData, setAllCourseData] = useState([]);
   const [myCoursesData, setMyCoursesData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const token = getToken();
+    setLoading(true)
     var configGetAllCourses = {
       method: 'get',
       url: `${BASE_URL}/courses`,
@@ -29,8 +30,15 @@ export default function CourseOverview() {
         'Authorization': `Bearer ${token}`
       }
     };
-    axios(configGetAllCourses).then(res => setAllCourseData(res.data.data)).catch(err => console.log(err));
-    axios(configGetCourseTaken).then(res => setMyCoursesData(res.data.data.filter(data => data.status === "ACCEPTED"))).catch(err => console.log(err));
+    axios(configGetAllCourses).then(res => {
+      setAllCourseData(res.data.data)
+      setLoading(false);
+    }).catch(err => console.log(err));
+
+    axios(configGetCourseTaken).then(res => {
+      setMyCoursesData(res.data.data.filter(data => data.status === "ACCEPTED"))
+      setLoading(false);
+    }).catch(err => console.log(err));
   }, [])
 
   // Handle Search Bar
@@ -63,13 +71,13 @@ export default function CourseOverview() {
           </div>
   
           <div className='my-5' >
-            <CoursesContainer data={newData} title="My Course" showInfo={false} showProgressBar={true} className={"row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0"} searchTerm={searchTerm}/>
+            <CoursesContainer data={newData} title="My Course" loading={loading} showInfo={false} showProgressBar={true} className={"row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0"} searchTerm={searchTerm}/>
           </div>
           <div className='my-5' >
             <Training data={training}/>
           </div>
           <div className="my-5" >
-            <CoursesContainer data={allCourseData} title="All Course" showMoreAble={true} showInfo={true} showProgressBar={false} className={"row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0"} searchTerm=""/>
+            <CoursesContainer data={allCourseData} title="All Course" loading={loading} showMoreAble={true} showInfo={true} showProgressBar={false} className={"row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0"} searchTerm=""/>
           </div>
         </div>
       </div>
