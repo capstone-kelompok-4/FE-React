@@ -15,53 +15,61 @@ function Login() {
   const navigate = useNavigate();
   
   const loginHandler = () => {
-    const data = JSON.stringify({
-      "email": email,
-      "password": password,
-    })
-    const config = {
-      method: 'post',
-      url: `${BASE_URL}/auth/signin`,
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    }
-    setError(null);
-    setLoading(true);
-    axios(config)
-    .then( response => {
-      setLoading(false);
-      setUserTokenSession(response.data.data.token);
-
-      const token = getToken();
-      var config = {
-        method: 'get',
-        url: `${BASE_URL}/users`,
+    if(email !== "" && password === "") {
+      setError("Password Tidak Boleh Kosong")
+    } else if (email === "" && password !== ""){
+      setError("Email Tidak Boleh Kosong");
+    } else if (email === "" && password === ""){
+      setError("Email dan Password Tidak Boleh Kosong")
+    } else {
+      setError(null);
+      setLoading(true);
+      const data = JSON.stringify({
+        "email": email,
+        "password": password,
+      })
+      const config = {
+        method: 'post',
+        url: `${BASE_URL}/auth/signin`,
         headers: { 
-          'Authorization':`Bearer ${token}`
-        }
-      };
+          'Content-Type': 'application/json'
+        },
+        data : data
+      }
       axios(config)
-      .then(res => {
-        if(res.data.data.roles[0].name === 'ROLE_ADMIN'){
-          setError("Only Role User Can Login")
+      .then( response => {
+        setLoading(false);
+        setUserTokenSession(response.data.data.token);
+  
+        const token = getToken();
+        var config = {
+          method: 'get',
+          url: `${BASE_URL}/users`,
+          headers: { 
+            'Authorization':`Bearer ${token}`
+          }
+        };
+        axios(config)
+        .then(res => {
+          if(res.data.data.roles[0].name === 'ROLE_ADMIN'){
+            setError("Only Role User Can Login")
+          } else {
+            setUserSession(res.data.data)
+            navigate("/");
+          }
+        })
+        .catch(err => console.log(err.message))
+      }).catch( error => {
+        setLoading(false);
+        if(error.response.status === 401 || error.response.status === 400) {
+          setError(error.response.data.message);
+        } else if (error.response.status === 500) {
+          setError("Email or Password Wrong");
         } else {
-          setUserSession(res.data.data)
-          navigate("/");
+          setError("Something Went Wrong, Please Try Again Later");
         }
       })
-      .catch(err => console.log(err.message))
-    }).catch( error => {
-      setLoading(false);
-      if(error.response.status === 401 || error.response.status === 400) {
-        setError(error.response.data.message);
-      } else if (error.response.status === 500) {
-        setError("Email or Password Wrong");
-      } else {
-        setError("Something Went Wrong, Please Try Again Later");
-      }
-    })
+    }
   }
 
   return (

@@ -62,7 +62,9 @@ export default function StartCourse({courseId}){
         axios(configGetCourseTakeByUsers).then(res => {
             setLoading(false);
             setCourseTakens(res.data.data)
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            setLoading(false);
+        })
         axios(configGetCourseById).then(res => {
             setCourse(res.data.data)
         }).catch(err => console.log(err))

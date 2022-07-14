@@ -42,18 +42,21 @@
     color: #fff !important;
     border-bottom-right-radius: .50rem !important;
     border-top-right-radius: .50rem !important;
+    font-family: "Poppins", sans-serif !important;
 }
 
 .formcheck{
-    height: 60px !important;
+    height: 80px !important;
     border: 2px solid #D6DEEC !important;
     border-bottom-left-radius: .50rem !important;
     border-top-left-radius: .50rem !important;
+    font-family: "Poppins", sans-serif !important;
 }
 
-.formcheckt::placeholder{
+.formcheck::placeholder{
     font-family: "Poppins", sans-serif !important;
-    color: #D6DEEC !important;
+    color: #0D2341 !important;
+    opacity: .5;
 }
 
 .sidebar{

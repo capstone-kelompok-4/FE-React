@@ -14,8 +14,11 @@
 
 .dropdownheader{
     font-weight: 600 !important;
+    font-family: "Poppins";
 }
-
+.dropdownbody{
+    font-family: "Poppins";
+}
 .dropdowncolor{
     background-color: #D6DEEC !important;
     border: 0 !important;
@@ -25,6 +28,7 @@
 .leftpagecontent{
     border: 2px solid #D6DEEC !important;
     border-radius: 20px !important;
+    padding: 5rem 3rem;
 }
 
 .sizetext {
@@ -58,4 +62,9 @@
     display: inline !important;
     color: #0D2341 !important;
     padding: 0 !important;
+}
+.btn{
+    background: transparent;
+    border: none;
+    font-family: "Poppins", sans-serif;
 }

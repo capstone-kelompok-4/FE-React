@@ -5,6 +5,7 @@ import Card from '../../Components/Card/Card';
 import Input from '../../Components/Input/Input';
 import Footer from '../../Components/Footer/Footer'
 import SideNav from '../../Components/Navigation/SideNav'
+import { Link } from "react-router-dom";
 
 function Forum() {
   const data = [
@@ -53,7 +54,9 @@ function Forum() {
           <h2 className={classes.title}>FORUM ALTERRA</h2>
         </div> 
         <div>
-          <button style={{backgroundColor: "#FF6C00", padding: "15px 60px", border: "none", fontFamily: "Poppins", color: "#FFF", borderRadius: "10px"}}>Cara Menggunakan Forum</button>
+          <Link to="/faq">
+            <button style={{backgroundColor: "#FF6C00", padding: "15px 60px", border: "none", fontFamily: "Poppins", color: "#FFF", borderRadius: "10px"}}>Cara Menggunakan Forum</button>
+          </Link>
         </div>
       </div>
       <div className="row" style={{marginLeft: "75px"}}>

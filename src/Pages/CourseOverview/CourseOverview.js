@@ -38,7 +38,7 @@ export default function CourseOverview() {
     axios(configGetCourseTaken).then(res => {
       setMyCoursesData(res.data.data.filter(data => data.status === "ACCEPTED"))
       setLoading(false);
-    }).catch(err => console.log(err));
+    }).catch(err => setLoading(false));
   }, [])
 
   // Handle Search Bar
