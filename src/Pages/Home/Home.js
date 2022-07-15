@@ -5,7 +5,7 @@ import { BASE_URL, getToken, getUser } from '../../Configs/APIAuth';
 // Components
 import Calender from '../../Components/Calendar/Calender';
 import Banner from '../../Components/Banner/Banner';
-import CoursesContainer from '../../Components/Course/CoursesContainer';
+import MyCoursesContainer from '../../Components/Course/MyCoursesContainer';
 import OnlineBoard from '../../Components/OnlineBoard/OnlineBoard';
 import SideNav from '../../Components/Navigation/SideNav';
 import Footer from '../../Components/Footer/Footer';
@@ -28,7 +28,6 @@ function Home() {
       }
     };
     axios(config).then(res => {
-      console.log(res.data.data)
       setLoading(false);
       setCourseData(res.data.data.filter(data => data.status === "ACCEPTED"))
     }).catch(err => {
@@ -38,14 +37,6 @@ function Home() {
     axios.get(`${BASE_URL_MOCKAPI}/online_user`).then(res => setOnlineUser(res.data)).catch(err => console.log(err.message));
   }, [])
 
-  let newData = []
-
-  courseData.map(course => {
-    return(
-      newData.push(course.course_take)
-    )
-  })
-
   return (
     <>
       <SideNav/>
@@ -53,9 +44,9 @@ function Home() {
         <div className="col-xl-9 p-0 mb-5 mt-3 col-lg-8 col-md-12">
           <Banner data={user}/>
           <h5 style={{color: "#FF6C00", margin: "70px 70px 0"}}>Let's continue your progress</h5>
-          <CoursesContainer 
+          <MyCoursesContainer 
             title="Course History" 
-            data={newData} 
+            data={courseData} 
             loading={loading} 
             showInfo={false} 
             showProgressBar={true} 

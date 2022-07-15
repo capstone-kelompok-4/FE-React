@@ -33,7 +33,7 @@ function Banner({data}) {
   return (
     <div className='container d-flex justify-content-center h-100'>
       <div style={{padding: "20px", position: "absolute", top: "0", left: "0"}}>
-        <img src={BackIcon} alt="back_icon" width="40px" height="40px" onClick={backHandler}/>
+        <img src={BackIcon} alt="back_icon" width="40px" height="40px" onClick={backHandler} style={{cursor: "pointer"}}/>
       </div>
       <div className='col p-5 m-auto text-center'>
         <div>

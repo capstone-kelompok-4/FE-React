@@ -6,7 +6,7 @@ import classes from "./SidebarSection.module.css";
 import ParticipantIcon from "../../Assets/Icons/participant.svg";
 import DataReportIcon from "../../Assets/Icons/data_report.svg"
 
-function SidebarSection({isOpen, setIsOpen, course_id, section_id, material_id, data}) {
+function SidebarSection({isOpen, setIsOpen, course_id, data}) {
   const ref = useRef(null);
   useClickOutSide(ref, isOpen, setIsOpen)
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ function SidebarSection({isOpen, setIsOpen, course_id, section_id, material_id, 
                   {section.materials?.map((material, idx) => {
                     return(
                       <div className={`accordion-body ${classes.material}`} style={{borderTop: "1px solid #0D2341"}} key={material.id}>
-                        <Link to={`/preview_course/${course_id}/sections/${index+1}/detail_course/${material.id}`}>
+                        <Link to={`/preview_course/${course_id}/sections/${section.id}/detail_course/${material.id}`}>
                           <p className='m-0'>{idx + 1} {material.name}</p>
                         </Link>
                       </div>
