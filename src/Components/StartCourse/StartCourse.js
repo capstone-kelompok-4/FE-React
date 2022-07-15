@@ -90,6 +90,12 @@ export default function StartCourse({courseId}){
                     </ListGroup.Item>
                 }
                 {
+                    !loading && courseTaken[0]?.status === "REJECTED" &&
+                    <ListGroup.Item action className={classes.orange} style={{padding: "20px 40px"}} >
+                        <h4>REQUEST REJECTED</h4>
+                    </ListGroup.Item>
+                }
+                {
                     !loading && courseTaken.length === 0 &&
                     <ListGroup.Item action href={`/preview_course/${courseId}/request_form`} className={classes.orange} style={{padding: "20px 40px"}} >
                         <h4>SEND REQUEST</h4>

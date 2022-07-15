@@ -210,10 +210,6 @@ function UserReport() {
           </tbody>
         </table>
       </div>
-      <div className={classes.action}>
-        <button className={classes.btn}>Unduh Report</button>
-        <button className={classes.btn}>Unduh Certificate</button>
-      </div>
     </>
   )
 }

@@ -42,9 +42,6 @@ function OverviewReport() {
           </tbody>
         </table>
       </div>
-      <div className={classes.action}>
-        <button className={classes.btn}>Unduh Report</button>
-      </div>
     </>
   )
 }

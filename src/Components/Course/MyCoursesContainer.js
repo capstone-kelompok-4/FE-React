@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import LoadingCourseCard from '../Loading/LoadingCourseCard';
 import CourseCard from './CourseCard';
-import classes from "./CoursesContainer.module.css"; 
+import classes from "./MyCoursesContainer.module.css"; 
 
-function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar, className, searchTerm, loading}) {
+function MyCoursesContainer({title, data, showMoreAble, showInfo, showProgressBar, className, searchTerm, loading}) {
   const [limit, setLimit] = useState(8);
     const [isReadMoreShown, setIsReadMoreShown] =useState(false);
     const handleReadMoreClick =()=>{
@@ -25,21 +25,21 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar,
       <div className={className}>
         {!loading && data.length === 0 && <h5 className={`${classes.courseEmpty}`}>Oops...Anda belum memiliki course</h5>}
         {loading && [1, 2, 3, 4].map((e) => <LoadingCourseCard key={e}/>)}
-        {!loading && data.filter(course => {
+        {!loading && data.slice(0, limit? limit : data.length).filter(course => {
           if(searchTerm === ""){
             return course
-          } else if (course.name.includes(searchTerm)) {
+          } else if (course.course_take.name.includes(searchTerm)) {
             return course
           } return false
-        }).slice(0, limit? limit : data.length).map((course) => {
+        }).map((course) => {
           return(
             <CourseCard 
-              key={course.id}
-              course_id={course.id}
-              title={course.name}
+              key={course.course_take?.id}
+              course_id={course.course_take?.id}
+              title={course.course_take?.name}
               progress={course.progress}
-              img={course.banner_url}
-              rating={course.rate}
+              img={course.course_take?.banner_url}
+              rating={course.course_take?.rate}
               total_material={course.sections?.length}
               showInfo={showInfo}
               showProgressBar={showProgressBar}
@@ -51,4 +51,4 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar,
   )
 }
 
-export default CoursesContainer
+export default MyCoursesContainer;

@@ -4,6 +4,7 @@ import SideNav from '../../Components/Navigation/SideNav';
 import Footer from '../../Components/Footer/Footer';
 import Training from '../../Components/Training/Training'
 import CoursesContainer from '../../Components/Course/CoursesContainer';
+import MyCoursesContainer from '../../Components/Course/MyCoursesContainer';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import axios from 'axios';
 import { BASE_URL, getToken } from '../../Configs/APIAuth';
@@ -46,14 +47,6 @@ export default function CourseOverview() {
     setSearchTerm(e.target.value);
   }
 
-  let newData = []
-
-  myCoursesData.map(course => {
-    return(
-      newData.push(course.course_take)
-    )
-  })
-
   return (
     <>
       <SideNav/>
@@ -71,13 +64,13 @@ export default function CourseOverview() {
           </div>
   
           <div className='my-5' >
-            <CoursesContainer data={newData} title="My Course" loading={loading} showInfo={false} showProgressBar={true} className={"row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0"} searchTerm={searchTerm}/>
+            <MyCoursesContainer data={myCoursesData} title="My Course" loading={loading} showInfo={false} showProgressBar={true} className={"row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0"} searchTerm={searchTerm}/>
           </div>
           <div className='my-5' >
             <Training data={training}/>
           </div>
           <div className="my-5" >
-            <CoursesContainer data={allCourseData} title="All Course" loading={loading} showMoreAble={true} showInfo={true} showProgressBar={false} className={"row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0"} searchTerm=""/>
+            <CoursesContainer data={allCourseData} title="All Course" loading={loading} showMoreAble={true} showInfo={true} showProgressBar={false} className={"row row-cols-sm-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 g-4 my-0"} searchTerm={searchTerm}/>
           </div>
         </div>
       </div>

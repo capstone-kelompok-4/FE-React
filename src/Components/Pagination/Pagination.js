@@ -3,7 +3,7 @@ import ChevronLeft from "../../Assets/Icons/chevron_left.svg";
 import ChevronRight from "../../Assets/Icons/chevron_right.svg";
 import classes from "./Pagination.module.css";
 
-function Pagination({ dataPerPage, totalData, paginate, prevPage, nextPage, currentPage}) {
+function Pagination({ dataPerPage, totalData, paginate, prevPage, nextPage, currentPage, loading}) {
   const pageNumber = [];
 
   for(let i = 1; i <= Math.ceil(totalData / dataPerPage); i++ ){
@@ -22,7 +22,7 @@ function Pagination({ dataPerPage, totalData, paginate, prevPage, nextPage, curr
             </button>
           </li>
         }
-        {pageNumber.map(number => {
+        {pageNumber.length > 1 && pageNumber.map(number => {
           return(
             <li 
               key={number} 
@@ -36,7 +36,7 @@ function Pagination({ dataPerPage, totalData, paginate, prevPage, nextPage, curr
             </li>
           )
         })}
-        { currentPage !== lastPage &&
+        { !loading && currentPage !== lastPage &&
           <li className='page-item'>
             <button className={`page-link ${classes.pageLink}`}  onClick={() => nextPage(currentPage + 1)} style={{backgroundColor: "transparent", border: "none", color: "#0D2341"}}>
               <img src={ChevronRight} width="20px" height="20px" alt="chevronRight"/>
