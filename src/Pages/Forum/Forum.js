@@ -5,7 +5,6 @@ import Card from '../../Components/Card/Card';
 import Input from '../../Components/Input/Input';
 import Footer from '../../Components/Footer/Footer'
 import SideNav from '../../Components/Navigation/SideNav'
-import { Link } from "react-router-dom";
 
 function Forum() {
   const data = [
@@ -53,17 +52,15 @@ function Forum() {
         <div style={{margin: "50px 40px 40px 40px"}}>
           <h2 className={classes.title}>FORUM ALTERRA</h2>
         </div> 
-        <div>
-          <Link to="/faq">
-            <button style={{backgroundColor: "#FF6C00", padding: "15px 60px", border: "none", fontFamily: "Poppins", color: "#FFF", borderRadius: "10px"}}>Cara Menggunakan Forum</button>
-          </Link>
-        </div>
       </div>
       <div className="row" style={{marginLeft: "75px"}}>
         <div className="p-0 col-xl-9 col-lg-8 col-md-12">
           <div style={{margin: "40px"}}>
             <div className="d-flex flex-column align-items-center mx-5">
               <div className={classes.inputThreadWrapper} style={{backgroundColor: "#FFF"}}>
+                <div className="col-1 p-0 text-center">
+                  <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/884.jpg" alt="randomImage" width="50px" height="50px" style={{borderRadius: "50%"}} />
+                </div>
                 <Input type="text" placeholder='Tulis thread mu disini...' className={classes.inputThread}/>
               </div>
               {data.map((data, idx) => {

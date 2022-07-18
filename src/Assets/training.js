@@ -1,5 +1,5 @@
 import UI_bootcamp_img from "./Images/ui-mini-bootcamp.png";
-import productivity_img from "./Images/productivity employment.png";
+import productivity_img from "./Images/productivity-employment.png";
 import seni_berpikir_kritis_img from "./Images/seni-berpikir-kritis.png";
 
 export const training = [

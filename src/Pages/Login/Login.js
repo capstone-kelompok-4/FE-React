@@ -6,6 +6,7 @@ import CenteredSpinner from "../../Components/Loading/CenteredSpinner";
 import { Alert } from "react-bootstrap";
 import { BASE_URL, getToken, setUserSession, setUserTokenSession } from "../../Configs/APIAuth";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -50,10 +51,15 @@ function Login() {
           }
         };
         axios(config)
-        .then(res => {
+        .then( async (res) => {
           if(res.data.data.roles[0].name === 'ROLE_ADMIN'){
             setError("Only Role User Can Login")
           } else {
+            await Swal.fire(
+              "Success!",
+              "Login Success!",
+              "success"
+            )
             setUserSession(res.data.data)
             navigate("/");
           }

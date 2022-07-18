@@ -10,23 +10,38 @@ import ObjectiveLearner from '../../Components/ObjectiveLearner/ObjectiveLearner
 import MethodologyLearner from '../../Components/MethodologyLearner/MethodologyLearner';
 import Footer from '../../Components/Footer/Footer';
 import Background from "../../Assets/Images/bg_preview_course.png";
-import DownloadIcon from "../../Assets/Images/download.png";
 import { BASE_URL, getToken } from "../../Configs/APIAuth";
 
 export default function PreviewCourse() {
   const [course, setCourse] = useState([]);
+  const [courseTakens, setCourseTakens] = useState([]);
   const {course_id} = useParams();
   
+  const courseTaken = courseTakens.filter(courseTaken => courseTaken.course_take.name === course.name);
+
   useEffect(() => { 
     const token = getToken();
-    var config = {
+    var configGetCouseById = {
       method: 'get',
       url: `${BASE_URL}/courses/${course_id}`,
       headers: { 
         'Authorization': `Bearer ${token}`
       }
     };
-    axios(config).then(res =>  setCourse(res.data.data)).catch(err => console.log(err));
+    axios(configGetCouseById).then(res =>  setCourse(res.data.data)).catch(err => console.log(err));
+
+    var configGetCourseTakeByUsers = {
+      method: 'get',
+      url: `${BASE_URL}/course-takens/history`,
+      headers: { 
+        'Authorization': `Bearer ${token}`
+      }
+    };
+    axios(configGetCourseTakeByUsers).then(res => {
+      setCourseTakens(res.data.data)
+  }).catch(err => {
+      console.log(err);
+  })
   }, [course_id]);
 
   return (
@@ -43,14 +58,13 @@ export default function PreviewCourse() {
         </div> 
         <div className='row my-5'>
           <div className='col-sm-4 col-lg-3'>
-            <StartCourse courseId={course_id}/>
+            <StartCourse courseId={course_id} course_take_id={courseTaken[0]?.id}/>
           </div>
           <div className={` ms-auto col-sm-8 col-lg-9 ${classes.right}`}> 
             <Card className={classes.card} id="TargetLearner">
-              <div className='container-fluid' style={{position: "relative"}} >
+              <div className='container-fluid'>
                 <h2 >A. Target Learner </h2>
                 <TargetLearner data={course} />
-                <img src={DownloadIcon} alt="downloadIcon" width="60px" height="60px" style={{position: "absolute", top: "0", right: "0"}} />
               </div>
             </Card>
             <Card className={classes.card} id="ObjectiveLearning">

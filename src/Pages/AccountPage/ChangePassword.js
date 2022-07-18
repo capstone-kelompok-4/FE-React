@@ -99,7 +99,7 @@ function ChangePassword() {
       console.log(JSON.stringify(res.data));
       Swal.fire(
         'Success!', 
-        "Password Successfully Changed",
+        "Successfully Change Password",
         "success"
       )
       setValues(initialValues);

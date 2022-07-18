@@ -17,7 +17,7 @@
   font-size: 36px;
   letter-spacing: 1px;
   font-family: "Mulish", serif;
-  color: #0D2341;
+  color: #133461;
   font-weight: 700;
 }
 
@@ -25,7 +25,7 @@
   font-size: 18px;
   font-weight: 500;
   font-family: "Poppins", serif;
-  color: #0D2341;
+  color: #133461;
 }
 
 .btn{
@@ -38,7 +38,7 @@
   font-weight: 500 !important;
   transition: .3s all ease-in-out;
 }
-.btn:hover{
+.btn:active{
   color: #FFF;
   background-color: #F47522;
   transition: .3s all ease-in-out;

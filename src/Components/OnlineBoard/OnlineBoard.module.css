@@ -18,7 +18,7 @@
   text-align: start;
   margin-bottom: 10px;
   font-family: "Mulish", sans-serif;
-  color: #0D2341;
+  color: #133461;
   font-weight: bold;
 }
 
@@ -27,7 +27,7 @@
 }
 .card > table > tbody > tr > td{
   font-weight: 500;
-  color: #0D2341;
+  color: #133461;
   font-size: 14px;
 }
 .card > table > tbody > tr > td, .card > table > thead> tr > th{
