@@ -107,7 +107,7 @@ function RequestForm() {
                         <label htmlFor="fullname" className={`form-label mb-2 ${classes.labeltext}`}>Full Name</label>  
                         <input 
                           type="text" 
-                          className={`form-control ${classes.forminput}`} 
+                          className={`${classes.forminput}`} 
                           name="fullname" 
                           id="fullname" 
                           placeholder="Your Name" 
@@ -119,7 +119,7 @@ function RequestForm() {
                         <label htmlFor="email" className={`form-label mb-2 ${classes.labeltext}`}>Your email</label>
                         <input 
                           type="email" 
-                          className={`form-control ${classes.forminput}`} 
+                          className={`${classes.forminput}`} 
                           name="email" 
                           id="email" 
                           placeholder="Your Email" 
@@ -132,7 +132,7 @@ function RequestForm() {
                         <label htmlFor="requestTitle" className={`form-label mb-2 ${classes.labeltext}`}>Specialist</label>  
                         <input 
                           type="text" 
-                          className={`form-control ${classes.forminput}`} 
+                          className={`${classes.forminput}`} 
                           name="specialist" 
                           id="specialist"
                           defaultValue={data.specialist} 
@@ -162,7 +162,7 @@ function RequestForm() {
                         <label htmlFor="requestTitle" className={`form=label mb-2 ${classes.labeltext}`}>Request Title</label>  
                         <input 
                           type="text" 
-                          className={`form-control ${classes.forminput}`} 
+                          className={`${classes.forminput}`} 
                           id="requestTitle" 
                           name='reqTitle' 
                           defaultValue={course.name} 
@@ -173,7 +173,7 @@ function RequestForm() {
                       </div>
                       <div className='mb-5'>
                         <label htmlFor="requestDetail" className={`form=label mb-2 ${classes.labeltext}`}>Request Detail</label>                       
-                        <textarea id="text" className={`form-control ${classes.formtextarea}`} onChange={handleChange} value={data.reqDetail} name="reqDetail" rows="6" cols="100" placeholder="Explain to us why you want to this request is approved?" />
+                        <textarea id="text" className={`${classes.formtextarea}`} onChange={handleChange} value={data.reqDetail} name="reqDetail" rows="6" cols="100" placeholder="Explain to us why you want to this request is approved?" />
                       </div>
                       <div className="d-flex justify-content-center mb-3 w-100">
                         <input onClick={resetData} type="Reset" name='Reset' value="Reset" className={`btn btn-lg ${classes.buttoncancel}`}/>

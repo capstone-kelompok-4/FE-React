@@ -116,7 +116,7 @@ function Login() {
                   <div className="input-group mb-3">
                     <input
                       type="email"
-                      className={`form-control ${classes.forminput}`}
+                      className={`${classes.forminput}`}
                       id="email"
                       name="email"
                       value={email}
@@ -133,7 +133,7 @@ function Login() {
                   <div className="input-group">
                     <input
                       type="password"
-                      className={`form-control ${classes.forminput}`}
+                      className={`${classes.forminput}`}
                       id="password"
                       name="password"
                       value={password}
