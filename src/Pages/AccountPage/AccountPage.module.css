@@ -6,7 +6,8 @@
   font-family: "Mulish", sans-serif;
   font-family: 32px;
   color: #0D2341;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   margin-bottom: 3rem;
 }
 .flexWrapper{

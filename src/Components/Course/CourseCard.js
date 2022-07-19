@@ -26,7 +26,7 @@ function CourseCard({course_id, title, img, progress, rating, total_material, sh
         {showProgressBar &&
           <div className="card-body">
             {/* <ProgressBar animated bgcolor="#0275d8" now={progress} />  */}
-            <ProgressBar bgcolor="#133461" progress={progress}  height={10} />
+            <ProgressBar bgcolor="#133461" progress={progress}  height={6} />
             <p className={classes.completed}>Complete:  <span className='fw-bold'>{progress}%</span></p>
           </div>
         }
@@ -43,11 +43,11 @@ function CourseCard({course_id, title, img, progress, rating, total_material, sh
             </div>
           </div>
           <div className={classes.readMore}>
-            <button className={classes.btn}>
-              <Link to={`/preview_course/${course_id}`}>
+            <Link to={`/preview_course/${course_id}`}>
+              <button className={classes.btn}>
                 Read More
-              </Link>
-            </button>
+              </button>
+            </Link>
           </div>
         </div>
         }

@@ -55,10 +55,10 @@ export default function CourseOverview() {
           <div style={{margin: "20px 70px"}}>
             <div className='d-flex justify-content-between align-items-center py-3' style={{flexWrap: 'wrap'}}>
               <div>
-                <h2 className='m-0' style={{fontFamily: "Mulish", fontWeight: "600", color: "#0D2341"}}>COURSE OVERVIEW</h2>
+                <h2 className='m-0' style={{fontFamily: "Mulish", fontWeight: "700", color: "#0D2341", letterSpacing: "0.02em"}}>COURSE OVERVIEW</h2>
               </div> 
               <div>
-                <SearchBar placeholder="Mau belajar apa hari ini ?" onChange={handleSearch}/>
+                <SearchBar placeholder="Cari course atau webinar ?" onChange={handleSearch}/>
               </div>
             </div>
           </div>

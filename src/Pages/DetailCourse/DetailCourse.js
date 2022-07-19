@@ -1,36 +1,35 @@
 import React, {useState, useEffect} from 'react'
+import { CircularProgress } from '@mui/material';
 import classes from "./DetailCourse.module.css";
-import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import SidebarSection from '../../Components/Navigation/SidebarSection';
 
 // Assets
 import SidebarIcon from "../../Assets/Icons/sidebar.svg";
 import EclipseIcon from "../../Assets/Icons/eclipse.svg";
-import ArrowRight from "../../Assets/Icons/arrow_right.svg";
-import ArrowLeft from "../../Assets/Icons/arrow_left.svg";
 import WhiteEclipse from "../../Assets/Icons/white_eclipse.svg";
 import Checklist from "../../Assets/Icons/checklist.svg";
 import CloseIcon from "../../Assets/Icons/close.svg";
 import { BASE_URL, getToken, getUser } from '../../Configs/APIAuth';
+import { useParams } from 'react-router-dom';
 
 function DetailCourse() {
   const { course_id, section_id, material_id} = useParams();
-  // const prevMaterialId = parseInt(material_id) - 1;
-  // const nextMaterialId = parseInt(material_id) + 1;
-
   const loggedInUser = getUser();
+
+  const [loading, setLoading] = useState(false);
   const [dataCourse, setDataCourse] = useState([]);
   const [dataMaterial, setDataMaterial] = useState({});
   const [statusMaterial, setStatusMaterial] = useState("");
-  // const [dataPrevMaterial, setDataPrevMaterial] = useState({});
-  // const [dataNextMaterial, setDataNextMaterial] = useState({});
   const [courseTakenByCourseId, setCourseTakenByCourseId] = useState([]);
 
   const [showSidebar,setShowSidebar] = useState(false);
   const handleSidebarShow = () => setShowSidebar(!showSidebar);
 
   useEffect(() => {
+
+    // GET COURSE BY ID
+    setLoading(true);
     const token = getToken();
     var configGetCourse = {
       method: 'get',
@@ -39,8 +38,13 @@ function DetailCourse() {
         'Authorization': `Bearer ${token}`
       }
     };
-    axios(configGetCourse).then(res => setDataCourse((res.data.data))).catch(err => console.log(err));
+    axios(configGetCourse).then((res) => {
+      setLoading(false)
+      setDataCourse(res.data.data);
+    }).catch(err => console.log(err));
 
+    // GET MATERIAL
+    setLoading(true);
     var configGetMaterial = {
       method: 'get',
       url: `${BASE_URL}/courses/${course_id}/sections/${section_id}/materials/${material_id}`,
@@ -48,14 +52,15 @@ function DetailCourse() {
         'Authorization': `Bearer ${token}`
       }
     };
-    axios(configGetMaterial).then(res => setDataMaterial(res.data.data)).catch(err => console.log(err))
+    axios(configGetMaterial).then(res => {
+      setLoading(false);
+      setDataMaterial(res.data.data);
+    }).catch(err => {
+      setLoading(false);
+      console.log(err);
+    });
 
-    getCourseTakenByCourseId();
-    
-  }, [course_id, section_id, material_id])
-  
-  const getCourseTakenByCourseId = () => {
-    const token = getToken();
+    // GET COURSE TAKEN BY COURSE ID
     var configGetCourseTakenByCourseId = {
       method: 'get',
       url: `${BASE_URL}/course-takens/courses/${course_id}`,
@@ -65,18 +70,17 @@ function DetailCourse() {
     };
 
     axios(configGetCourseTakenByCourseId).then(res => setCourseTakenByCourseId(res.data.data)).catch(err => console.log(err));
-  }
+  }, [course_id, section_id, material_id])
 
+  // TEST
   let myCourseTaken = courseTakenByCourseId.filter(courseTaken => courseTaken.user.name === loggedInUser.name);
-  console.log(myCourseTaken);
-
   const thisMaterial = myCourseTaken[0]?.reports.filter(report => report.material.id === +material_id);
-  console.log(thisMaterial);
-
   setTimeout(() => {
     setStatusMaterial(thisMaterial[0]?.completed);
-  }, 2000)
-
+  }, 3000)
+  // TEST
+  
+  // Button Complete Handler
   const completeHandler = (material_id) => {
     const token = getToken();
     var data = JSON.stringify({
@@ -93,14 +97,20 @@ function DetailCourse() {
       data : data
     };
 
-    axios(configEditProgressMaterial).then((res) => {
-      getCourseTakenByCourseId()
-      // setStatusMaterial(true);
+    axios(configEditProgressMaterial).then(() => {
+      var configGetCourseTakenByCourseId = {
+        method: 'get',
+        url: `${BASE_URL}/course-takens/courses/${course_id}`,
+        headers: { 
+          'Authorization': `Bearer ${token}`
+        }
+      };
+  
+      axios(configGetCourseTakenByCourseId).then(res => setCourseTakenByCourseId(res.data.data)).catch(err => console.log(err));
     }).catch(err => console.log(err));
   }
 
   const openedSidebar = showSidebar ? classes.opened : classes.closed;
-
   
   return (
     <>
@@ -128,13 +138,19 @@ function DetailCourse() {
         </div>
         <div className={classes.material}>
           <div className="row py-5" style={{ margin: "auto", width: "80%"}}>
-            {dataMaterial.type === "VIDEO" && 
+            {loading && (
+              <div className={classes.spinnerContain}>
+                <CircularProgress style={{ width: "200px", height: "200px", color: "#FF6C00" }} />
+              </div>
+            )}
+
+            {!loading && dataMaterial.type === "VIDEO" && 
               (
-                <iframe width="1280" height="420" src={dataMaterial.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe width="1280" height="450" src={dataMaterial.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               )
             }
 
-            {dataMaterial.type === "SLIDE" && (
+            {!loading && dataMaterial.type === "SLIDE" && (
               <iframe
                 width="100%"
                 height="450px"
@@ -143,7 +159,7 @@ function DetailCourse() {
               />
             )}
 
-            {dataMaterial.type === "QUIZ" && 
+            {!loading && dataMaterial.type === "QUIZ" && 
               <iframe
                 width="100%"
                 height="450px"
@@ -159,14 +175,14 @@ function DetailCourse() {
       {/* Start Lesson Navigation */}
       <div className={`row align-items-center py-5 px-3 ${classes.lessonNavigation}`} style={{backgroundColor: "#133461",  width: "100%", margin: "0"}}>
         <div className='col-2 col-md-4 text-start'>
-          {material_id !== "1" &&
+          {/* {indexOfThisSection === "0" && indexOfThisMaterial === "0" && !loading &&
             <Link to={`/`}>
               <div style={{display: "flex", columnGap: "20px", alignItems: "center"}}>
                 <img src={ArrowLeft} alt="icon" width="40px" height="40px" style={{backgroundColor: "#133461", borderRadius: "50%"}}/>
-                {/* <h4 className={`m-0 ${classes.lessonNavigationText}`}>{dataPrevMaterial.name}</h4> */}
+                <h4 className={`m-0 ${classes.lessonNavigationText}`}>{dataPrevMaterial.name}</h4>
               </div>
             </Link>
-          }   
+          } */}
         </div>
         <div className='col-8 col-md-4 text-center'>
           <button className={`${classes.completedBtn}`} onClick={() => completeHandler(dataMaterial.id)}>
@@ -175,14 +191,14 @@ function DetailCourse() {
           </button>
         </div>
         <div className='col-2 col-md-4 text-end'>
-          {material_id !== "21" &&
-            <Link to={`/`}>
+          {/* {indexOfThisSection !== "5" && indexOfThisMaterial !== "2" && !loading &&
+            <Link to={`/preview_course/${course_id}/sections/${dataOfThisSection?.id}/detail_course/${dataOfNextMaterial?.id}`}>
               <div style={{display: "flex", columnGap: "20px", flexDirection:"row-reverse", alignItems: "center"}}>
                 <img src={ArrowRight} alt="icon" width="40px" height="40px" style={{backgroundColor: "#133461", borderRadius: "50%"}}/>
-                {/* <h4 className={classes.lessonNavigationText}>{dataNextMaterial.name}</h4> */}
+                <h4 className={classes.lessonNavigationText}>{dataOfNextMaterial?.name}</h4>
               </div>
             </Link>
-          }
+          } */}
         </div>
       </div>
       {/* End Lesson Navigation */}

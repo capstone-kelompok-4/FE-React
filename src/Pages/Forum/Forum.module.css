@@ -13,19 +13,24 @@
   border: none;
   background-color: #FF6C00;
   color: #FFF;
-  padding: 15px 40px;
+  padding: 15px 45px;
   border-radius: 10px;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   display: flex;
+  transition: 0.3s all ease-in;
 }
-
+.saveBtn:hover{
+  box-shadow: 0px 4px 32px rgba(244, 117, 34, 0.5);
+  transition: 0.3s all ease-in;
+}
 .title{
   margin: 0;
   font-family: "Mulish", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   color: #0D2341;
   padding: 0 3rem;
+  letter-spacing: 0.02em;
 }
 
 .inputForm{
@@ -36,7 +41,9 @@
 }
 
 .inputThreadWrapper {
-  padding: 20px 80px 20px 20px;
+  display: flex;
+  align-items: center;
+  padding: 27px 32px 27px 20px;
   width: 100%;
   border-radius: 10px;
   background-color: #FFF;
@@ -45,13 +52,18 @@
 }
 
 .inputThread{
-  background-color: #FFF;
+  background-color: #D6DEEC;
   color: #0D2341;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   border: none;
   outline: none;
   width: 100%;
+  border-radius: 10px;
+  padding: 20px 80px 20px 20px;
+}
+.inputThreadWrapper input::placeholder{
+  color: #0D2341;
 }
 
 .inputForm input{

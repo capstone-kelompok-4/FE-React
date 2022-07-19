@@ -11,7 +11,11 @@
 
 .contentTitle, .schedule, .readMore a{
   font-family: "Poppins", sans-serif;
-  color: #0D2341;
+  color: #133461;
+  line-height: 21px;
+}
+.contentTitle{
+  font-weight: 700;
 }
 
 .readMore a{
@@ -26,9 +30,10 @@
   color: #0D2341;
   padding: 20px;
   transition: .3s all ease-in-out;
+  box-shadow: 0px 21px 35px rgba(0, 0, 0, 0.08);
 }
 
 .card:hover{
-  box-shadow: 0px 6px 10px #C5CDD4;
+  box-shadow: 0px 21px 35px rgba(0, 0, 0, 0.08);
   transition: .3s all ease-in-out;
 }

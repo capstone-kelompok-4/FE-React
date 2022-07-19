@@ -23,12 +23,12 @@ function MyCoursesContainer({title, data, showMoreAble, showInfo, showProgressBa
         } 
       </div>
       <div className={className}>
-        {!loading && data.length === 0 && <h5 className={`${classes.courseEmpty}`}>Oops...Anda belum memiliki course</h5>}
         {loading && [1, 2, 3, 4].map((e) => <LoadingCourseCard key={e}/>)}
+        {!loading && data.length === 0 && <h5 className={`${classes.courseEmpty}`}>Oops...Anda belum memiliki course</h5>}
         {!loading && data.slice(0, limit? limit : data.length).filter(course => {
           if(searchTerm === ""){
             return course
-          } else if (course.course_take.name.includes(searchTerm)) {
+          } else if (course.course_take.name.toLowerCase().includes(searchTerm.toLowerCase())) {
             return course
           } return false
         }).map((course) => {

@@ -38,7 +38,6 @@ function RequestForm() {
   }
 
   const [data, setData] = useState(baseData);
-  console.log(data);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -100,9 +99,9 @@ function RequestForm() {
             </div>
             <div className={`col ${classes.rightpage}`}>
               <div className={`d-flex flex-column align-items-center justify-content-center`}>
-                <div className="border rounded-3 shadow">
+                <div className="border rounded-3" style={{boxShadow: "0px 4px 4px #DDEAFF"}}>
                   <div className="d-flex flex-column align-items-center m-5 px-3 py-4">
-                    <h1 className={`fw-boldmb-4 ${classes.headingtext}`}>Request Form</h1>
+                    <h1 className={`mb-4 ${classes.headingtext}`}>REQUEST FORM</h1>
                     <form onSubmit={handleSubmitRequest}>
                       <div className='mb-3'>
                         <label htmlFor="fullname" className={`form-label mb-2 ${classes.labeltext}`}>Full Name</label>  

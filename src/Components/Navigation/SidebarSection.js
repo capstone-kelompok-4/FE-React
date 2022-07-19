@@ -37,7 +37,7 @@ function SidebarSection({isOpen, setIsOpen, course_id, data}) {
               <div className="accordion-item" style={{borderBottom: "2px solid #0D2341"}} key={index}>
                 <h2 className="accordion-header">
                   <button className={`accordion-button ${classes.section}`} type="button" data-bs-toggle="collapse" data-bs-target={`#panelsStayOpen-${section.id}`}>
-                    Section {section.number} <br/>
+                    Section {index+1} <br/>
                     {section.name}
                   </button>
                 </h2>

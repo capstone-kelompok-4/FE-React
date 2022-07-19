@@ -17,6 +17,10 @@
   border: 1px solid #FF6C00;
   padding: 15px 25px;
 }
+.btnActive{
+  background-color: #FF6C00;
+  color: #FFF;
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

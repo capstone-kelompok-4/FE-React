@@ -19,7 +19,14 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar,
       <div className="d-flex justify-content-between align-items-center">
         <h3 className={classes.title}>{title}</h3>
         {showMoreAble &&
-          <button type="button" className={classes.btn} onClick={handleReadMoreClick}>{isReadMoreShown ? "Lihat Lebih Sedikit":"Lihat Semua"}</button> 
+          <button 
+          type="button" 
+          className={classes.btn} 
+          style={{
+            backgroundColor: isReadMoreShown ? "#FF6C00": "#FFF",
+            color: isReadMoreShown ? "#FFF" : "#FF6C00"
+          }}
+          onClick={handleReadMoreClick}>{isReadMoreShown ? "Lihat Lebih Sedikit":"Lihat Semua"}</button> 
         } 
       </div>
       <div className={className}>
@@ -28,7 +35,7 @@ function CoursesContainer({title, data, showMoreAble, showInfo, showProgressBar,
         {!loading && data.filter(course => {
           if(searchTerm === ""){
             return course
-          } else if (course.name.includes(searchTerm)) {
+          } else if (course.name.toLowerCase().includes(searchTerm.toLowerCase())) {
             return course
           } return false
         }).slice(0, limit? limit : data.length).map((course) => {

@@ -86,6 +86,14 @@ function Participants() {
     console.log(specialistTerm)
   }
 
+  const showFormattedDate = (date) => {
+    const options = {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    }
+    return new Date(date).toLocaleString("en-US", options)
+  }
   return (
     <>
       <SidebarSection isOpen={showSidebar} course_id={course_id} data={dataCourse}/>
@@ -152,7 +160,13 @@ function Participants() {
                         <td width="20%">{participant.user.name}</td>
                         <td width="20%">{participant.user.user_specialization.name}</td>
                         <td width="20%">{participant.user.username}</td>
-                        <td width="20%">1min ago</td>
+                        {
+                          participant.last_access_course === null ? (
+                            <td width="20%">-</td>
+                          ) : (
+                            <td width="20%">{showFormattedDate(participant.last_access_course)}</td>
+                          )
+                        }
                       </tr>
                     )
                   })}

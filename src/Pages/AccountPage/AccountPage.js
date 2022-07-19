@@ -16,6 +16,7 @@ import DefaultProfile from "../../Assets/Images/default-profile.jpg";
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { createContext, useState } from 'react';
 import { getUser, removeUserSession } from '../../Configs/APIAuth';
+import Swal from 'sweetalert2';
 
 export const ContextGlobal = createContext(null);
 
@@ -50,8 +51,25 @@ export default function AccountPage(){
 
     const navigate = useNavigate();
     const logoutHandler = () => {
-        removeUserSession();
-        navigate("/login");
+        Swal.fire({
+            title: 'Logout ?',
+            text: "Are you sure want to logout?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              await Swal.fire(
+                'Logout!',
+                'Successfully Logout',
+                'success'
+              )
+              removeUserSession();
+              navigate("/login");
+            }
+          })
     }
 
     return(

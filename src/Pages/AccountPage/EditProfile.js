@@ -205,7 +205,7 @@ function EditProfile() {
         icon: 'success',
         title: "Success!",
         text: "Data have been updated",
-        showConfirmButton: false,
+        showConfirmButton: true,
         timer: 1500,
       })
       setUserSession(res.data.data);

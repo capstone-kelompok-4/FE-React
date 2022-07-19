@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import classes from "./Home.module.css"
 import axios from 'axios';
-import { BASE_URL, getToken, getUser } from '../../Configs/APIAuth';
+import { BASE_URL, getToken, getUser, removeUserSession } from '../../Configs/APIAuth';
 // Components
 import Calender from '../../Components/Calendar/Calender';
 import Banner from '../../Components/Banner/Banner';
@@ -9,8 +9,11 @@ import MyCoursesContainer from '../../Components/Course/MyCoursesContainer';
 import OnlineBoard from '../../Components/OnlineBoard/OnlineBoard';
 import SideNav from '../../Components/Navigation/SideNav';
 import Footer from '../../Components/Footer/Footer';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
   const [courseData, setCourseData] = useState([]);
   const [onlineUser, setOnlineUser] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,15 +30,31 @@ function Home() {
         'Authorization': `Bearer ${token}`
       }
     };
-    axios(config).then(res => {
+    axios(config).then((res) => {
       setLoading(false);
       setCourseData(res.data.data.filter(data => data.status === "ACCEPTED"))
     }).catch(err => {
-      setLoading(false); 
+      setLoading(false);
+      if(err.response.status === 403) {
+        Swal.fire(
+          'Oops!',
+          'Sesi anda telah berakhir, silahkan login kembali',
+          'warning'
+        ).then(() => {
+          removeUserSession();
+          navigate("/login")
+        })
+      } 
     });
-
-    axios.get(`${BASE_URL_MOCKAPI}/online_user`).then(res => setOnlineUser(res.data)).catch(err => console.log(err.message));
-  }, [])
+  
+    axios.get(`${BASE_URL_MOCKAPI}/online_user`).then(res => {
+      setLoading(false);
+      setOnlineUser(res.data)
+    }).catch(err => {
+      setLoading(false);
+      console.log(err.message)
+    });
+  }, [navigate])
 
   return (
     <>
@@ -56,7 +75,7 @@ function Home() {
         </div>
         <div className={`col-xl-3 p-0 mb-5 mt-3 col-lg-4 col-md-12 ${classes.right}`}>
           <Calender/>
-          <OnlineBoard data={onlineUser} title="Online Board"/>
+          <OnlineBoard data={onlineUser} title="Online Board" loading={loading}/>
         </div>
       </div>
       <Footer/>

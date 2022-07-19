@@ -2,9 +2,11 @@
   font-family: "Mulish", serif;
   font-weight: bold;
   margin-bottom: 20px;
+  color: #0D2341;
 }
 .card{
   margin: 0px 0px 20px 0px;
+  padding: 28px 20px;
 }
 @media screen and (max-width: 992px) {
   .right{

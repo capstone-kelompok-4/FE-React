@@ -6,17 +6,14 @@ import Card from '../Card/Card';
 import CenteredSpinner from '../Loading/CenteredSpinner';
 import classes from './StartCourse.module.css' 
 
-export default function StartCourse({courseId}){   
+export default function StartCourse({courseId, course_take_id}){   
     const [active, setActive] = useState("");
     const [sections, setSections] = useState([]);
     const [course, setCourse] = useState([]);
     const [courseTakens, setCourseTakens] = useState([]);
     const [loading, setLoading] = useState(false);
-    console.log(courseTakens);
 
     const courseTaken = courseTakens.filter(courseTaken => courseTaken.course_take.name === course.name);
-
-    console.log(courseTaken);
     const items = [
         {
             name: "Target Learner",
@@ -28,7 +25,7 @@ export default function StartCourse({courseId}){
         },
         {
             name: "Methodology Learning",
-            href: "MethodologyLearning"
+            href: "#MethodologyLearning"
         }
     ]
 
@@ -41,7 +38,7 @@ export default function StartCourse({courseId}){
             headers: { 
               'Authorization': `Bearer ${token}`
             }
-          };
+        };
         var configGetAllSections = {
             method: 'get',
             url: `${BASE_URL}/courses/${courseId}/sections/`,
@@ -56,19 +53,49 @@ export default function StartCourse({courseId}){
                 'Authorization': `Bearer ${token}`
             }
         };
+        var configGetCourseTakenById = {
+            method: 'get',
+            url: `${BASE_URL}/course-takens/${course_take_id}`,
+            headers: { 
+              'Authorization': `Bearer ${token}`
+            }
+          };
+          
         axios(configGetAllSections).then(res => {
             setSections(res.data.data)
         }).catch(err => console.log(err))
         axios(configGetCourseTakeByUsers).then(res => {
             setLoading(false);
             setCourseTakens(res.data.data)
-        }).catch(err => {
+        }).catch(() => {
             setLoading(false);
         })
         axios(configGetCourseById).then(res => {
             setCourse(res.data.data)
-        }).catch(err => console.log(err))
-    }, [courseId])
+        }).catch(err => console.log(err));
+        axios(configGetCourseTakenById).then(() => {});
+
+    }, [courseId, course_take_id])
+
+    const handleGetCourseTake = (course_take_id) => {
+        const token = getToken();
+        console.log(course_take_id);
+        var config = {
+            method: 'get',
+            url: `${BASE_URL}/course-takens/${course_take_id}`,
+            headers: { 
+              'Authorization': `Bearer ${token}`
+            }
+          };
+          
+        axios(config)
+        .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
 
     return (
         <>
@@ -79,7 +106,7 @@ export default function StartCourse({courseId}){
                 }
                 {
                     !loading && courseTaken[0]?.status === "ACCEPTED" &&
-                    <ListGroup.Item action href={`/preview_course/${courseId}/sections/${sections[0]?.id}/detail_course/${sections[0]?.materials[0]?.id}`} className={classes.orange} style={{padding: "20px 40px"}} >
+                    <ListGroup.Item action href={`/preview_course/${courseId}/sections/${sections[0]?.id}/detail_course/${sections[0]?.materials[0]?.id}`} className={classes.orange} style={{padding: "20px 40px"}} onClick={() => handleGetCourseTake(courseTaken[0]?.id)}>
                         <h4>START COURSE</h4>
                     </ListGroup.Item>
                 }
