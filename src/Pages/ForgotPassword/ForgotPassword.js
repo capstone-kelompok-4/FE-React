@@ -37,7 +37,7 @@ function ForgotPassword() {
                                 <div className="d-flex flex-column">
                                     <label htmlFor="email" className={`form=label mb-2 ${classes.labeltext}`}>Your email</label>
                                     <div class="input-group mb-3">
-                                        <input type="email" className={`form-control ${classes.forminput}`} id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Your Email" required/>
+                                        <input type="email" className={`${classes.forminput}`} id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Your Email" required/>
                                     </div>
                                 </div>
                                 {loading && 
