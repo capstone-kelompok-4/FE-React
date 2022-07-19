@@ -1,0 +1,50 @@
+.open{
+  opacity: 1;
+  visibility: visible;
+}
+.closed{
+  opacity: 0;
+  visibility: hidden;
+}
+.courseTitle{
+  margin: 0;
+  font-family: "Mulish", sans-serif;
+  color: #0D2341;
+}
+.sidebar{
+  width: 350px;
+  height: 100%;
+  flex-direction: column;
+  position: fixed;
+  background-color: #F0F5FD;
+  transition: .5s all ease-in-out;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+.section button, .sidebar button{
+  color: #0D2341;
+}
+
+.material a{
+  color: #0D2341;
+  text-decoration: none;
+}
+
+.material a:hover{
+  color: #0D2341;
+}
+
+.section, .material{
+  font-family: "Poppins", sans-serif;
+}
+
+.participants, .dataReport{
+  display: flex;
+  align-items: center;
+}
+.participants > p, .dataReport > p{
+  margin: 0;
+  color:#0D2341;
+  font-family: "Poppins", sans-serif;
+}

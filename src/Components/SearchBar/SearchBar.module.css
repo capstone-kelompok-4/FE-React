@@ -1,0 +1,28 @@
+.card{
+  padding: 0;
+  border-radius: 14px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.card input{
+  margin: 0;
+  padding: 15px 10px;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  width: 80%;
+  font-family: "Poppins", serif;
+}
+
+.card input::placeholder{
+  color: #133461;
+}
+.card img{
+  margin-left: 20px;
+}
+
+.card input:focus{
+  outline: none;
+}

@@ -1,0 +1,56 @@
+.card {
+  padding: 0;
+  margin: 40px;
+  background-color: #FFF;
+  border: none;
+}
+.bannerContent{
+  margin: 30px;
+  width: 60%;
+}
+
+.bannerContent .bannerContentLeft .bannerInfoWrapper .bannerTitle{
+  font-weight: 700;
+}
+
+.bannerTitle{
+  font-size: 36px;
+  letter-spacing: 1px;
+  font-family: "Mulish", serif;
+  color: #133461;
+  font-weight: 700;
+}
+
+.bannerText{
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Poppins", serif;
+  color: #133461;
+}
+
+.btn{
+  background-color: #FFF;
+  border: 1px solid #F47522;
+  color: #F47522;
+  border-radius: 10px !important;
+  font-family: "Poppins", sans-serif;
+  padding: 15px 40px !important;
+  font-weight: 500 !important;
+  transition: .3s all ease-in-out;
+}
+.btn:active{
+  color: #FFF;
+  background-color: #F47522;
+  transition: .3s all ease-in-out;
+}
+@media screen and (max-width: 1200px) {
+  .bannerContent{
+    width: 80%;
+  }
+  .bannerTitle{
+    font-size: 30px;
+  }
+  .bannerText{
+    font-size: 14px;
+  }
+}

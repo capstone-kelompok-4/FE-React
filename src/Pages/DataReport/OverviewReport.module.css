@@ -1,0 +1,53 @@
+/* Table Participant */
+.tableParticipant{
+  width: 95%;
+  margin: 40px auto;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+.tableParticipant thead tr{
+  width: 100px;
+  background-color: #133461;
+}
+.tableParticipant thead tr th{
+  color: #FFF;
+  padding: 20px 40px;
+  font-family: "Poppins", sans-serif;
+}
+.tableParticipant tr td{
+  background-color: #FFF;
+  color: #0D2341;
+  padding: 20px 40px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.tableParticipant tr:first-child, .tableParticipant td:first-child { border-top-left-radius: 14px; }
+.tableParticipant tr:first-child, .tableParticipant td:last-child { border-top-right-radius: 14px; }
+.tableParticipant tr:last-child, .tableParticipant td:first-child { border-bottom-left-radius: 14px; }
+.tableParticipant tr:last-child, .tableParticipant td:last-child { border-bottom-right-radius: 14px; }
+
+.tableParticipant tr:first-child, .tableParticipant th:first-child { border-top-left-radius: 14px; }
+.tableParticipant tr:first-child, .tableParticipant th:last-child { border-top-right-radius: 14px; }
+.tableParticipant tr:last-child, .tableParticipant th:first-child { border-bottom-left-radius: 14px; }
+.tableParticipant tr:last-child, .tableParticipant th:last-child { border-bottom-right-radius: 14px; }
+/* Table Participant */
+
+/* Action */
+.action{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 2rem 0px !important;
+}
+.btn{
+  color: #FFF;
+  background-color: #FF6C00;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+/* Action */
+

@@ -1,0 +1,11 @@
+.photo{
+    width: 100px;
+    height: 100px;
+} 
+.buttonn{
+        color: #fff;
+        background-color: #fff !important;
+        border-color: #fff !important;
+        color: #0D2341 !important;
+        /* text-decoration-color: #0D2341; */
+}
